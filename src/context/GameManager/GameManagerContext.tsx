@@ -7,31 +7,34 @@ export const USER = {
   player: 2,
 }
 interface IGameManagerCtx {
-  changeTurn: () => void
+  speechRecognized: (text: string) => void
   remainingTime: number
-  gameData: {
-    currentUser: number
-  }
+  whoIsPlaying: number
+  currentWord: string
 }
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
 
 export const GameManagerProvider: React.FC = ({ children }) => {
   const { turnTime } = useSettingsCtx()
   const [remainingTime, setRemainingTime] = useState(turnTime)
-
-  const [gameData, setGameData] = useState({
-    currentUser: USER.computer,
-  })
+  const [whoIsPlaying, setWhoIsPlaying] = useState(USER.computer)
+  const [currentWord, setCurrentWord] = useState('')
 
   const changeTurn = useCallback(() => {
-    if (gameData.currentUser === USER.computer) {
-      setGameData({ currentUser: USER.player })
+    if (whoIsPlaying === USER.computer) {
+      setWhoIsPlaying(USER.player)
     } else {
-      setGameData({ currentUser: USER.computer })
+      setWhoIsPlaying(USER.computer)
     }
 
     setRemainingTime(turnTime)
-  }, [turnTime, gameData.currentUser])
+  }, [turnTime, whoIsPlaying])
+
+  const speechRecognized = (text: string) => {
+    console.log(text)
+    setCurrentWord(text)
+    changeTurn()
+  }
 
   useEffect(() => {
     if (remainingTime < 0) {
@@ -43,7 +46,11 @@ export const GameManagerProvider: React.FC = ({ children }) => {
     setRemainingTime((prevState) => prevState - 1)
   }, 1000)
 
-  return <GameManagerCtx.Provider value={{ remainingTime, gameData, changeTurn }}>{children}</GameManagerCtx.Provider>
+  return (
+    <GameManagerCtx.Provider value={{ remainingTime, whoIsPlaying, speechRecognized, currentWord }}>
+      {children}
+    </GameManagerCtx.Provider>
+  )
 }
 
 export const useGameManagerCtx = () => {

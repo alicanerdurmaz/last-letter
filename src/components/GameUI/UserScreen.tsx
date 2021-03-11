@@ -1,36 +1,22 @@
+import { memo } from 'react'
+import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
 import LastLetter from '../Text/LastLetter'
-import MicrophoneIcon from '../Icons/MicrophoneIcon'
+import UserMicrophone from './UserMicrophone'
 
 import styles from './GameUI.module.scss'
-import useSpeechRecognition from '../../hooks/useSpeechRecognition'
-import { memo, useEffect } from 'react'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 
-interface IProps {
-  changeTurn: () => void
-}
-
-const UserScreen = ({ changeTurn }: IProps) => {
+const UserScreen = () => {
   const { t } = useInternalizationCtx()
-  const recognition = useSpeechRecognition()
-
-  useEffect(() => {
-    const currentRecognition = recognition
-    currentRecognition.start()
-
-    return () => {
-      currentRecognition.stop()
-    }
-  }, [recognition])
+  const { speechRecognized, currentWord } = useGameManagerCtx()
 
   return (
     <>
       <h1 className={styles.info}>{t('gameTurnInfo')}</h1>
       <h1 className={styles.word}>
-        <LastLetter text='Alican' />
+        <LastLetter text={currentWord} />
       </h1>
-
-      <MicrophoneIcon enabled={false} />
+      <UserMicrophone speechRecognized={speechRecognized} />
     </>
   )
 }

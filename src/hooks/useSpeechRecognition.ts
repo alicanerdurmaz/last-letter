@@ -1,5 +1,3 @@
-import { useRef, useEffect } from 'react'
-
 import grammerList from '../data/grammerList.json'
 
 // any vencdor-specific api are not adding to typescript.
@@ -15,33 +13,42 @@ const speechRecognitionList = new SpeechGrammarList()
 
 speechRecognitionList.addFromString(grammerList.grammerList, 1)
 
-const useSpeechRecognition = () => {
-  console.time('speech init')
-
+interface IProps {
+  onMatch: (text: string) => void
+}
+const useSpeechRecognition = ({ onMatch }: IProps) => {
   recognition.continuous = true
-  recognition.lang = localStorage.getItem('lang') || 'en-US'
+  recognition.lang = localStorage.getItem('lang') || 'tr-TR'
   recognition.interimResults = false
   recognition.maxAlternatives = 1
 
   recognition.onresult = (event) => {
-    recognition.stop()
-    console.log(event.results[0][0].transcript)
-  }
-
-  recognition.onspeechend = function () {
-    console.log('speech recognition -> end')
+    onMatch(event.results[0][0].transcript)
     recognition.stop()
   }
 
-  recognition.onnomatch = function (event) {
-    console.log('speech recognition -> didnt recognise that name.')
+  recognition.onspeechstart = () => {
+    console.log('speech recognition -> onspeechstart')
   }
 
-  recognition.onerror = function (event) {
+  recognition.onstart = () => {
+    console.log('speech recognition -> onstart')
+  }
+
+  recognition.onspeechend = () => {
+    console.log('speech recognition -> onspeechend')
+    recognition.stop()
+  }
+
+  recognition.onnomatch = (event) => {
+    console.log('speech recognition -> on no match')
+    recognition.stop()
+  }
+
+  recognition.onerror = (event) => {
     console.log('Error occurred in recognition', event.error)
   }
 
-  console.timeEnd('speech init')
   return recognition
 }
 

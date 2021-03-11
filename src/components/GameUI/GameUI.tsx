@@ -3,9 +3,10 @@ import { useGameManagerCtx, USER } from '../../context/GameManager/GameManagerCo
 import ComputerScreen from './ComputerScreen'
 import UserScreen from './UserScreen'
 import styles from './GameUI.module.scss'
+import React from 'react'
 
 const GameUI = () => {
-  const { remainingTime, gameData, changeTurn } = useGameManagerCtx()
+  const { remainingTime, whoIsPlaying } = useGameManagerCtx()
 
   return (
     <div className={styles.container}>
@@ -13,7 +14,7 @@ const GameUI = () => {
         <h2>{remainingTime}</h2>
       </div>
 
-      {gameData.currentUser === USER.computer ? <ComputerScreen /> : <UserScreen changeTurn={changeTurn} />}
+      {whoIsPlaying === USER.computer ? <ComputerScreen /> : <UserScreen />}
     </div>
   )
 }
