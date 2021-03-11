@@ -14,7 +14,7 @@ const speechRecognitionList = new SpeechGrammarList()
 speechRecognitionList.addFromString(grammerList.grammerList, 1)
 
 interface IProps {
-  onMatch: (text: string) => void
+  onMatch: (word: string) => void
   onStart: (started: boolean) => void
 }
 const useSpeechRecognition = ({ onMatch, onStart }: IProps) => {
