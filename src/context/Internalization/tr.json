@@ -7,5 +7,9 @@
   "gameDesc-3": "Hemen Başla buttonuna tıklayarak mikrofonun ile bilgisayara karşı oynayabilirsin !",
 
   "turkish": "Türkçe",
-  "english": "İngilizce"
+  "english": "İngilizce",
+
+  "easy": "Kolay",
+  "normal": "Orta",
+  "hard": "Zor"
 }

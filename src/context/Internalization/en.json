@@ -7,5 +7,9 @@
   "gameDesc-3": "You can play against the computer with your microphone by clicking the start button",
 
   "turkish": "Turkish",
-  "english": "English"
+  "english": "English",
+
+  "easy": "Easy",
+  "normal": "Normal",
+  "hard": "Hard"
 }

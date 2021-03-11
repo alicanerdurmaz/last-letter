@@ -5,10 +5,11 @@ interface IProps {
   className?: string
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   children: string
+  color?: 'primary' | 'warning' | 'error'
 }
-const Button = ({ className, onClick, children }: IProps) => {
+const Button = ({ className, onClick, children, color = 'primary' }: IProps) => {
   return (
-    <button className={cx(styles.button, className)} onClick={() => console.log('clicked')}>
+    <button className={cx(styles.button, styles[color], className)} onClick={() => console.log('clicked')}>
       {children}
     </button>
   )

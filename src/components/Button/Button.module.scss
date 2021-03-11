@@ -1,7 +1,7 @@
 .button {
   user-select: none;
   border: none;
-  background-color: var(--c-secondary);
+
   color: white;
 
   min-width: 64px;
@@ -16,10 +16,6 @@
   box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
   transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
     border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
-
-  &:hover {
-    background-color: #2b6cb0;
-  }
 
   &:active {
     box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
@@ -50,5 +46,46 @@
     border-radius: 4px;
 
     padding: 0.25em 0.5em;
+  }
+}
+
+.primary {
+  background-color: #4299e1d2;
+  &:hover {
+    background-color: #2b6bb0ce;
+  }
+}
+.warning {
+  background-color: #ff884b;
+  &:hover {
+    background-color: #ff874ba9;
+  }
+}
+.error {
+  background-color: #e53e3ed2;
+  &:hover {
+    background-color: #c53030a1;
+  }
+}
+
+.roundTimer {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  span {
+    font-weight: 400;
+    font-size: 1.125rem;
+  }
+
+  input {
+    width: 250px;
   }
 }

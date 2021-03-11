@@ -20,6 +20,12 @@
   font-style: italic;
 }
 
-.start {
-  width: 120px;
+.btnGroup {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+
+  button {
+    width: 120px;
+  }
 }
