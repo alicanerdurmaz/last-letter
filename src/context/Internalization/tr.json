@@ -1,3 +1,8 @@
 {
-  "appName": "SonHarf"
+  "start": "başla",
+  "appName": "SonHarf",
+  "hello": "Merhaba",
+  "gameDesc-1": "Oyun, kelimenin son harfinden yeni bir kelime türeterek oynanıyor.",
+  "gameDesc-2": "Kelime içeriğimizin Türkçe isimler olduğunu varsayarsak şöyle bir sequence oluşuyor;",
+  "gameDesc-3": "Hemen Başla buttonuna tıklayarak mikrofonun ile bilgisayara karşı oynayabilirsin !"
 }

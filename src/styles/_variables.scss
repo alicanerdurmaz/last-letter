@@ -1,0 +1,21 @@
+html {
+  --c-bg: #ffffff;
+  --c-bg-secondary: #f2f2f2;
+
+  --c-text: #212121;
+  --c-text-light: #454545;
+
+  --c-primary: #ea4c89;
+  --c-secondary: #4299e1;
+}
+
+html[data-theme='dark'] {
+  --c-bg: #0d1117;
+  --c-bg-secondary: #161b22;
+
+  --c-text: #c9d1d9;
+  --c-text-light: #8b949e;
+
+  --c-primary: #ea4c89;
+  --c-secondary: #4299e1;
+}

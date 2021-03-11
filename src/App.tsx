@@ -1,11 +1,20 @@
+import React from 'react'
+import Footer from './components/Footer/Footer'
+
 import Logo from './components/Logo/Logo'
+import GameDescription from './components/Text/GameDescription'
+
 import { InternalizationProvider } from './context/Internalization/InternalizationContext'
 
 function App() {
   return (
     <InternalizationProvider>
-      <div className='App'>
+      <div className='app'>
         <Logo />
+        <div className='gameUi'>
+          <GameDescription />
+        </div>
+        <Footer />
       </div>
     </InternalizationProvider>
   )

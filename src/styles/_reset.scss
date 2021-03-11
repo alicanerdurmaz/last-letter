@@ -3,6 +3,10 @@
    License: none (public domain)
 */
 
+* {
+  box-sizing: border-box;
+}
+
 html,
 body,
 div,
@@ -90,11 +94,6 @@ video {
   font-size: 100%;
   font: inherit;
   vertical-align: baseline;
-}
-
-/* make sure to set some focus styles for accessibility */
-:focus {
-  outline: 0;
 }
 
 /* HTML5 display-role reset for older browsers */

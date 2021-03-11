@@ -1,3 +1,8 @@
 {
-  "appName": "LastLetter"
+  "start": "start",
+  "appName": "LastLetter",
+  "hello": "Hello",
+  "gameDesc-1": "The game is played by deriving a new word from the last letter of the word.",
+  "gameDesc-2": "Assuming that your word content is Turkish names, a sequence like this occurs;",
+  "gameDesc-3": "You can play against the computer with your microphone by clicking the start button"
 }

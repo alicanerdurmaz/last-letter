@@ -1,0 +1,25 @@
+.container {
+  text-align: center;
+}
+.word {
+  font-size: 3rem;
+}
+
+.desc {
+  margin: 2rem 0;
+  p {
+    color: var(--c-text-light);
+    margin-bottom: 0.5rem;
+    font-size: 1.125rem;
+  }
+}
+
+.quote {
+  margin: 1rem 0;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.start {
+  width: 120px;
+}

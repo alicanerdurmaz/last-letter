@@ -1,0 +1,27 @@
+.button {
+  user-select: none;
+  border: none;
+  background-color: var(--c-secondary);
+  color: white;
+
+  min-width: 64px;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+
+  line-height: 1.75;
+  font-weight: 600;
+  letter-spacing: 0.02857em;
+  text-transform: uppercase;
+
+  box-shadow: 0px 3px 1px -2px rgb(0 0 0 / 20%), 0px 2px 2px 0px rgb(0 0 0 / 14%), 0px 1px 5px 0px rgb(0 0 0 / 12%);
+  transition: background-color 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms, box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    border 250ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+
+  &:hover {
+    background-color: #2b6cb0;
+  }
+
+  &:active {
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%), 0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+  }
+}
