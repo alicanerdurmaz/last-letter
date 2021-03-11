@@ -1,8 +1,10 @@
 import React, { createContext, useContext, useState } from 'react'
+import { getLanguageFromLocalStorage } from '../../utils/getLanguageFromLocalStorage'
 import enLanguage from './en.json'
 import trLanguage from './tr.json'
 
-type languages = 'tr' | 'en'
+export type languages = 'tr' | 'en'
+export const supportedLanguages = ['en', 'tr']
 
 interface ILanguageObject {
   en: { [key: string]: string }
@@ -11,13 +13,14 @@ interface ILanguageObject {
 
 interface IInternalizationCtx {
   t: (key: string) => string
-  setLanguage: React.Dispatch<React.SetStateAction<languages>>
+  changeAppLanguage: (lang: string) => void
+  appLanguage: languages
 }
 
 const InternalizationCtx = createContext<IInternalizationCtx | null>(null)
 
 export const InternalizationProvider: React.FC = ({ children }) => {
-  const [appLanguage, setLanguage] = useState<languages>('en')
+  const [appLanguage, setAppLanguage] = useState<languages>(() => getLanguageFromLocalStorage())
 
   const [lang] = useState<ILanguageObject>({
     en: enLanguage,
@@ -30,7 +33,16 @@ export const InternalizationProvider: React.FC = ({ children }) => {
     return lang[appLanguage][key]
   }
 
-  return <InternalizationCtx.Provider value={{ t, setLanguage }}>{children}</InternalizationCtx.Provider>
+  const changeAppLanguage = (lang: string) => {
+    if (!supportedLanguages.includes(lang)) return
+
+    setAppLanguage(lang as languages)
+    localStorage.setItem('lang', lang)
+  }
+
+  return (
+    <InternalizationCtx.Provider value={{ t, changeAppLanguage, appLanguage }}>{children}</InternalizationCtx.Provider>
+  )
 }
 
 export const useInternalizationCtx = () => {

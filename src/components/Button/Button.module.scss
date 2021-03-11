@@ -40,3 +40,15 @@
     height: 24px;
   }
 }
+
+.selectContainer {
+  select {
+    background-color: var(--c-bg);
+    color: var(--c-text);
+
+    border: none;
+    border-radius: 4px;
+
+    padding: 0.25em 0.5em;
+  }
+}
