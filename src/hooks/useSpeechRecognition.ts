@@ -15,8 +15,9 @@ speechRecognitionList.addFromString(grammerList.grammerList, 1)
 
 interface IProps {
   onMatch: (text: string) => void
+  onStart: (started: boolean) => void
 }
-const useSpeechRecognition = ({ onMatch }: IProps) => {
+const useSpeechRecognition = ({ onMatch, onStart }: IProps) => {
   recognition.continuous = true
   recognition.lang = localStorage.getItem('lang') || 'tr-TR'
   recognition.interimResults = false
@@ -28,6 +29,7 @@ const useSpeechRecognition = ({ onMatch }: IProps) => {
   }
 
   recognition.onspeechstart = () => {
+    onStart(true)
     console.log('speech recognition -> onspeechstart')
   }
 
@@ -36,8 +38,8 @@ const useSpeechRecognition = ({ onMatch }: IProps) => {
   }
 
   recognition.onspeechend = () => {
-    console.log('speech recognition -> onspeechend')
     recognition.stop()
+    console.log('speech recognition -> onspeechend')
   }
 
   recognition.onnomatch = (event) => {
