@@ -1,11 +1,7 @@
-import { IIcon } from './IconInterface'
-
-const MoonIcon = ({ width = '16px', height = '16px' }: IIcon) => {
+const MoonIcon = () => {
   return (
     <svg
       cursor='pointer'
-      width={width}
-      height={height}
       aria-hidden='true'
       focusable='false'
       data-icon='moon'

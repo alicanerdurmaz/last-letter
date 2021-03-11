@@ -1,11 +1,7 @@
-import { IIcon } from './IconInterface'
-
-const SunIcon = ({ width = '16px', height = '16px' }: IIcon) => {
+const SunIcon = () => {
   return (
     <svg
       cursor='pointer'
-      width={width}
-      height={height}
       aria-hidden='true'
       focusable='false'
       data-icon='sun'

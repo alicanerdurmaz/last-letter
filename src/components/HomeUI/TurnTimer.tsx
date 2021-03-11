@@ -1,11 +1,11 @@
-import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
+import { useSettingsCtx } from '../../context/GameManager/SettingsContext'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 
 import styles from './TurnTimer.module.scss'
 
 const TurnTimer = () => {
   const { t } = useInternalizationCtx()
-  const { turnTime, setTurnTime } = useGameManagerCtx()
+  const { turnTime, setTurnTime } = useSettingsCtx()
 
   return (
     <div className={styles.container}>

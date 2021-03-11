@@ -1,5 +1,5 @@
 import { memo } from 'react'
-import { useGameManagerCtx, GAME_DIFFICULTY } from '../../context/GameManager/GameManagerContext'
+import { useSettingsCtx, GAME_DIFFICULTY } from '../../context/GameManager/SettingsContext'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 import Button from '../Button/Button'
 
@@ -10,7 +10,7 @@ interface IProps {
 }
 const StartGame = ({ setIsGameStarted }: IProps) => {
   const { t } = useInternalizationCtx()
-  const { setGameDifficulty } = useGameManagerCtx()
+  const { setGameDifficulty } = useSettingsCtx()
 
   const onClickHandler = (gameDifficulty: number) => {
     setGameDifficulty(gameDifficulty)

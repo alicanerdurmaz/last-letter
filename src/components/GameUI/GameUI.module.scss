@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.computer {
+  font-size: 2rem;
+  margin-bottom: 10rem;
+}
+
+.info {
+  text-align: center;
+  font-size: 2rem;
+}
+
+.word {
+  margin: 4rem 0;
+  font-size: 3rem;
+}
+
+.time {
+  font-weight: bolder;
+  color: var(--c-text);
+  font-size: 3rem;
+  margin-bottom: 4rem;
+}

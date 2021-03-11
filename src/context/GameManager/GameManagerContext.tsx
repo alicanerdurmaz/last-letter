@@ -1,30 +1,48 @@
-import React, { createContext, useContext, useState } from 'react'
+import React, { createContext, useContext, useState, useEffect, useCallback } from 'react'
+import useInterval from '../../hooks/useInterval'
+import { useSettingsCtx } from './SettingsContext'
 
-export const GAME_DIFFICULTY = {
-  easy: 1,
-  normal: 2,
-  hard: 3,
+export const USER = {
+  computer: 1,
+  player: 2,
 }
 interface IGameManagerCtx {
-  turnTime: number
-  setTurnTime: React.Dispatch<React.SetStateAction<number>>
-  setGameDifficulty: React.Dispatch<React.SetStateAction<number>>
+  remainingTime: number
+  gameData: {
+    currentUser: number
+  }
 }
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
 
 export const GameManagerProvider: React.FC = ({ children }) => {
-  const [turnTime, setTurnTime] = useState(8)
-  const [gameDifficulty, setGameDifficulty] = useState(GAME_DIFFICULTY.easy)
+  const { turnTime } = useSettingsCtx()
+  const [remainingTime, setRemainingTime] = useState(turnTime)
 
   const [gameData, setGameData] = useState({
-    currentUser: 'computer',
-    usedWordList: new Set(),
-    currentWord: null,
+    currentUser: USER.computer,
   })
 
-  return (
-    <GameManagerCtx.Provider value={{ turnTime, setTurnTime, setGameDifficulty }}>{children}</GameManagerCtx.Provider>
-  )
+  const changeTurn = useCallback(() => {
+    if (gameData.currentUser === USER.computer) {
+      setGameData({ currentUser: USER.player })
+    } else {
+      setGameData({ currentUser: USER.computer })
+    }
+
+    setRemainingTime(turnTime)
+  }, [turnTime, gameData.currentUser])
+
+  useEffect(() => {
+    if (remainingTime < 0) {
+      changeTurn()
+    }
+  }, [changeTurn, remainingTime])
+
+  useInterval(() => {
+    setRemainingTime((prevState) => prevState - 1)
+  }, 1000)
+
+  return <GameManagerCtx.Provider value={{ remainingTime, gameData }}>{children}</GameManagerCtx.Provider>
 }
 
 export const useGameManagerCtx = () => {
