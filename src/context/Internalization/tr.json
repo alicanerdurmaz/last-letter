@@ -14,5 +14,10 @@
   "hard": "Zor",
 
   "roundTime": "Tur Zamanı",
-  "second": "saniye"
+  "second": "saniye",
+
+  "alertForExit": "Oyunu sonlandırmak istediğine emin misin ?",
+
+  "yes": "Evet",
+  "no": "Hayır"
 }

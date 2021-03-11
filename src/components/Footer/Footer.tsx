@@ -1,5 +1,5 @@
-import SelectLanguage from '../Button/SelectLanguage'
-import ToggleTheme from '../Button/ToggleTheme'
+import SelectLanguage from './SelectLanguage'
+import ToggleTheme from './ToggleTheme'
 import styles from './Footer.module.scss'
 
 interface IProps {

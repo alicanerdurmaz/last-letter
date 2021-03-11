@@ -14,5 +14,10 @@
   "hard": "Hard",
 
   "roundTime": "Round Time",
-  "second": "second"
+  "second": "second",
+
+  "alertForExit": "Are you sure you want to end the game?",
+
+  "yes": "Yes",
+  "no": "No"
 }
