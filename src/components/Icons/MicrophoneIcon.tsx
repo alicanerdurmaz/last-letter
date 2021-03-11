@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import styles from './MicrophoneIcon.module.scss'
 
 interface IProps {
@@ -23,4 +24,4 @@ const MicrophoneIcon = ({ enabled }: IProps) => {
   )
 }
 
-export default MicrophoneIcon
+export default memo(MicrophoneIcon)

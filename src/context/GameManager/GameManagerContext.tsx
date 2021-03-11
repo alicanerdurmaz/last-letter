@@ -7,6 +7,7 @@ export const USER = {
   player: 2,
 }
 interface IGameManagerCtx {
+  changeTurn: () => void
   remainingTime: number
   gameData: {
     currentUser: number
@@ -42,7 +43,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
     setRemainingTime((prevState) => prevState - 1)
   }, 1000)
 
-  return <GameManagerCtx.Provider value={{ remainingTime, gameData }}>{children}</GameManagerCtx.Provider>
+  return <GameManagerCtx.Provider value={{ remainingTime, gameData, changeTurn }}>{children}</GameManagerCtx.Provider>
 }
 
 export const useGameManagerCtx = () => {

@@ -6,5 +6,5 @@ export const getLanguageFromLocalStorage = () => {
   if (langFromlocalStorage && supportedLanguages.includes(langFromlocalStorage))
     return langFromlocalStorage as languages
 
-  return 'en'
+  return 'en-US'
 }

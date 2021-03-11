@@ -3,12 +3,12 @@ import { getLanguageFromLocalStorage } from '../../utils/getLanguageFromLocalSto
 import enLanguage from './en.json'
 import trLanguage from './tr.json'
 
-export type languages = 'tr' | 'en'
-export const supportedLanguages = ['en', 'tr']
+export type languages = 'tr-TR' | 'en-US'
+export const supportedLanguages = ['tr-TR', 'en-US']
 
 interface ILanguageObject {
-  en: { [key: string]: string }
-  tr: { [key: string]: string }
+  'en-US': { [key: string]: string }
+  'tr-TR': { [key: string]: string }
 }
 
 interface IInternalizationCtx {
@@ -23,8 +23,8 @@ export const InternalizationProvider: React.FC = ({ children }) => {
   const [appLanguage, setAppLanguage] = useState<languages>(() => getLanguageFromLocalStorage())
 
   const [lang] = useState<ILanguageObject>({
-    en: enLanguage,
-    tr: trLanguage,
+    'en-US': enLanguage,
+    'tr-TR': trLanguage,
   })
 
   const t = (key: string) => {
