@@ -1,14 +1,15 @@
 import { useState } from 'react'
+import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 
-import styles from './Button.module.scss'
+import styles from './RoundTimer.module.scss'
 
 const RoundTimer = () => {
   const { t } = useInternalizationCtx()
-  const [roundTime, setRoundTime] = useState(8)
+  const { roundTime, setRoundTime } = useGameManagerCtx()
 
   return (
-    <div className={styles.roundTimer}>
+    <div className={styles.container}>
       <label htmlFor='volume'>
         {t('roundTime')} :{' '}
         <span>

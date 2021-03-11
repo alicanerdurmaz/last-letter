@@ -1,5 +1,5 @@
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import styles from './Button.module.scss'
+import styles from './SelectLanguage.module.scss'
 
 const SelectLanguage = () => {
   const { t, changeAppLanguage, appLanguage } = useInternalizationCtx()
@@ -9,7 +9,7 @@ const SelectLanguage = () => {
   }
 
   return (
-    <div className={styles.selectContainer}>
+    <div className={styles.container}>
       <select name='languages' onChange={(e) => selectHandler(e)} defaultValue={appLanguage}>
         <option value='tr'>{t('turkish')}</option>
         <option value='en'>{t('english')}</option>

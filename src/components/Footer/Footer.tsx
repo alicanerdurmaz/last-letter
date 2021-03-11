@@ -2,11 +2,14 @@ import SelectLanguage from '../Button/SelectLanguage'
 import ToggleTheme from '../Button/ToggleTheme'
 import styles from './Footer.module.scss'
 
-const Footer = () => {
+interface IProps {
+  isGameStarted: boolean
+}
+const Footer = ({ isGameStarted }: IProps) => {
   return (
     <footer className={styles.container}>
       <ToggleTheme />
-      <SelectLanguage />
+      {!isGameStarted && <SelectLanguage />}
     </footer>
   )
 }

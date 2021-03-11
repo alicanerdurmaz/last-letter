@@ -1,5 +1,6 @@
 import styles from './Button.module.scss'
 import cx from 'classnames'
+import { memo } from 'react'
 
 interface IProps {
   className?: string
@@ -15,4 +16,8 @@ const Button = ({ className, onClick, children, color = 'primary' }: IProps) => 
   )
 }
 
-export default Button
+function areEqual(prevProps: IProps, nextProps: IProps) {
+  return prevProps.children === nextProps.children
+}
+
+export default memo(Button, areEqual)

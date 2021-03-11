@@ -19,25 +19,3 @@
   font-weight: bold;
   font-style: italic;
 }
-
-.btnGroup {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-
-  button {
-    width: 180px;
-  }
-}
-@media only screen and (max-width: 600px) {
-  .btnGroup {
-    flex-direction: column;
-
-    button {
-      margin-bottom: 1rem;
-    }
-    button:last-of-type {
-      margin-bottom: 0;
-    }
-  }
-}

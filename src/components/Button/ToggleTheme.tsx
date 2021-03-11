@@ -2,7 +2,7 @@ import { useState } from 'react'
 import SunIcon from '../Icons/SunIcon'
 import MoonIcon from '../Icons/MoonIcon'
 
-import styles from './Button.module.scss'
+import styles from './ToggleTheme.module.scss'
 
 const ToggleTheme = () => {
   const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme') || 'dark')
@@ -14,7 +14,7 @@ const ToggleTheme = () => {
   }
 
   return (
-    <div className={styles.toggleThemeContainer}>
+    <div className={styles.container}>
       {theme === 'light' ? (
         <button onClick={() => setThemeHandler('dark')}>
           <MoonIcon />

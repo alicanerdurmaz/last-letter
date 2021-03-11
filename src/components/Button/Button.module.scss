@@ -22,33 +22,6 @@
   }
 }
 
-.toggleThemeContainer {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  button {
-    color: white;
-    display: contents;
-  }
-  svg {
-    width: 24px;
-    height: 24px;
-  }
-}
-
-.selectContainer {
-  select {
-    background-color: var(--c-bg);
-    color: var(--c-text);
-
-    border: none;
-    border-radius: 4px;
-
-    padding: 0.25em 0.5em;
-  }
-}
-
 .primary {
   background-color: #4299e1d2;
   &:hover {
@@ -65,27 +38,5 @@
   background-color: #e53e3ed2;
   &:hover {
     background-color: #c53030a1;
-  }
-}
-
-.roundTimer {
-  margin-top: 2rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-
-  label {
-    margin-bottom: 0.5rem;
-    font-weight: 600;
-  }
-
-  span {
-    font-weight: 400;
-    font-size: 1.125rem;
-  }
-
-  input {
-    width: 250px;
   }
 }

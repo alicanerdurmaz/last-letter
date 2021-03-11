@@ -1,9 +1,7 @@
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 import LastLetter from './LastLetter'
-import Button from '../Button/Button'
 
 import styles from './GameDescription.module.scss'
-import RoundTimer from '../Button/RoundTimer'
 
 const GameDescription = () => {
   const { t } = useInternalizationCtx()
@@ -24,14 +22,6 @@ const GameDescription = () => {
 
         <p>{t('gameDesc-3')}</p>
       </div>
-
-      <div className={styles.btnGroup}>
-        <Button color='primary'>{t('easy')}</Button>
-        <Button color='warning'>{t('normal')}</Button>
-        <Button color='error'>{t('hard')}</Button>
-      </div>
-
-      <RoundTimer />
     </div>
   )
 }

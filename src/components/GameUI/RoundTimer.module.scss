@@ -1,0 +1,21 @@
+.container {
+  margin-top: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  label {
+    margin-bottom: 0.5rem;
+    font-weight: 600;
+  }
+
+  span {
+    font-weight: 400;
+    font-size: 1.125rem;
+  }
+
+  input {
+    width: 250px;
+  }
+}
