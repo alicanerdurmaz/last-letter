@@ -4,12 +4,14 @@ import MicrophoneIcon from '../Icons/MicrophoneIcon'
 import styles from './GameUI.module.scss'
 import useSpeechRecognition from '../../hooks/useSpeechRecognition'
 import { memo, useEffect } from 'react'
+import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 
 interface IProps {
   changeTurn: () => void
 }
 
 const UserScreen = ({ changeTurn }: IProps) => {
+  const { t } = useInternalizationCtx()
   const recognition = useSpeechRecognition()
 
   useEffect(() => {
@@ -23,7 +25,7 @@ const UserScreen = ({ changeTurn }: IProps) => {
 
   return (
     <>
-      <h1 className={styles.info}>You must find a name from the last letter</h1>
+      <h1 className={styles.info}>{t('gameTurnInfo')}</h1>
       <h1 className={styles.word}>
         <LastLetter text='Alican' />
       </h1>

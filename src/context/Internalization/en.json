@@ -19,5 +19,8 @@
   "alertForExit": "Are you sure you want to end the game?",
 
   "yes": "Yes",
-  "no": "No"
+  "no": "No",
+
+  "gameTurnInfo": "You must find a name from the last letter",
+  "thinking": "Thinknig"
 }

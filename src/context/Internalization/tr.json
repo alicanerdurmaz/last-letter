@@ -19,5 +19,8 @@
   "alertForExit": "Oyunu sonlandırmak istediğine emin misin ?",
 
   "yes": "Evet",
-  "no": "Hayır"
+  "no": "Hayır",
+
+  "gameTurnInfo": "Son harften bir isim bulmalısın",
+  "thinking": "Düşünüyorum"
 }
