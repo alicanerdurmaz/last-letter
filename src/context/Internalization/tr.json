@@ -11,5 +11,8 @@
 
   "easy": "Kolay",
   "normal": "Orta",
-  "hard": "Zor"
+  "hard": "Zor",
+
+  "roundTime": "Tur Zamanı",
+  "second": "saniye"
 }

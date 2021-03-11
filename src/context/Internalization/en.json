@@ -11,5 +11,8 @@
 
   "easy": "Easy",
   "normal": "Normal",
-  "hard": "Hard"
+  "hard": "Hard",
+
+  "roundTime": "Round Time",
+  "second": "second"
 }

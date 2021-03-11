@@ -9,7 +9,7 @@ interface IProps {
 }
 const Button = ({ className, onClick, children, color = 'primary' }: IProps) => {
   return (
-    <button className={cx(styles.button, styles[color], className)} onClick={() => console.log('clicked')}>
+    <button className={cx(styles.button, styles[color], className)} onClick={onClick}>
       {children}
     </button>
   )
