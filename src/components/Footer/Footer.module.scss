@@ -1,25 +1,10 @@
 .container {
   width: 100%;
   height: 36px;
-  background: black;
+  background: var(--c-bg-secondary);
 
   padding: 0 1rem;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-
-.selectThemeContainer {
-  height: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  button {
-    color: white;
-    display: contents;
-  }
-  svg {
-    width: 24px;
-    height: 24px;
-  }
 }
