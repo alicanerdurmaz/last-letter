@@ -1,6 +1,6 @@
 import GameDescription from '../Text/GameDescription'
 import styles from './HomeUI.module.scss'
-import RoundTimer from './RoundTimer'
+import TurnTimer from './TurnTimer'
 import StartGame from './StartGame'
 
 interface IProps {
@@ -11,7 +11,7 @@ const HomeUI = ({ setIsGameStarted }: IProps) => {
     <div className={styles.container}>
       <GameDescription />
       <StartGame setIsGameStarted={setIsGameStarted} />
-      <RoundTimer />
+      <TurnTimer />
     </div>
   )
 }

@@ -1,19 +1,18 @@
-import { useState } from 'react'
 import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 
-import styles from './RoundTimer.module.scss'
+import styles from './TurnTimer.module.scss'
 
-const RoundTimer = () => {
+const TurnTimer = () => {
   const { t } = useInternalizationCtx()
-  const { roundTime, setRoundTime } = useGameManagerCtx()
+  const { turnTime, setTurnTime } = useGameManagerCtx()
 
   return (
     <div className={styles.container}>
       <label htmlFor='volume'>
-        {t('roundTime')} :{' '}
+        {t('turnTime')} :{' '}
         <span>
-          {roundTime} {t('second')}
+          {turnTime} {t('second')}
         </span>
       </label>
       <input
@@ -22,11 +21,11 @@ const RoundTimer = () => {
         name='time'
         min='4'
         max='20'
-        value={roundTime}
-        onChange={(e) => setRoundTime(parseInt(e.target.value))}
+        value={turnTime}
+        onChange={(e) => setTurnTime(parseInt(e.target.value))}
       />
     </div>
   )
 }
 
-export default RoundTimer
+export default TurnTimer
