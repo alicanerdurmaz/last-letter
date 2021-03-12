@@ -6,7 +6,6 @@ export const checkWordIsInvalid = (
   NAME_LIST: NameList,
   usedWords: Set<string>
 ) => {
-  console.log(currentWord)
   if (!currentWord) return false
 
   const lowerNewWord = newWord.toLocaleLowerCase('tr')

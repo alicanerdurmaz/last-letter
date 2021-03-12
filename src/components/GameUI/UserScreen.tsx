@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
 import LastLetter from '../Text/LastLetter'
 import UserMicrophone from './UserMicrophone'
@@ -21,4 +20,4 @@ const UserScreen = () => {
   )
 }
 
-export default memo(UserScreen)
+export default UserScreen

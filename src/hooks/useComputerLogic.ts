@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useRef } from 'react'
 import { NameList } from '../context/GameManager/GameManagerContext'
 import { findRandomWordFromNameList } from '../utils/findRandomWordFromNameList'
 
@@ -8,10 +8,11 @@ export const useComputerLogic = (
   NAME_LIST: NameList,
   changeTurn: (word: string) => void
 ) => {
+  const word = useRef(findRandomWordFromNameList(currentWord, NAME_LIST))
+
   useEffect(() => {
-    const word = findRandomWordFromNameList(currentWord, NAME_LIST)
     setTimeout(() => {
-      changeTurn(word)
+      changeTurn(word.current)
     }, 2000)
-  }, [currentWord, NAME_LIST, changeTurn])
+  }, [changeTurn])
 }

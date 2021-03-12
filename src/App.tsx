@@ -8,6 +8,7 @@ import Logo from './components/Logo/Logo'
 import GameUI from './components/GameUI/GameUI'
 import { SettingsProvider } from './context/GameManager/SettingsContext'
 import { checkApiSupport } from './utils/checkApiSupport'
+import { GameLoopProvider } from './context/GameManager/GameLoop'
 
 const apiSupport = checkApiSupport()
 
@@ -27,7 +28,9 @@ function App() {
         <SettingsProvider>
           {isGameStarted ? (
             <GameManagerProvider>
-              <GameUI />
+              <GameLoopProvider>
+                <GameUI />
+              </GameLoopProvider>
             </GameManagerProvider>
           ) : (
             <HomeUI setIsGameStarted={setIsGameStarted} />

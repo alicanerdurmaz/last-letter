@@ -1,13 +1,15 @@
+import { memo } from 'react'
 import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import { useComputerLogic } from '../../hooks/useComputerLogic'
 import LastLetter from '../Text/LastLetter'
 import styles from './GameUI.module.scss'
 
 const ComputerScreen = () => {
   const { t } = useInternalizationCtx()
-  const { currentWord, usedWords, NAME_LIST, changeTurn } = useGameManagerCtx()
-  useComputerLogic(currentWord, usedWords, NAME_LIST, changeTurn)
+  const { currentWord } = useGameManagerCtx()
+  // useComputerLogic(currentWord, usedWords, NAME_LIST, changeTurn)
+
+  console.log('computer screen worked')
 
   return (
     <div>
@@ -21,4 +23,4 @@ const ComputerScreen = () => {
   )
 }
 
-export default ComputerScreen
+export default memo(ComputerScreen)
