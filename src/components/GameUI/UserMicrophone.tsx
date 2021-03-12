@@ -1,4 +1,4 @@
-import { memo, useEffect, useState } from 'react'
+import { memo, useEffect } from 'react'
 import MicrophoneIcon from '../Icons/MicrophoneIcon'
 
 import useSpeechRecognition from '../../hooks/useSpeechRecognition'
@@ -8,8 +8,7 @@ interface IProps {
 }
 
 const UserMicrophone = ({ speechRecognized }: IProps) => {
-  const [micListening, setMicListening] = useState(false)
-  const recognition = useSpeechRecognition({ onMatch: speechRecognized, toggleMicAnimation: setMicListening })
+  const { recognition, listening, speechResult } = useSpeechRecognition()
 
   useEffect(() => {
     const currentRecognition = recognition.current
@@ -20,7 +19,11 @@ const UserMicrophone = ({ speechRecognized }: IProps) => {
     }
   }, [recognition])
 
-  return <MicrophoneIcon enabled={micListening} />
+  useEffect(() => {
+    speechRecognized(speechResult)
+  }, [speechResult, speechRecognized])
+
+  return <MicrophoneIcon enabled={listening} />
 }
 
 export default memo(UserMicrophone)
