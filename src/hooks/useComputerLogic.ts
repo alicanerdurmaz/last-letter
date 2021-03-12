@@ -1,18 +1,29 @@
-import { useEffect, useRef } from 'react'
-import { NameList } from '../context/GameManager/GameManagerContext'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useGameManagerCtx } from '../context/GameManager/GameManagerContext'
 import { findRandomWordFromNameList } from '../utils/findRandomWordFromNameList'
+import { getRandomInt } from '../utils/getRandomInt'
 
-export const useComputerLogic = (
-  currentWord: string,
-  usedWords: Set<string>,
-  NAME_LIST: NameList,
-  changeTurn: (word: string) => void
-) => {
-  const word = useRef(findRandomWordFromNameList(currentWord, NAME_LIST))
+export const useComputerLogic = () => {
+  const { currentWord, NAME_LIST, changeTurn } = useGameManagerCtx()
+
+  const findWord = useRef(findRandomWordFromNameList(currentWord, NAME_LIST))
+  const computerThinkTime = useRef(getRandomInt(3, 6) * 1000)
+  const [word, setWord] = useState('')
+
+  const playForComputer = useCallback(() => {
+    setTimeout(() => {
+      setWord(findWord.current)
+    }, computerThinkTime.current - 1000)
+
+    setTimeout(() => {
+      console.log('comp logic worked')
+      changeTurn(findWord.current)
+    }, computerThinkTime.current)
+  }, [changeTurn])
 
   useEffect(() => {
-    setTimeout(() => {
-      changeTurn(word.current)
-    }, 2000)
-  }, [changeTurn])
+    playForComputer()
+  }, [playForComputer])
+
+  return { word }
 }

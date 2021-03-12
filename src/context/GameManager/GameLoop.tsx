@@ -1,6 +1,7 @@
-import { createContext, useContext, useEffect, useRef, useState } from 'react'
+import { createContext, useContext, useEffect, useState } from 'react'
 import { useGameManagerCtx } from './GameManagerContext'
 import useInterval from '../../hooks/useInterval'
+import { useSettingsCtx } from './SettingsContext'
 
 interface IGameLoopCtx {
   remainingTime: number
@@ -10,19 +11,20 @@ interface IGameLoopCtx {
 const GameLoopCtx = createContext<IGameLoopCtx | null>(null)
 
 export const GameLoopProvider: React.FC = ({ children }) => {
-  const { changeTurn, pauseGame, continueGame, isGamePaused } = useGameManagerCtx()
-  const [remainingTime, setRemainingTime] = useState(8)
+  const { turnTime } = useSettingsCtx()
+  const { isGamePaused, whoIsPlaying, pauseGame } = useGameManagerCtx()
+  const [remainingTime, setRemainingTime] = useState(turnTime)
 
   useEffect(() => {
-    if (remainingTime <= 0) {
+    setRemainingTime(8)
+  }, [whoIsPlaying])
+
+  useEffect(() => {
+    if (remainingTime < 0) {
       pauseGame()
-
-      changeTurn('Test')
-      setRemainingTime(8)
-
-      continueGame()
+      alert('SÜRE bitti')
     }
-  }, [changeTurn, continueGame, pauseGame, remainingTime])
+  }, [pauseGame, remainingTime])
 
   useInterval(() => {
     if (isGamePaused()) return

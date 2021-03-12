@@ -12,10 +12,10 @@ speechRecognitionList.addFromString(grammerList.grammerList, 1)
 const SpeechRecognition = window.SpeechRecognition || myWindow.webkitSpeechRecognition
 
 const useSpeechRecognition = () => {
-  const [speechResult, setSpeechResult] = useState('')
   const [listening, setListening] = useState(false)
   const [error, setError] = useState(false)
   const [noMatch, setNoMatch] = useState(false)
+
   const recognition = useRef(new SpeechRecognition())
 
   recognition.current.continuous = true
@@ -24,9 +24,10 @@ const useSpeechRecognition = () => {
   recognition.current.maxAlternatives = 1
 
   recognition.current.onresult = (event) => {
+    console.log('on result WORKEDDDD' + event.results[0][0].transcript)
     setListening(false)
-    setSpeechResult(event.results[0][0].transcript)
   }
+
   recognition.current.onspeechstart = () => {
     setListening(true)
     console.warn('ON SPEECH START')
@@ -50,7 +51,7 @@ const useSpeechRecognition = () => {
     setError(true)
   }
 
-  return { recognition, listening, speechResult, error, noMatch }
+  return { recognition, listening, error, noMatch }
 }
 
 export default useSpeechRecognition

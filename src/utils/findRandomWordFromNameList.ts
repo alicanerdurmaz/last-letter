@@ -9,7 +9,6 @@ const findRandomLetter = () => {
 export const findRandomWordFromNameList = (currentWord: string, NameList: NameList) => {
   const lastLetter = !currentWord ? findRandomLetter() : currentWord[currentWord.length - 1]
 
-  console.log({ lastLetter })
   const listStartingWithTheLastLetter = NameList[lastLetter]
   const listLength = listStartingWithTheLastLetter.length
 

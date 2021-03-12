@@ -3,12 +3,8 @@ import MicrophoneIcon from '../Icons/MicrophoneIcon'
 
 import useSpeechRecognition from '../../hooks/useSpeechRecognition'
 
-interface IProps {
-  speechRecognized: (word: string) => void
-}
-
-const UserMicrophone = ({ speechRecognized }: IProps) => {
-  const { recognition, listening, speechResult } = useSpeechRecognition()
+const UserMicrophone = () => {
+  const { recognition, listening } = useSpeechRecognition()
 
   useEffect(() => {
     const currentRecognition = recognition.current
@@ -18,10 +14,6 @@ const UserMicrophone = ({ speechRecognized }: IProps) => {
       currentRecognition.stop()
     }
   }, [recognition])
-
-  useEffect(() => {
-    speechRecognized(speechResult)
-  }, [speechResult, speechRecognized])
 
   return <MicrophoneIcon enabled={listening} />
 }

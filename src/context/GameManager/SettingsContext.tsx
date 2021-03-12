@@ -1,9 +1,9 @@
 import React, { createContext, useContext, useState } from 'react'
 
 export const GAME_DIFFICULTY = {
-  easy: 1,
-  normal: 2,
-  hard: 3,
+  easy: 30,
+  normal: 50,
+  hard: 100,
 }
 interface ISettingsCtx {
   turnTime: number

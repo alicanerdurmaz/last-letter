@@ -14,7 +14,6 @@ const GameUI = () => {
       <div className={styles.time}>
         <h1>{remainingTime}</h1>
       </div>
-
       {whoIsPlaying === USER.computer ? <ComputerScreen /> : <UserScreen />}
     </div>
   )

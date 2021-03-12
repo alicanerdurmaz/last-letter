@@ -7,7 +7,7 @@ import { useInternalizationCtx } from '../../context/Internalization/Internaliza
 
 const UserScreen = () => {
   const { t } = useInternalizationCtx()
-  const { speechRecognized, currentWord } = useGameManagerCtx()
+  const { currentWord } = useGameManagerCtx()
 
   return (
     <>
@@ -15,7 +15,7 @@ const UserScreen = () => {
       <h1 className={styles.word}>
         <LastLetter text={currentWord} />
       </h1>
-      <UserMicrophone speechRecognized={speechRecognized} />
+      {/* <UserMicrophone /> */}
     </>
   )
 }

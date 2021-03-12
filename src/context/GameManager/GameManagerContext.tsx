@@ -35,37 +35,40 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const [currentWord, setCurrentWord] = useState('')
   const [usedWords, setUsedWords] = useState(new Set<string>())
 
-  const changeTurn = useCallback(
-    (word: string) => {
-      if (whoIsPlaying === USER.computer) {
-        setWhoIsPlaying(USER.player)
-      } else {
-        setWhoIsPlaying(USER.computer)
-      }
+  console.log('GameManagerProvider:' + currentWord)
 
-      setCurrentWord(word)
+  const changeTurn = (word: string) => {
+    pauseGame()
 
-      const newUsedWordList = new Set(usedWords)
-      newUsedWordList.add(word.toLowerCase())
-      setUsedWords(newUsedWordList)
-    },
-    [whoIsPlaying, usedWords]
-  )
+    if (whoIsPlaying === USER.computer) {
+      setWhoIsPlaying(USER.player)
+    } else {
+      setWhoIsPlaying(USER.computer)
+    }
 
-  const speechRecognized = useCallback(
-    (word: string) => {
-      if (checkWordIsInvalid(word, currentWord, NAME_LIST, usedWords)) {
-        return
-      }
-    },
-    [NAME_LIST, currentWord, usedWords]
-  )
+    setCurrentWord(word)
+
+    const newUsedWordList = new Set(usedWords)
+    newUsedWordList.add(word.toLowerCase())
+    setUsedWords(newUsedWordList)
+
+    continueGame()
+  }
+
+  const speechRecognized = (word: string) => {
+    if (checkWordIsInvalid(word, currentWord, NAME_LIST, usedWords)) {
+      return
+    }
+    changeTurn(word)
+  }
 
   const pauseGame = () => {
     pause.current = true
   }
   const continueGame = () => {
-    pause.current = false
+    setTimeout(() => {
+      pause.current = false
+    }, 500)
   }
   const isGamePaused = () => {
     return pause.current
