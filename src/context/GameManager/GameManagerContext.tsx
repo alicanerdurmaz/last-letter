@@ -16,6 +16,9 @@ interface IGameManagerCtx {
   remainingTime: number
   whoIsPlaying: number
   currentWord: string
+  usedWords: Set<string>
+  NAME_LIST: NameList
+  changeTurn: (word: string) => void
 }
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
 
@@ -29,12 +32,6 @@ export const GameManagerProvider: React.FC = ({ children }) => {
 
   const changeTurn = useCallback(
     (word: string) => {
-      setCurrentWord(word)
-
-      const newUsedWordList = new Set(usedWords)
-      newUsedWordList.add(word.toLowerCase())
-      setUsedWords(newUsedWordList)
-
       if (whoIsPlaying === USER.computer) {
         setWhoIsPlaying(USER.player)
       } else {
@@ -42,17 +39,25 @@ export const GameManagerProvider: React.FC = ({ children }) => {
       }
 
       setRemainingTime(turnTime)
+      setCurrentWord(word)
+
+      const newUsedWordList = new Set(usedWords)
+      newUsedWordList.add(word.toLowerCase())
+      setUsedWords(newUsedWordList)
     },
     [turnTime, whoIsPlaying, usedWords]
   )
 
-  const speechRecognized = (word: string) => {
-    if (checkWordIsInvalid(word, currentWord, NAME_LIST, usedWords)) {
-      return
-    }
+  const speechRecognized = useCallback(
+    (word: string) => {
+      if (checkWordIsInvalid(word, currentWord, NAME_LIST, usedWords)) {
+        return
+      }
 
-    changeTurn(word)
-  }
+      changeTurn(word)
+    },
+    [NAME_LIST, changeTurn, currentWord, usedWords]
+  )
 
   useEffect(() => {
     if (remainingTime < 0) {
@@ -65,7 +70,8 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   }, 1000)
 
   return (
-    <GameManagerCtx.Provider value={{ remainingTime, whoIsPlaying, speechRecognized, currentWord }}>
+    <GameManagerCtx.Provider
+      value={{ remainingTime, whoIsPlaying, speechRecognized, currentWord, usedWords, NAME_LIST, changeTurn }}>
       {children}
     </GameManagerCtx.Provider>
   )

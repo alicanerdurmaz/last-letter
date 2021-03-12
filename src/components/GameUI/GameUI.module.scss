@@ -9,6 +9,9 @@
 
 .computer {
   font-size: 2rem;
+  span {
+    font-size: 3rem;
+  }
 }
 
 .info {
@@ -17,6 +20,7 @@
 }
 
 .word {
+  text-align: center;
   margin: 4rem 0;
   font-size: 3rem;
 }

@@ -1,3 +1,4 @@
+import { useRef } from 'react'
 import grammerList from '../data/grammerList.json'
 
 // any vencdor-specific api are not adding to typescript.
@@ -8,47 +9,47 @@ const myWindow = window as any
 const SpeechRecognition = window.SpeechRecognition || myWindow.webkitSpeechRecognition
 const SpeechGrammarList = window.SpeechGrammarList || myWindow.webkitSpeechGrammarList
 
-const recognition = new SpeechRecognition()
 const speechRecognitionList = new SpeechGrammarList()
-
 speechRecognitionList.addFromString(grammerList.grammerList, 1)
-
 interface IProps {
   onMatch: (word: string) => void
-  onStart: (started: boolean) => void
+  toggleMicAnimation: (started: boolean) => void
 }
-const useSpeechRecognition = ({ onMatch, onStart }: IProps) => {
-  recognition.continuous = true
-  recognition.lang = localStorage.getItem('lang') || 'tr-TR'
-  recognition.interimResults = false
-  recognition.maxAlternatives = 1
 
-  recognition.onresult = (event) => {
+const useSpeechRecognition = ({ onMatch, toggleMicAnimation }: IProps) => {
+  const recognition = useRef(new SpeechRecognition())
+
+  recognition.current.continuous = true
+  recognition.current.lang = localStorage.getItem('lang') || 'tr-TR'
+  recognition.current.interimResults = false
+  recognition.current.maxAlternatives = 1
+
+  recognition.current.onresult = (event) => {
     onMatch(event.results[0][0].transcript)
-    recognition.stop()
   }
 
-  recognition.onspeechstart = () => {
-    onStart(true)
-    console.log('speech recognition -> onspeechstart')
+  recognition.current.onspeechstart = () => {
+    toggleMicAnimation(true)
+    console.warn('ON SPEECH START')
   }
 
-  recognition.onstart = () => {
-    console.log('speech recognition -> onstart')
+  recognition.current.onstart = () => {
+    console.warn('ON START')
   }
 
-  recognition.onspeechend = () => {
-    recognition.stop()
-    console.log('speech recognition -> onspeechend')
+  recognition.current.onspeechend = () => {
+    recognition.current.stop()
+    console.warn('ON SPEECH END')
   }
 
-  recognition.onnomatch = (event) => {
-    console.log('speech recognition -> on no match')
-    recognition.stop()
+  recognition.current.onnomatch = (event) => {
+    console.warn('ON NO MATCH')
+    recognition.current.stop()
   }
 
-  recognition.onerror = (event) => {
-    console.log('Error occurred in recognition', event.error)
+  recognition.current.onerror = (event) => {
+    console.error('ON ERROR', event.error)
+    toggleMicAnimation(false)
   }
 
   return recognition

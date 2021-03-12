@@ -4,15 +4,16 @@ import MicrophoneIcon from '../Icons/MicrophoneIcon'
 import useSpeechRecognition from '../../hooks/useSpeechRecognition'
 
 interface IProps {
-  speechRecognized: (text: string) => void
+  speechRecognized: (word: string) => void
 }
 
 const UserMicrophone = ({ speechRecognized }: IProps) => {
   const [micListening, setMicListening] = useState(false)
-  const recognition = useSpeechRecognition({ onMatch: speechRecognized, onStart: setMicListening })
+  const recognition = useSpeechRecognition({ onMatch: speechRecognized, toggleMicAnimation: setMicListening })
 
   useEffect(() => {
-    const currentRecognition = recognition
+    const currentRecognition = recognition.current
+
     currentRecognition.start()
     return () => {
       currentRecognition.stop()
