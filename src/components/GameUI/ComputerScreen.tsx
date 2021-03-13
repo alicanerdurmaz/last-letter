@@ -8,7 +8,7 @@ import styles from './GameUI.module.scss'
 const ComputerScreen = () => {
   const { t } = useInternalizationCtx()
 
-  const { currentWord } = useGameManagerCtx()
+  const { gameData } = useGameManagerCtx()
 
   const { word } = useComputerLogic()
 
@@ -30,7 +30,7 @@ const ComputerScreen = () => {
         <span>🤖 </span> {t('thinking')}...
       </h1>
       <h1 className={styles.word}>
-        <LastLetter text={currentWord} />
+        <LastLetter text={gameData.currentWord} />
       </h1>
     </>
   )

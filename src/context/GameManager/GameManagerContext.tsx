@@ -25,10 +25,14 @@ export interface IGameManagerCtx {
   GameOver: (desc: string) => void
 
   isGameOver: IsGameOver | null
+  NAME_LIST: NameList
+  gameData: IGameData
+}
+
+interface IGameData {
   whoIsPlaying: number
   currentWord: string
   usedWords: Set<string>
-  NAME_LIST: NameList
 }
 
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
@@ -38,31 +42,38 @@ export const GameManagerProvider: React.FC = ({ children }) => {
 
   const pause = useRef(false)
 
-  const [whoIsPlaying, setWhoIsPlaying] = useState(USER.computer)
-  const [currentWord, setCurrentWord] = useState('')
-  const [usedWords, setUsedWords] = useState(new Set<string>())
   const [isGameOver, setIsGameOver] = useState<IsGameOver | null>(null)
+
+  const [gameData, setGameData] = useState<IGameData>({
+    whoIsPlaying: USER.computer,
+    currentWord: '',
+    usedWords: new Set<string>(),
+  })
 
   const changeTurn = (word: string) => {
     pauseGame()
 
-    setCurrentWord(word)
-
-    const newUsedWordList = new Set(usedWords)
+    const newUsedWordList = new Set(gameData.usedWords)
     newUsedWordList.add(word.toLowerCase())
-    setUsedWords(newUsedWordList)
 
-    if (whoIsPlaying === USER.computer) {
-      setWhoIsPlaying(USER.player)
-    } else {
-      setWhoIsPlaying(USER.computer)
-    }
+    setGameData(prevState => {
+      return {
+        currentWord: word,
+        whoIsPlaying: prevState.whoIsPlaying === USER.computer ? USER.player : USER.computer,
+        usedWords: newUsedWordList,
+      }
+    })
 
     continueGame()
   }
 
   const speechRecognized = (word: string) => {
-    const result = checkWordIsInvalid({ newWord: word, NAME_LIST, currentWord, usedWords })
+    const result = checkWordIsInvalid({
+      newWord: word,
+      NAME_LIST,
+      currentWord: gameData.currentWord,
+      usedWords: gameData.usedWords,
+    })
     if (result) {
       GameOver(result)
       return
@@ -73,7 +84,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const GameOver = (desc: string) => {
     pauseGame()
     setIsGameOver({
-      winner: whoIsPlaying === USER.computer ? USER.player : USER.computer,
+      winner: gameData.whoIsPlaying === USER.computer ? USER.player : USER.computer,
       description: desc,
     })
   }
@@ -84,7 +95,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const continueGame = () => {
     setTimeout(() => {
       pause.current = false
-    }, 1000)
+    }, 500)
   }
   const isGamePaused = () => {
     return pause.current
@@ -100,10 +111,8 @@ export const GameManagerProvider: React.FC = ({ children }) => {
         isGamePaused,
 
         isGameOver,
-        currentWord,
-        usedWords,
+        gameData,
         NAME_LIST,
-        whoIsPlaying,
       }}
     >
       {children}

@@ -8,7 +8,7 @@ interface IProps {
 
 const GameOver = ({ isGameOver }: IProps) => {
   const { t } = useInternalizationCtx()
-  const { usedWords } = useGameManagerCtx()
+  const { gameData } = useGameManagerCtx()
   return (
     <div className={styles.container}>
       <h1 className={styles.winner}>
@@ -31,7 +31,7 @@ const GameOver = ({ isGameOver }: IProps) => {
         <h1>{t('usedWords')}</h1>
 
         <ul>
-          {Array.from(usedWords).map(word => {
+          {Array.from(gameData.usedWords).map(word => {
             return (
               <li key={word}>
                 {word} <span>&gt; </span>

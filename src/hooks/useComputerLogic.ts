@@ -6,9 +6,9 @@ import { getRandomInt } from '../utils/getRandomInt'
 
 export const useComputerLogic = () => {
   const { gameDifficulty } = useSettingsCtx()
-  const { currentWord, NAME_LIST, changeTurn } = useGameManagerCtx()
+  const { gameData, NAME_LIST, changeTurn } = useGameManagerCtx()
 
-  const findWord = useRef(findRandomWordFromNameList(currentWord, NAME_LIST))
+  const findWord = useRef(findRandomWordFromNameList(gameData.currentWord, NAME_LIST))
   const computerThinkTime = useRef(getRandomInt(3, 6) * 1000)
   const [word, setWord] = useState('')
 
@@ -29,7 +29,7 @@ export const useComputerLogic = () => {
     if (!shouldComputerFindWord(gameDifficulty)) return
 
     if (findWord.current) playForComputer(findWord.current)
-  }, [playForComputer, gameDifficulty, currentWord])
+  }, [playForComputer, gameDifficulty, gameData.currentWord])
 
   return { word }
 }

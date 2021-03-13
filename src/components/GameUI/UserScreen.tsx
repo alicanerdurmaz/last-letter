@@ -7,13 +7,13 @@ import { useInternalizationCtx } from '../../context/Internalization/Internaliza
 
 const UserScreen = () => {
   const { t } = useInternalizationCtx()
-  const { currentWord } = useGameManagerCtx()
+  const { gameData } = useGameManagerCtx()
 
   return (
     <>
       <h1 className={styles.info}>{t('gameTurnInfo')}</h1>
       <h1 className={styles.word}>
-        <LastLetter text={currentWord} />
+        <LastLetter text={gameData.currentWord} />
       </h1>
       <UserMicrophone />
     </>
