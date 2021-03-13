@@ -1,9 +1,11 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useGameManagerCtx } from '../context/GameManager/GameManagerContext'
+import { useSettingsCtx } from '../context/GameManager/SettingsContext'
 import { findRandomWordFromNameList } from '../utils/findRandomWordFromNameList'
 import { getRandomInt } from '../utils/getRandomInt'
 
 export const useComputerLogic = () => {
+  const { gameDifficulty } = useSettingsCtx()
   const { currentWord, NAME_LIST, changeTurn } = useGameManagerCtx()
 
   const findWord = useRef(findRandomWordFromNameList(currentWord, NAME_LIST))
@@ -24,8 +26,15 @@ export const useComputerLogic = () => {
   )
 
   useEffect(() => {
+    if (!shouldComputerFindWord(gameDifficulty)) return
+
     if (findWord.current) playForComputer(findWord.current)
-  }, [playForComputer])
+  }, [playForComputer, gameDifficulty, currentWord])
 
   return { word }
+}
+
+const shouldComputerFindWord = (computerChance: number) => {
+  const randomInt = getRandomInt(0, 100)
+  return computerChance >= randomInt
 }

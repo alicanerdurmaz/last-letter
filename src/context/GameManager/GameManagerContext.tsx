@@ -37,6 +37,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const NAME_LIST: NameList = useMemo(() => names, [])
 
   const pause = useRef(false)
+
   const [whoIsPlaying, setWhoIsPlaying] = useState(USER.computer)
   const [currentWord, setCurrentWord] = useState('')
   const [usedWords, setUsedWords] = useState(new Set<string>())
@@ -45,17 +46,17 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const changeTurn = (word: string) => {
     pauseGame()
 
-    if (whoIsPlaying === USER.computer) {
-      setWhoIsPlaying(USER.player)
-    } else {
-      setWhoIsPlaying(USER.computer)
-    }
-
     setCurrentWord(word)
 
     const newUsedWordList = new Set(usedWords)
     newUsedWordList.add(word.toLowerCase())
     setUsedWords(newUsedWordList)
+
+    if (whoIsPlaying === USER.computer) {
+      setWhoIsPlaying(USER.player)
+    } else {
+      setWhoIsPlaying(USER.computer)
+    }
 
     continueGame()
   }
