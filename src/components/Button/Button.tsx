@@ -6,7 +6,7 @@ interface IProps {
   className?: string
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   children: string
-  color?: 'primary' | 'warning' | 'error'
+  color?: 'primary' | 'warning' | 'error' | 'outlined'
 }
 const Button = ({ className, onClick, children, color = 'primary' }: IProps) => {
   return (

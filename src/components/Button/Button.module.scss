@@ -22,21 +22,9 @@
   }
 }
 
-.primary {
-  background-color: #4299e1d2;
+.outlined {
+  background-color: var(--c-bg-secondary);
   &:hover {
-    background-color: #2b6bb0ce;
-  }
-}
-.warning {
-  background-color: #ff884b;
-  &:hover {
-    background-color: #ff874ba9;
-  }
-}
-.error {
-  background-color: #e53e3ed2;
-  &:hover {
-    background-color: #c53030a1;
+    background-color: unset;
   }
 }

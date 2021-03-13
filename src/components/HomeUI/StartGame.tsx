@@ -19,13 +19,13 @@ const StartGame = ({ setIsGameStarted }: IProps) => {
 
   return (
     <div className={styles.container}>
-      <Button color='primary' onClick={() => onClickHandler(GAME_DIFFICULTY.easy)}>
+      <Button color='outlined' className={styles.easy} onClick={() => onClickHandler(GAME_DIFFICULTY.easy)}>
         {t('easy')}
       </Button>
-      <Button color='warning' onClick={() => onClickHandler(GAME_DIFFICULTY.normal)}>
+      <Button color='outlined' className={styles.normal} onClick={() => onClickHandler(GAME_DIFFICULTY.normal)}>
         {t('normal')}
       </Button>
-      <Button color='error' onClick={() => onClickHandler(GAME_DIFFICULTY.hard)}>
+      <Button color='outlined' className={styles.hard} onClick={() => onClickHandler(GAME_DIFFICULTY.hard)}>
         {t('hard')}
       </Button>
     </div>
