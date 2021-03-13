@@ -5,8 +5,11 @@ import { findRandomWordFromNameList } from '../utils/findRandomWordFromNameList'
 import { getRandomInt } from '../utils/getRandomInt'
 
 export const useComputerLogic = () => {
+  const utterance = useRef(new SpeechSynthesisUtterance())
+  utterance.current.lang = localStorage.getItem('lang') || 'tr-TR'
+
   const { gameDifficulty } = useSettingsCtx()
-  const { gameData, NAME_LIST, changeTurn } = useGameManagerCtx()
+  const { gameData, NAME_LIST, changeTurn, pauseGame } = useGameManagerCtx()
 
   const findWord = useRef(findRandomWordFromNameList(gameData.currentWord, NAME_LIST))
   const computerThinkTime = useRef(getRandomInt(3, 6) * 1000)
@@ -19,10 +22,17 @@ export const useComputerLogic = () => {
       }, computerThinkTime.current - 1000)
 
       setTimeout(() => {
-        changeTurn(word)
+        pauseGame()
+
+        utterance.current.text = word
+        window.speechSynthesis.speak(utterance.current)
+
+        utterance.current.onend = function (e) {
+          changeTurn(word)
+        }
       }, computerThinkTime.current)
     },
-    [changeTurn],
+    [changeTurn, pauseGame],
   )
 
   useEffect(() => {

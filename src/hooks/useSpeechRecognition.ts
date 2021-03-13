@@ -5,6 +5,8 @@ import grammerList from '../data/grammerList.json'
 // i used this solution
 // https://github.com/microsoft/TypeScript/issues/42311
 const myWindow = window as any
+
+//
 const SpeechGrammarList = window.SpeechGrammarList || myWindow.webkitSpeechGrammarList
 const speechRecognitionList = new SpeechGrammarList()
 speechRecognitionList.addFromString(grammerList.grammerList, 1)
