@@ -28,6 +28,9 @@ const StartGame = ({ setIsGameStarted }: IProps) => {
       <Button color="outlined" className={styles.hard} onClick={() => onClickHandler(GAME_DIFFICULTY.hard)}>
         {t('hard')}
       </Button>
+      <Button color="outlined" className={styles.impossible} onClick={() => onClickHandler(GAME_DIFFICULTY.impossible)}>
+        {t('impossible')}
+      </Button>
     </div>
   )
 }
