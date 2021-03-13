@@ -18,11 +18,8 @@ export const useComputerLogic = () => {
   const playForComputer = useCallback(
     (word: string) => {
       setTimeout(() => {
-        setWord(word)
-      }, computerThinkTime.current - 1000)
-
-      setTimeout(() => {
         pauseGame()
+        setWord(word)
 
         utterance.current.text = word
         window.speechSynthesis.speak(utterance.current)

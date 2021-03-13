@@ -53,6 +53,17 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const changeTurn = (word: string) => {
     pauseGame()
 
+    const result = checkWordIsInvalid({
+      newWord: word,
+      NAME_LIST,
+      currentWord: gameData.currentWord,
+      usedWords: gameData.usedWords,
+    })
+    if (result) {
+      GameOver(result)
+      return
+    }
+
     const newUsedWordList = new Set(gameData.usedWords)
     newUsedWordList.add(word.toLowerCase())
 
@@ -68,16 +79,6 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   }
 
   const speechRecognized = (word: string) => {
-    const result = checkWordIsInvalid({
-      newWord: word,
-      NAME_LIST,
-      currentWord: gameData.currentWord,
-      usedWords: gameData.usedWords,
-    })
-    if (result) {
-      GameOver(result)
-      return
-    }
     changeTurn(word)
   }
 
