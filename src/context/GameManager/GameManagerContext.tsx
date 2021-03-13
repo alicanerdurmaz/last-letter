@@ -103,7 +103,8 @@ export const GameManagerProvider: React.FC = ({ children }) => {
         usedWords,
         NAME_LIST,
         whoIsPlaying,
-      }}>
+      }}
+    >
       {children}
     </GameManagerCtx.Provider>
   )

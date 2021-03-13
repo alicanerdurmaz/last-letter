@@ -31,7 +31,7 @@ const GameOver = ({ isGameOver }: IProps) => {
         <h1>{t('usedWords')}</h1>
 
         <ul>
-          {Array.from(usedWords).map((word) => {
+          {Array.from(usedWords).map(word => {
             return (
               <li key={word}>
                 {word} <span>&gt; </span>

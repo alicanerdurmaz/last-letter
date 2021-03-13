@@ -21,6 +21,7 @@
     "web-vitals": "1.0.1"
   },
   "scripts": {
+    "prettier": "prettier --write '**/*.{ts,js,tsx,jsx,css,html}'",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

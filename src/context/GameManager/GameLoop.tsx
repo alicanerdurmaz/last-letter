@@ -29,7 +29,7 @@ export const GameLoopProvider: React.FC = ({ children }) => {
 
   useInterval(() => {
     if (isGamePaused()) return
-    setRemainingTime((prevState) => prevState - 1)
+    setRemainingTime(prevState => prevState - 1)
   }, 1000)
 
   return <GameLoopCtx.Provider value={{ remainingTime, setRemainingTime }}>{children}</GameLoopCtx.Provider>

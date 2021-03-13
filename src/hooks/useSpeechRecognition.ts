@@ -24,7 +24,7 @@ const useSpeechRecognition = ({ onResult }: IProps) => {
   recognition.current.interimResults = false
   recognition.current.maxAlternatives = 1
 
-  recognition.current.onresult = (event) => {
+  recognition.current.onresult = event => {
     setListening(false)
     onResult(event.results[0][0].transcript)
   }

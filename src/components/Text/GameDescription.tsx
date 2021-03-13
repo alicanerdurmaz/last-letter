@@ -9,7 +9,7 @@ const GameDescription = () => {
   return (
     <div className={styles.container}>
       <h1 className={styles.word}>
-        <LastLetter text='Hello' />
+        <LastLetter text="Hello" />
       </h1>
 
       <div className={styles.desc}>

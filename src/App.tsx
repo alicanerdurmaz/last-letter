@@ -23,7 +23,7 @@ function App() {
 
   return (
     <InternalizationProvider>
-      <div className='app'>
+      <div className="app">
         <Logo setIsGameStarted={setIsGameStarted} isGameStarted={isGameStarted} />
 
         <SettingsProvider>

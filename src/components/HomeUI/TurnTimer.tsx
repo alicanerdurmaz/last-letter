@@ -9,20 +9,20 @@ const TurnTimer = () => {
 
   return (
     <div className={styles.container}>
-      <label htmlFor='volume'>
+      <label htmlFor="volume">
         {t('turnTime')} :{' '}
         <span>
           {turnTime} {t('second')}
         </span>
       </label>
       <input
-        type='range'
-        id='time'
-        name='time'
-        min='4'
-        max='20'
+        type="range"
+        id="time"
+        name="time"
+        min="4"
+        max="20"
         value={turnTime}
-        onChange={(e) => setTurnTime(parseInt(e.target.value))}
+        onChange={e => setTurnTime(parseInt(e.target.value))}
       />
     </div>
   )

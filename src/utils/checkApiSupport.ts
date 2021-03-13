@@ -6,7 +6,7 @@ export function checkApiSupport() {
   ]
   const undefinedApiList: string[][] = []
 
-  apiList.forEach((e) => {
+  apiList.forEach(e => {
     let supported = false
     e.forEach((v: any) => {
       if (window[v] !== undefined) {

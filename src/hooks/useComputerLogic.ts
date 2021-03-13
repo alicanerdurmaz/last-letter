@@ -20,7 +20,7 @@ export const useComputerLogic = () => {
         changeTurn(word)
       }, computerThinkTime.current)
     },
-    [changeTurn]
+    [changeTurn],
   )
 
   useEffect(() => {

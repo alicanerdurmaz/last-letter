@@ -10,9 +10,9 @@ const SelectLanguage = () => {
 
   return (
     <div className={styles.container}>
-      <select name='languages' onChange={(e) => selectHandler(e)} defaultValue={appLanguage}>
-        <option value='tr-TR'>{t('turkish')}</option>
-        <option value='en-US'>{t('english')}</option>
+      <select name="languages" onChange={e => selectHandler(e)} defaultValue={appLanguage}>
+        <option value="tr-TR">{t('turkish')}</option>
+        <option value="en-US">{t('english')}</option>
       </select>
     </div>
   )
