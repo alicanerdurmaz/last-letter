@@ -15,7 +15,7 @@ const UserScreen = () => {
       <h1 className={styles.word}>
         <LastLetter text={currentWord} />
       </h1>
-      {/* <UserMicrophone /> */}
+      <UserMicrophone />
     </>
   )
 }

@@ -16,7 +16,6 @@ export const useComputerLogic = () => {
     }, computerThinkTime.current - 1000)
 
     setTimeout(() => {
-      console.log('comp logic worked')
       changeTurn(findWord.current)
     }, computerThinkTime.current)
   }, [changeTurn])

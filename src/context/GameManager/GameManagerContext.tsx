@@ -1,4 +1,4 @@
-import { createContext, useContext, useState, useCallback, useMemo, useRef } from 'react'
+import { createContext, useContext, useState, useMemo, useRef } from 'react'
 
 import { checkWordIsInvalid } from '../../utils/checkWordIsInvalid'
 
@@ -7,6 +7,10 @@ import names from '../../data/names.json'
 export const USER = {
   computer: 1,
   player: 2,
+}
+export type IsGameOver = {
+  winner: number
+  description: string
 }
 export type NameList = {
   [key: string]: string[]
@@ -18,7 +22,9 @@ export interface IGameManagerCtx {
   pauseGame: () => void
   continueGame: () => void
   isGamePaused: () => boolean
+  GameOver: (desc: string) => void
 
+  isGameOver: IsGameOver | null
   whoIsPlaying: number
   currentWord: string
   usedWords: Set<string>
@@ -34,8 +40,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const [whoIsPlaying, setWhoIsPlaying] = useState(USER.computer)
   const [currentWord, setCurrentWord] = useState('')
   const [usedWords, setUsedWords] = useState(new Set<string>())
-
-  console.log('GameManagerProvider:' + currentWord)
+  const [isGameOver, setIsGameOver] = useState<IsGameOver | null>(null)
 
   const changeTurn = (word: string) => {
     pauseGame()
@@ -56,10 +61,20 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   }
 
   const speechRecognized = (word: string) => {
-    if (checkWordIsInvalid(word, currentWord, NAME_LIST, usedWords)) {
+    const result = checkWordIsInvalid({ newWord: word, NAME_LIST, currentWord, usedWords })
+    if (result) {
+      GameOver(result)
       return
     }
     changeTurn(word)
+  }
+
+  const GameOver = (desc: string) => {
+    pauseGame()
+    setIsGameOver({
+      winner: whoIsPlaying === USER.computer ? USER.player : USER.computer,
+      description: desc,
+    })
   }
 
   const pauseGame = () => {
@@ -68,7 +83,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   const continueGame = () => {
     setTimeout(() => {
       pause.current = false
-    }, 500)
+    }, 1000)
   }
   const isGamePaused = () => {
     return pause.current
@@ -76,11 +91,14 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   return (
     <GameManagerCtx.Provider
       value={{
+        GameOver,
         pauseGame,
         continueGame,
         changeTurn,
         speechRecognized,
         isGamePaused,
+
+        isGameOver,
         currentWord,
         usedWords,
         NAME_LIST,

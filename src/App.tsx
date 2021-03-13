@@ -20,6 +20,7 @@ function App() {
   if (!apiSupport) {
     return <h1>Browser Desteklemiyor</h1>
   }
+
   return (
     <InternalizationProvider>
       <div className='app'>

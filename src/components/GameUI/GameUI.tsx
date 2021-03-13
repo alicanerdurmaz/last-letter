@@ -4,11 +4,15 @@ import styles from './GameUI.module.scss'
 import React from 'react'
 import { useGameLoopCtx } from '../../context/GameManager/GameLoop'
 import { useGameManagerCtx, USER } from '../../context/GameManager/GameManagerContext'
+import GameOver from './GameOver'
 
 const GameUI = () => {
-  const { whoIsPlaying } = useGameManagerCtx()
+  const { whoIsPlaying, isGameOver } = useGameManagerCtx()
   const { remainingTime } = useGameLoopCtx()
 
+  if (isGameOver) {
+    return <GameOver isGameOver={isGameOver} />
+  }
   return (
     <div className={styles.container}>
       <div className={styles.time}>

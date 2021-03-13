@@ -23,5 +23,15 @@
 
   "gameTurnInfo": "Son harften bir isim bulmalısın",
   "thinking": "Düşünüyorum",
-  "eureka": "Buldum!"
+  "eureka": "Buldum!",
+
+  "computerWon": "ilgisayar Kazandı",
+  "userWon": "Kazandın",
+
+  "usedWords": "Kullanılan Kelimeler",
+  "badLanguage": "User used bad language 🤬",
+  "lastCharNotEqualToFirstChar": "Son harf, türettiğin kelimenin ilk harf ile aynı değildi 🤔",
+  "usedBefore": "Kelime daha önce kullanıldı 🤭",
+  "notAName": "Kelime, isim değil 👎",
+  "timesUp": "Süre doldu ⌛"
 }

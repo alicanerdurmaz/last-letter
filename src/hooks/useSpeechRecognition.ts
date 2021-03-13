@@ -11,10 +11,11 @@ speechRecognitionList.addFromString(grammerList.grammerList, 1)
 
 const SpeechRecognition = window.SpeechRecognition || myWindow.webkitSpeechRecognition
 
-const useSpeechRecognition = () => {
+interface IProps {
+  onResult: (word: string) => void
+}
+const useSpeechRecognition = ({ onResult }: IProps) => {
   const [listening, setListening] = useState(false)
-  const [error, setError] = useState(false)
-  const [noMatch, setNoMatch] = useState(false)
 
   const recognition = useRef(new SpeechRecognition())
 
@@ -24,34 +25,23 @@ const useSpeechRecognition = () => {
   recognition.current.maxAlternatives = 1
 
   recognition.current.onresult = (event) => {
-    console.log('on result WORKEDDDD' + event.results[0][0].transcript)
     setListening(false)
+    onResult(event.results[0][0].transcript)
   }
 
   recognition.current.onspeechstart = () => {
     setListening(true)
-    console.warn('ON SPEECH START')
-  }
-
-  recognition.current.onstart = () => {
-    console.warn('ON START')
   }
 
   recognition.current.onspeechend = () => {
     recognition.current.stop()
-    console.warn('ON SPEECH END')
   }
 
   recognition.current.onnomatch = () => {
-    setNoMatch(true)
     recognition.current.stop()
   }
 
-  recognition.current.onerror = (event) => {
-    setError(true)
-  }
-
-  return { recognition, listening, error, noMatch }
+  return { recognition, listening }
 }
 
 export default useSpeechRecognition

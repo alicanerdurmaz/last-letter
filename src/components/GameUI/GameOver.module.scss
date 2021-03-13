@@ -1,0 +1,39 @@
+.container {
+  margin-top: auto;
+
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.winner {
+  font-size: 2rem;
+  span {
+    font-size: 1.25rem;
+  }
+}
+
+.info {
+  margin: 2rem 0;
+  font-size: 1.5rem;
+}
+
+.usedWords {
+  h1 {
+    margin-bottom: 0.5rem;
+    font-size: 1.5rem;
+  }
+
+  ul {
+    display: inline;
+  }
+  li {
+    display: inline;
+    font-size: 1.25rem;
+  }
+  span {
+    color: var(--c-primary);
+  }
+}

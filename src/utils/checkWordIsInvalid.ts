@@ -1,11 +1,13 @@
 import { NameList } from '../context/GameManager/GameManagerContext'
 
-export const checkWordIsInvalid = (
-  newWord: string,
-  currentWord: string,
-  NAME_LIST: NameList,
+interface IProps {
+  newWord: string
+  currentWord: string
+  NAME_LIST: NameList
   usedWords: Set<string>
-) => {
+}
+
+export const checkWordIsInvalid = ({ NAME_LIST, currentWord, newWord, usedWords }: IProps) => {
   if (!currentWord) return false
 
   const lowerNewWord = newWord.toLocaleLowerCase('tr')
@@ -15,18 +17,18 @@ export const checkWordIsInvalid = (
   const currentWordLastChar = lowerCurrentWord[lowerCurrentWord.length - 1]
 
   if (lowerNewWord.includes('*')) {
-    return `[${lowerNewWord}] User used bad language `
+    return `badLanguage`
   }
   if (newWordFirstChar !== currentWordLastChar) {
-    return `[${lowerCurrentWord}] Last char not equal to [${lowerNewWord}] first char`
+    return `lastCharNotEqualToFirstChar`
   }
 
   if (usedWords.has(lowerNewWord)) {
-    return `[${lowerNewWord}] used before`
+    return `usedBefore`
   }
 
   if (!NAME_LIST[newWordFirstChar].includes(lowerNewWord)) {
-    return `[${lowerNewWord}] is not a name`
+    return `notAName`
   }
 
   return false

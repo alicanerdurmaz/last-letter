@@ -23,5 +23,15 @@
 
   "gameTurnInfo": "You must find a name from the last letter",
   "thinking": "Thinknig",
-  "eureka": "Eureka!"
+  "eureka": "Eureka!",
+
+  "computerWon": "Computer Won",
+  "userWon": "You Won",
+
+  "usedWords": "Used Words",
+  "badLanguage": "User used bad language 🤬",
+  "lastCharNotEqualToFirstChar": "Last char not equal to first char  🤔",
+  "usedBefore": "Word used before 🤭",
+  "notAName": "Word is not a name 👎",
+  "timesUp": "Time's up! ⌛"
 }
