@@ -10,18 +10,21 @@ export const useComputerLogic = () => {
   const computerThinkTime = useRef(getRandomInt(3, 6) * 1000)
   const [word, setWord] = useState('')
 
-  const playForComputer = useCallback(() => {
-    setTimeout(() => {
-      setWord(findWord.current)
-    }, computerThinkTime.current - 1000)
+  const playForComputer = useCallback(
+    (word: string) => {
+      setTimeout(() => {
+        setWord(word)
+      }, computerThinkTime.current - 1000)
 
-    setTimeout(() => {
-      changeTurn(findWord.current)
-    }, computerThinkTime.current)
-  }, [changeTurn])
+      setTimeout(() => {
+        changeTurn(word)
+      }, computerThinkTime.current)
+    },
+    [changeTurn]
+  )
 
   useEffect(() => {
-    playForComputer()
+    if (findWord.current) playForComputer(findWord.current)
   }, [playForComputer])
 
   return { word }
