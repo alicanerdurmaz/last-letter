@@ -1,15 +1,9 @@
 import { useRef, useState } from 'react'
-import grammerList from '../data/grammerList.json'
 
 // any vencdor-specific api are not adding to typescript.
 // i used this solution
 // https://github.com/microsoft/TypeScript/issues/42311
 const myWindow = window as any
-
-//
-const SpeechGrammarList = window.SpeechGrammarList || myWindow.webkitSpeechGrammarList
-const speechRecognitionList = new SpeechGrammarList()
-speechRecognitionList.addFromString(grammerList.grammerList, 1)
 
 const SpeechRecognition = window.SpeechRecognition || myWindow.webkitSpeechRecognition
 

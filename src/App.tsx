@@ -9,16 +9,18 @@ import GameUI from './components/GameUI/GameUI'
 import { SettingsProvider } from './context/GameManager/SettingsContext'
 import { checkApiSupport } from './utils/checkApiSupport'
 import { GameLoopProvider } from './context/GameManager/GameLoop'
+import useLoadSpeechGrammar from './hooks/useSpeechGrammar'
 
 const apiSupport = checkApiSupport()
 
 function App() {
-  useThemeFromLocalStorage()
-
   const [isGameStarted, setIsGameStarted] = useState(false)
 
+  useThemeFromLocalStorage()
+  useLoadSpeechGrammar()
+
   if (!apiSupport) {
-    return <h1>Browser Desteklemiyor</h1>
+    return <h1 className="unsupported">Browser Unsupported</h1>
   }
 
   return (
