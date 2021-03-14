@@ -1,9 +1,9 @@
 import { memo } from 'react'
 
-import { useSettingsCtx, GAME_DIFFICULTY } from '../../context/GameManager/SettingsContext'
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import Button from '../Button/Button'
-import styles from './StartGame.module.scss'
+import Button from 'components/Button/Button'
+import styles from 'components/HomeUI/StartGame.module.scss'
+import { useSettingsCtx, GAME_DIFFICULTY } from 'context/GameManager/SettingsContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 interface IProps {
   setIsGameStarted: React.Dispatch<React.SetStateAction<boolean>>

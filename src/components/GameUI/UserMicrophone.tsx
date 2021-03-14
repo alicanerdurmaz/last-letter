@@ -1,9 +1,8 @@
 import { memo, useEffect } from 'react'
 
-import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
-import useSpeechRecognition from '../../hooks/useLoadSpeechGrammar'
-import MicrophoneIcon from '../Icons/MicrophoneIcon'
-
+import MicrophoneIcon from 'components/Icons/MicrophoneIcon'
+import { useGameManagerCtx } from 'context/GameManager/GameManagerContext'
+import useSpeechRecognition from 'hooks/useSpeechRecognition'
 
 const UserMicrophone = () => {
   const { speechRecognized } = useGameManagerCtx()

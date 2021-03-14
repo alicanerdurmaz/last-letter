@@ -1,7 +1,6 @@
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import styles from './GameDescription.module.scss'
-import LastLetter from './LastLetter'
-
+import styles from 'components/Text/GameDescription.module.scss'
+import LastLetter from 'components/Text/LastLetter'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 const GameDescription = () => {
   const { t } = useInternalizationCtx()

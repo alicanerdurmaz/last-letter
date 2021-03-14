@@ -1,8 +1,8 @@
 import React, { createContext, useContext, useState } from 'react'
 
-import { getLanguageFromLocalStorage } from '../../utils/getLanguageFromLocalStorage'
-import enLanguage from './en.json'
-import trLanguage from './tr.json'
+import enLanguage from 'context/Internalization/en.json'
+import trLanguage from 'context/Internalization/tr.json'
+import { getLanguageFromLocalStorage } from 'utils/getLanguageFromLocalStorage'
 
 export type languages = 'tr-TR' | 'en-US'
 export const supportedLanguages = ['tr-TR', 'en-US']

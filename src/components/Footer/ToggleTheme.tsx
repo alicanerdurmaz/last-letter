@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
-import MoonIcon from '../Icons/MoonIcon'
-import SunIcon from '../Icons/SunIcon'
-import styles from './ToggleTheme.module.scss'
+import styles from 'components/Footer/ToggleTheme.module.scss'
+import MoonIcon from 'components/Icons/MoonIcon'
+import SunIcon from 'components/Icons/SunIcon'
 
 const ToggleTheme = () => {
   const [theme, setTheme] = useState(document.documentElement.getAttribute('data-theme') || 'dark')

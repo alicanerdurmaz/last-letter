@@ -1,11 +1,9 @@
-import React from 'react'
-
-import { useGameLoopCtx } from '../../context/GameManager/GameLoop'
-import { useGameManagerCtx, USER } from '../../context/GameManager/GameManagerContext'
-import ComputerScreen from './ComputerScreen'
-import GameOver from './GameOver'
-import styles from './GameUI.module.scss'
-import UserScreen from './UserScreen'
+import ComputerScreen from 'components/GameUI/ComputerScreen'
+import GameOver from 'components/GameUI/GameOver'
+import styles from 'components/GameUI/GameUI.module.scss'
+import UserScreen from 'components/GameUI/UserScreen'
+import { useGameLoopCtx } from 'context/GameManager/GameLoop'
+import { useGameManagerCtx, USER } from 'context/GameManager/GameManagerContext'
 
 const GameUI = () => {
   const { gameData, isGameOver } = useGameManagerCtx()

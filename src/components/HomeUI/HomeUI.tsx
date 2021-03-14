@@ -1,5 +1,6 @@
-import GameDescription from '../Text/GameDescription'
-import styles from './HomeUI.module.scss'
+import styles from 'components/HomeUI/HomeUI.module.scss'
+import GameDescription from 'components/Text/GameDescription'
+
 import StartGame from './StartGame'
 import TurnTimer from './TurnTimer'
 

@@ -1,43 +1,19 @@
-import { useRef, useState } from 'react'
+import { useEffect } from 'react'
 
-// any vencdor-specific api are not adding to typescript.
-// i used this solution
-// https://github.com/microsoft/TypeScript/issues/42311
-const myWindow = window as any
+import grammerList from 'data/grammerList.json'
 
-const SpeechRecognition = window.SpeechRecognition || myWindow.webkitSpeechRecognition
+const useLoadSpeechGrammar = () => {
+  useEffect(() => {
+    const myWindow = window as any
 
-interface IProps {
-  onResult: (word: string) => void
-}
-const useSpeechRecognition = ({ onResult }: IProps) => {
-  const [listening, setListening] = useState(false)
+    const SpeechGrammarList = window.SpeechGrammarList || myWindow.webkitSpeechGrammarList
 
-  const recognition = useRef(new SpeechRecognition())
+    if (!SpeechGrammarList) return
 
-  recognition.current.continuous = true
-  recognition.current.lang = localStorage.getItem('lang') || 'tr-TR'
-  recognition.current.interimResults = false
-  recognition.current.maxAlternatives = 1
+    const speechRecognitionList = new SpeechGrammarList()
 
-  recognition.current.onresult = event => {
-    setListening(false)
-    onResult(event.results[0][0].transcript)
-  }
-
-  recognition.current.onspeechstart = () => {
-    setListening(true)
-  }
-
-  recognition.current.onspeechend = () => {
-    recognition.current.stop()
-  }
-
-  recognition.current.onnomatch = () => {
-    recognition.current.stop()
-  }
-
-  return { recognition, listening }
+    if (SpeechGrammarList.length < 1) speechRecognitionList.addFromString(grammerList.grammerList, 1)
+  }, [])
 }
 
-export default useSpeechRecognition
+export default useLoadSpeechGrammar

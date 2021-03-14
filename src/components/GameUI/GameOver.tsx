@@ -1,6 +1,6 @@
-import { IsGameOver, useGameManagerCtx, USER } from '../../context/GameManager/GameManagerContext'
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import styles from './GameOver.module.scss'
+import styles from 'components/GameUI/GameOver.module.scss'
+import { IsGameOver, useGameManagerCtx, USER } from 'context/GameManager/GameManagerContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 interface IProps {
   isGameOver: IsGameOver

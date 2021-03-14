@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState } from 'react'
 
-import useInterval from '../../hooks/useInterval'
-import { useGameManagerCtx } from './GameManagerContext'
-import { useSettingsCtx } from './SettingsContext'
+import { useGameManagerCtx } from 'context/GameManager/GameManagerContext'
+import { useSettingsCtx } from 'context/GameManager/SettingsContext'
+import useInterval from 'hooks/useInterval'
 
 interface IGameLoopCtx {
   remainingTime: number

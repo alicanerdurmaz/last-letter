@@ -1,4 +1,5 @@
-import styles from './Footer.module.scss'
+import styles from 'components/Footer/Footer.module.scss'
+
 import SelectLanguage from './SelectLanguage'
 import ToggleTheme from './ToggleTheme'
 

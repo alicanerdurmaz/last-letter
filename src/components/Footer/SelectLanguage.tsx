@@ -1,5 +1,5 @@
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import styles from './SelectLanguage.module.scss'
+import styles from 'components/Footer/SelectLanguage.module.scss'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 const SelectLanguage = () => {
   const { t, changeAppLanguage, appLanguage } = useInternalizationCtx()

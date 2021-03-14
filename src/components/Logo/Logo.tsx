@@ -1,6 +1,6 @@
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import LastLetter from '../Text/LastLetter'
-import styles from './Logo.module.scss'
+import styles from 'components/Logo/Logo.module.scss'
+import LastLetter from 'components/Text/LastLetter'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 interface IProps {
   isGameStarted: boolean

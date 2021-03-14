@@ -1,4 +1,4 @@
-import { languages, supportedLanguages } from '../context/Internalization/InternalizationContext'
+import { languages, supportedLanguages } from 'context/Internalization/InternalizationContext'
 
 export const getLanguageFromLocalStorage = () => {
   const langFromlocalStorage = localStorage.getItem('lang')

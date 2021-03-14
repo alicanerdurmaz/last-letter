@@ -1,16 +1,16 @@
 import { useState } from 'react'
 
-import Footer from './components/Footer/Footer'
-import GameUI from './components/GameUI/GameUI'
-import HomeUI from './components/HomeUI/HomeUI'
-import Logo from './components/Logo/Logo'
-import { GameLoopProvider } from './context/GameManager/GameLoop'
-import { GameManagerProvider } from './context/GameManager/GameManagerContext'
-import { SettingsProvider } from './context/GameManager/SettingsContext'
-import { InternalizationProvider } from './context/Internalization/InternalizationContext'
-import useLoadSpeechGrammar from './hooks/useSpeechGrammar'
-import { useThemeFromLocalStorage } from './hooks/useThemeFromLocalStorage'
-import { checkApiSupport } from './utils/checkApiSupport'
+import Footer from 'components/Footer/Footer'
+import GameUI from 'components/GameUI/GameUI'
+import HomeUI from 'components/HomeUI/HomeUI'
+import Logo from 'components/Logo/Logo'
+import { GameLoopProvider } from 'context/GameManager/GameLoop'
+import { GameManagerProvider } from 'context/GameManager/GameManagerContext'
+import { SettingsProvider } from 'context/GameManager/SettingsContext'
+import { InternalizationProvider } from 'context/Internalization/InternalizationContext'
+import useLoadSpeechGrammar from 'hooks/useLoadSpeechGrammar'
+import { useThemeFromLocalStorage } from 'hooks/useThemeFromLocalStorage'
+import { checkApiSupport } from 'utils/checkApiSupport'
 
 const apiSupport = checkApiSupport()
 

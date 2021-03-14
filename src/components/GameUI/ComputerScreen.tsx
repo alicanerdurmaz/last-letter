@@ -1,10 +1,10 @@
 import { memo } from 'react'
 
-import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import { useComputerLogic } from '../../hooks/useComputerLogic'
-import LastLetter from '../Text/LastLetter'
-import styles from './GameUI.module.scss'
+import styles from 'components/GameUI/GameUI.module.scss'
+import LastLetter from 'components/Text/LastLetter'
+import { useGameManagerCtx } from 'context/GameManager/GameManagerContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
+import { useComputerLogic } from 'hooks/useComputerLogic'
 
 const ComputerScreen = () => {
   const { t } = useInternalizationCtx()

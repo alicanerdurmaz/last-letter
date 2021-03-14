@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import styles from './MicrophoneIcon.module.scss'
+import styles from 'components/Icons/MicrophoneIcon.module.scss'
 
 interface IProps {
   enabled: boolean

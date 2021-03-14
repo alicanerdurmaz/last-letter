@@ -1,9 +1,9 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { useGameManagerCtx } from '../context/GameManager/GameManagerContext'
-import { useSettingsCtx } from '../context/GameManager/SettingsContext'
-import { findRandomWordFromNameList } from '../utils/findRandomWordFromNameList'
-import { getRandomInt } from '../utils/getRandomInt'
+import { useGameManagerCtx } from 'context/GameManager/GameManagerContext'
+import { useSettingsCtx } from 'context/GameManager/SettingsContext'
+import { findRandomWordFromNameList } from 'utils/findRandomWordFromNameList'
+import { getRandomInt } from 'utils/getRandomInt'
 
 export const useComputerLogic = () => {
   const utterance = useRef(new SpeechSynthesisUtterance())

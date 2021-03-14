@@ -1,8 +1,7 @@
 import { createContext, useContext, useState, useMemo, useRef } from 'react'
 
-import names from '../../data/names.json'
-import { checkWordIsInvalid } from '../../utils/checkWordIsInvalid'
-
+import names from 'data/names.json'
+import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
 
 export const USER = {
   computer: 1,

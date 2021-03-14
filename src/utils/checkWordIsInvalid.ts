@@ -1,4 +1,4 @@
-import { NameList } from '../context/GameManager/GameManagerContext'
+import { NameList } from 'context/GameManager/GameManagerContext'
 
 interface IProps {
   newWord: string

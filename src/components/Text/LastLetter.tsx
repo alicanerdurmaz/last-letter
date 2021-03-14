@@ -1,6 +1,6 @@
 import { memo } from 'react'
 
-import styles from './LastLetter.module.scss'
+import styles from 'components/Text/LastLetter.module.scss'
 interface IProps {
   text: string
 }

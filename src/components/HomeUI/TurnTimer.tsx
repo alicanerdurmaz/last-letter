@@ -1,6 +1,6 @@
-import { useSettingsCtx } from '../../context/GameManager/SettingsContext'
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
-import styles from './TurnTimer.module.scss'
+import styles from 'components/HomeUI/TurnTimer.module.scss'
+import { useSettingsCtx } from 'context/GameManager/SettingsContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 const TurnTimer = () => {
   const { t } = useInternalizationCtx()
