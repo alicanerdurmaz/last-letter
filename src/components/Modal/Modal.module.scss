@@ -10,4 +10,9 @@
   justify-content: center;
   align-items: center;
   padding: 10% 5%;
+
+  & > div {
+    width: max-content;
+    height: max-content;
+  }
 }
