@@ -1,7 +1,7 @@
 import GameDescription from '../Text/GameDescription'
 import styles from './HomeUI.module.scss'
-import TurnTimer from './TurnTimer'
 import StartGame from './StartGame'
+import TurnTimer from './TurnTimer'
 
 interface IProps {
   setIsGameStarted: React.Dispatch<React.SetStateAction<boolean>>

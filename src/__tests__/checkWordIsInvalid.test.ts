@@ -1,5 +1,5 @@
-import { checkWordIsInvalid } from '../utils/checkWordIsInvalid'
 import NAME_LIST from '../data/names.json'
+import { checkWordIsInvalid } from '../utils/checkWordIsInvalid'
 
 describe('find a word from list that begins with the last letter of the given word', () => {
   const usedWords = new Set<string>([])

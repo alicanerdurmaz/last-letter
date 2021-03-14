@@ -1,4 +1,5 @@
 import { memo } from 'react'
+
 import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 import { useComputerLogic } from '../../hooks/useComputerLogic'

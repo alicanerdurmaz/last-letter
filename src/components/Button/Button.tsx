@@ -1,6 +1,8 @@
-import styles from './Button.module.scss'
-import cx from 'classnames'
 import { memo } from 'react'
+
+import cx from 'classnames'
+
+import styles from './Button.module.scss'
 
 interface IProps {
   className?: string

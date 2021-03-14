@@ -1,4 +1,5 @@
-import React from 'react'
+import { memo } from 'react'
+
 import styles from './LastLetter.module.scss'
 interface IProps {
   text: string
@@ -17,4 +18,4 @@ const LastLetter = ({ text }: IProps) => {
   )
 }
 
-export default React.memo(LastLetter)
+export default memo(LastLetter)

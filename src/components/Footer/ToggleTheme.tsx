@@ -1,7 +1,7 @@
 import { useState } from 'react'
-import SunIcon from '../Icons/SunIcon'
-import MoonIcon from '../Icons/MoonIcon'
 
+import MoonIcon from '../Icons/MoonIcon'
+import SunIcon from '../Icons/SunIcon'
 import styles from './ToggleTheme.module.scss'
 
 const ToggleTheme = () => {

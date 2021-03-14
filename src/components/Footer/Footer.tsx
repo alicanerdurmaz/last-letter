@@ -1,6 +1,6 @@
+import styles from './Footer.module.scss'
 import SelectLanguage from './SelectLanguage'
 import ToggleTheme from './ToggleTheme'
-import styles from './Footer.module.scss'
 
 interface IProps {
   isGameStarted: boolean

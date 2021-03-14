@@ -1,8 +1,8 @@
 import { memo } from 'react'
+
 import { useSettingsCtx, GAME_DIFFICULTY } from '../../context/GameManager/SettingsContext'
 import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 import Button from '../Button/Button'
-
 import styles from './StartGame.module.scss'
 
 interface IProps {

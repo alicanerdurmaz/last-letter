@@ -1,5 +1,5 @@
-import { findRandomWordFromNameList } from '../utils/findRandomWordFromNameList'
 import NAME_LIST from '../data/names.json'
+import { findRandomWordFromNameList } from '../utils/findRandomWordFromNameList'
 
 describe('find a word from list that begins with the last letter of the given word', () => {
   test('word found', () => {

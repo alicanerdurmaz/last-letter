@@ -1,4 +1,5 @@
 import { memo } from 'react'
+
 import styles from './MicrophoneIcon.module.scss'
 
 interface IProps {

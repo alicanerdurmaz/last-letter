@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+
 import grammerList from '../data/grammerList.json'
 
 const useLoadSpeechGrammar = () => {

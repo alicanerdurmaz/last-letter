@@ -1,9 +1,9 @@
 import { useGameManagerCtx } from '../../context/GameManager/GameManagerContext'
+import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 import LastLetter from '../Text/LastLetter'
+import styles from './GameUI.module.scss'
 import UserMicrophone from './UserMicrophone'
 
-import styles from './GameUI.module.scss'
-import { useInternalizationCtx } from '../../context/Internalization/InternalizationContext'
 
 const UserScreen = () => {
   const { t } = useInternalizationCtx()
