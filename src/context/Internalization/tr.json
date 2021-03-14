@@ -34,5 +34,7 @@
   "lastCharNotEqualToFirstChar": "Son harf, türettiğin kelimenin ilk harf ile aynı değildi 🤔",
   "usedBefore": "Kelime daha önce kullanıldı 🤭",
   "notAName": "Kelime, isim değil 👎",
-  "timesUp": "Süre doldu ⌛"
+  "timesUp": "Süre doldu ⌛",
+
+  "leaderboard": "Liderler"
 }

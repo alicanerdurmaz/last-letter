@@ -34,5 +34,7 @@
   "lastCharNotEqualToFirstChar": "Last char not equal to first char  🤔",
   "usedBefore": "Word used before 🤭",
   "notAName": "Word is not a name 👎",
-  "timesUp": "Time's up! ⌛"
+  "timesUp": "Time's up! ⌛",
+
+  "leaderboard": "Leaderboard"
 }
