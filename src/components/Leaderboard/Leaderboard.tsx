@@ -1,38 +1,14 @@
+import cx from 'classnames'
+
 import TrophyIcon from 'components/Icons/TrophyIcon'
+import Spinner from 'components/LoadingIndicator/Spinner'
+import useLeaderboardData from 'hooks/useLeaderboardData'
 
 import styles from './Leaderboard.module.scss'
 
-const data = [
-  {
-    username: 'user 1',
-    score: 100,
-  },
-  {
-    username: 'user 1',
-    score: 100,
-  },
-  {
-    username: 'user 1',
-    score: 100,
-  },
-  {
-    username: 'user 1',
-    score: 100,
-  },
-  {
-    username: 'user 1',
-    score: 100,
-  },
-  {
-    username: 'user 1',
-    score: 100,
-  },
-  {
-    username: 'user 1',
-    score: 100,
-  },
-]
 const Leaderboard = () => {
+  const { leaderBoardList, loading, currentUser } = useLeaderboardData()
+
   return (
     <div className={styles.container}>
       <div className={styles.header}>
@@ -41,20 +17,30 @@ const Leaderboard = () => {
       </div>
 
       <ul className={styles.list}>
-        {data.map((user, index) => {
-          return (
-            <li className={styles.listItem} key={user.username}>
-              <small>{index + 1}</small>
-              <p className={styles.username}>{user.username}</p>
-              <h2 className={styles.score}>{user.score}</h2>
-            </li>
-          )
-        })}
+        {loading ? (
+          <Spinner />
+        ) : (
+          leaderBoardList.map((user, index) => {
+            return (
+              <li className={styles.listItem} key={user.username}>
+                <small>{index + 1}</small>
+                <p className={styles.username}>{user.username}</p>
+                <h2 className={styles.score}>{user.score}</h2>
+              </li>
+            )
+          })
+        )}
       </ul>
-      <footer className={styles.footer}>
-        <p className={styles.username}>Your Score</p>
-        <h2 className={styles.score}>99</h2>
-      </footer>
+
+      <div className={cx(styles.listItem, styles.user)}>
+        {currentUser && (
+          <>
+            <small>{currentUser.rank}</small>
+            <p className={styles.username}>{currentUser.username}</p>
+            <h2 className={styles.score}>{currentUser.score}</h2>
+          </>
+        )}
+      </div>
     </div>
   )
 }
