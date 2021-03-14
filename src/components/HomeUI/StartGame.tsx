@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import Button from 'components/Button/Button'
 import styles from 'components/HomeUI/StartGame.module.scss'
 import { useSettingsCtx, GAME_DIFFICULTY } from 'context/GameManager/SettingsContext'
@@ -35,8 +33,4 @@ const StartGame = ({ setIsGameStarted }: IProps) => {
   )
 }
 
-function areEqual(prevProps: IProps, nextProps: IProps) {
-  return prevProps.setIsGameStarted === nextProps.setIsGameStarted
-}
-
-export default memo(StartGame, areEqual)
+export default StartGame
