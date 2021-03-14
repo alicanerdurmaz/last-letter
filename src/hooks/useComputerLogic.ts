@@ -12,7 +12,7 @@ export const useComputerLogic = () => {
   const { gameData, NAME_LIST, changeTurn, pauseGame } = useGameManagerCtx()
 
   const findWord = useRef(findRandomWordFromNameList(gameData.currentWord, NAME_LIST))
-  const computerThinkTime = useRef(getRandomInt(3, 6) * 1000)
+  const computerThinkTime = useRef(getRandomInt(2, 6) * 1000)
   const [word, setWord] = useState('')
 
   const playForComputer = useCallback(
