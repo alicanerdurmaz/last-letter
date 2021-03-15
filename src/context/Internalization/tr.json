@@ -55,5 +55,10 @@
   "auth/invalid-email": "E-Posta doğru değil",
   "auth/user-not-found": "Kullanıcı bulunamadı",
 
-  "needToSignup": "Liderlik tablosuna girebilmek için üye olman gerekiyor"
+  "needToSignup": "Liderlik tablosuna girebilmek için üye olman gerekiyor",
+
+  "micBlocked": "Mikrofon Bloklu",
+  "micBlockedDesc": "Bu oyun mikrofon kullanımına izin gerektiriyor",
+  "howToGiveMicPermission": "Adres çubuğunda bulunan bilgi butonundan izin verebilirsiniz",
+  "howToGiveMicPermissionLink": "Buraya tıklayarak nasıl yapılacağını öğrenin"
 }

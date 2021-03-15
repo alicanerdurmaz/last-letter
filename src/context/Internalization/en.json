@@ -54,5 +54,10 @@
   "auth/invalid-email": "The email address is badly formatted.",
   "auth/user-not-found": "No user corresponding to this email",
 
-  "needToSignup": "You must be a member to enter the rankings"
+  "needToSignup": "You must be a member to enter the rankings",
+
+  "micBlocked": "Microphone permission is blocked",
+  "micBlockedDesc": "This game requires permission to use microphone",
+  "howToGiveMicPermission": "You can give permission from the information button in the address bar",
+  "howToGiveMicPermissionLink": "Click here to learn how"
 }

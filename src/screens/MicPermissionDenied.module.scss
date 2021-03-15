@@ -1,0 +1,29 @@
+.container {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.icon {
+  margin-bottom: 1rem;
+  svg {
+    width: 4rem;
+    height: 4rem;
+  }
+}
+
+.title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.desc {
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+}
+.link {
+  color: var(--c-secondary);
+}
