@@ -13,7 +13,7 @@ const GameLoopCtx = createContext<IGameLoopCtx | null>(null)
 
 export const GameLoopProvider: React.FC = ({ children }) => {
   const { turnTime } = useSettingsCtx()
-  const { isGamePaused, gameData, pauseGame, GameOver } = useGameManagerCtx()
+  const { isGamePaused, gameData, pauseGame, gameOver } = useGameManagerCtx()
   const [remainingTime, setRemainingTime] = useState(turnTime)
 
   useEffect(() => {
@@ -24,9 +24,9 @@ export const GameLoopProvider: React.FC = ({ children }) => {
     if (isGamePaused()) return
 
     if (remainingTime < 0) {
-      GameOver('timesUp')
+      gameOver('timesUp')
     }
-  }, [pauseGame, remainingTime, GameOver, isGamePaused])
+  }, [pauseGame, remainingTime, gameOver, isGamePaused])
 
   useInterval(() => {
     if (isGamePaused()) return

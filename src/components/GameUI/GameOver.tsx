@@ -2,17 +2,19 @@ import styles from 'components/GameUI/GameOver.module.scss'
 import { IsGameOver, useGameManagerCtx, USER } from 'context/GameManager/GameManagerContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
-interface IProps {
-  isGameOver: IsGameOver
+export interface IGameOver {
+  winner: number
+  description: string
+  usedWords: Set<string>
 }
 
-const GameOver = ({ isGameOver }: IProps) => {
+const GameOver = ({ description, usedWords, winner }: IGameOver) => {
   const { t } = useInternalizationCtx()
-  const { gameData } = useGameManagerCtx()
+
   return (
     <div className={styles.container}>
       <h1 className={styles.winner}>
-        {isGameOver.winner === USER.computer ? (
+        {winner === USER.computer ? (
           <div>
             <span>😢</span> {t('computerWon')} <span>😢</span>
           </div>
@@ -24,14 +26,14 @@ const GameOver = ({ isGameOver }: IProps) => {
       </h1>
 
       <div className={styles.info}>
-        <p>{t(isGameOver.description)}</p>
+        <p>{t(description)}</p>
       </div>
 
       <div className={styles.usedWords}>
         <h1>{t('usedWords')}</h1>
 
         <ul>
-          {Array.from(gameData.usedWords).map(word => {
+          {Array.from(usedWords).map(word => {
             return (
               <li key={word}>
                 {word} <span>&gt; </span>

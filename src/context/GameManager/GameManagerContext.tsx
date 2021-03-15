@@ -1,6 +1,7 @@
 import { createContext, useContext, useState, useMemo, useRef } from 'react'
 
 import { useAuthContext } from 'context/Auth/AuthContext'
+import { Routes, useRouterContext } from 'context/Router/RouterContext'
 import names from 'data/names.json'
 import { useFirestore } from 'hooks/useFirebase'
 import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
@@ -23,7 +24,7 @@ export interface IGameManagerCtx {
   pauseGame: () => void
   continueGame: () => void
   isGamePaused: () => boolean
-  GameOver: (desc: string) => void
+  gameOver: (desc: string) => void
 
   isGameOver: IsGameOver | null
   NAME_LIST: NameList
@@ -40,6 +41,7 @@ interface IGameData {
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
 
 export const GameManagerProvider: React.FC = ({ children }) => {
+  const { changeRoute } = useRouterContext()
   const { currentUser } = useAuthContext()
   const NAME_LIST: NameList = useMemo(() => names, [])
   const pause = useRef(false)
@@ -64,7 +66,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
     })
 
     if (result) {
-      GameOver(result)
+      gameOver(result)
       return
     }
 
@@ -87,13 +89,16 @@ export const GameManagerProvider: React.FC = ({ children }) => {
     changeTurn(word)
   }
 
-  const GameOver = (desc: string) => {
+  const gameOver = (desc: string) => {
     pauseGame()
     saveScoreToFirestore()
-    setIsGameOver({
+
+    const gameOverScreenProps = {
       winner: gameData.whoIsPlaying === USER.computer ? USER.player : USER.computer,
       description: desc,
-    })
+      usedWords: gameData.usedWords,
+    }
+    changeRoute(Routes.gameOver, gameOverScreenProps)
   }
 
   const saveScoreToFirestore = async () => {
@@ -128,7 +133,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
   return (
     <GameManagerCtx.Provider
       value={{
-        GameOver,
+        gameOver,
         pauseGame,
         continueGame,
         changeTurn,

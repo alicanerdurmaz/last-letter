@@ -1,36 +1,61 @@
 import { createContext, useContext, useState } from 'react'
 
+import GameOver, { IGameOver } from 'components/GameUI/GameOver'
 import GameScreen from 'screens/GameScreen'
 import HomeScreen from 'screens/HomeScreen'
 
 interface IRouterContext {
   BrowserRouter: () => JSX.Element
-  setActiveRoute: React.Dispatch<React.SetStateAction<number>>
-  activeRoute: number
+  changeRoute: (routeName: number, props?: IActiveRoute['routeProps']) => void
+  getActiveRoute: () => number
 }
+
+interface IActiveRoute {
+  name: number
+  routeProps: undefined | IGameOver
+}
+
 const RouterContext = createContext<IRouterContext | undefined>(undefined)
 
 export const Routes = {
   home: 1,
   game: 2,
+  gameOver: 3,
 }
 
 export const RouterContextProvider: React.FC = ({ children }) => {
-  const [activeRoute, setActiveRoute] = useState(Routes.home)
+  const [activeRoute, setActiveRoute] = useState<IActiveRoute>({
+    name: Routes.home,
+    routeProps: undefined,
+  })
 
   const BrowserRouter = () => {
-    switch (activeRoute) {
+    switch (activeRoute.name) {
       case Routes.home:
         return <HomeScreen />
       case Routes.game:
         return <GameScreen />
+      case Routes.gameOver:
+        const { description, usedWords, winner } = activeRoute.routeProps as IGameOver
+        return <GameOver description={description} usedWords={usedWords} winner={winner} />
       default:
         return <HomeScreen />
     }
   }
 
+  const changeRoute = (routeName: number, props?: IActiveRoute['routeProps']): void => {
+    setActiveRoute({
+      name: routeName,
+      routeProps: props,
+    })
+  }
+
+  const getActiveRoute = () => {
+    return activeRoute.name
+  }
+
   return (
-    <RouterContext.Provider value={{ activeRoute, BrowserRouter, setActiveRoute }}>{children}</RouterContext.Provider>
+    <RouterContext.Provider value={{ getActiveRoute, changeRoute, BrowserRouter }}>{children}</RouterContext.Provider>
   )
 }
 

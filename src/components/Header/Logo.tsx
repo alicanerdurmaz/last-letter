@@ -6,13 +6,13 @@ import styles from './Logo.module.scss'
 
 const Logo = () => {
   const { t } = useInternalizationCtx()
-  const { activeRoute, setActiveRoute } = useRouterContext()
+  const { changeRoute, getActiveRoute } = useRouterContext()
 
   const onClickHandler = () => {
-    if (activeRoute === Routes.home) return
+    if (getActiveRoute() === Routes.home) return
 
     if (window.confirm(t('alertForExit'))) {
-      setActiveRoute(Routes.home)
+      changeRoute(Routes.home)
     }
   }
   return (

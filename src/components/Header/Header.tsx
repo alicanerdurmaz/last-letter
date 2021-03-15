@@ -10,13 +10,13 @@ import Logo from './Logo'
 const Header = () => {
   const { t } = useInternalizationCtx()
   const { currentUser } = useAuthContext()
+  const { changeRoute, getActiveRoute } = useRouterContext()
 
-  const { activeRoute, setActiveRoute } = useRouterContext()
   const signOut = async () => {
-    if (activeRoute === Routes.game) {
+    if (getActiveRoute() === Routes.game) {
       if (window.confirm(t('alertForExit'))) {
         await auth.signOut()
-        setActiveRoute(Routes.home)
+        changeRoute(Routes.home)
         return
       }
     }

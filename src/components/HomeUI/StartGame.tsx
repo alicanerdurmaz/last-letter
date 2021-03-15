@@ -5,13 +5,13 @@ import { useInternalizationCtx } from 'context/Internalization/InternalizationCo
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
 
 const StartGame = () => {
-  const { setActiveRoute } = useRouterContext()
+  const { changeRoute } = useRouterContext()
   const { t } = useInternalizationCtx()
   const { setGameDifficulty } = useSettingsCtx()
 
   const onClickHandler = (gameDifficulty: number) => {
     setGameDifficulty(gameDifficulty)
-    setActiveRoute(Routes.game)
+    changeRoute(Routes.game)
   }
 
   return (
