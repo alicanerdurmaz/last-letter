@@ -7,7 +7,7 @@ import { getRandomInt } from 'utils/getRandomInt'
 
 export const useComputerLogic = () => {
   const utterance = useRef(new SpeechSynthesisUtterance())
-  utterance.current.lang = localStorage.getItem('lang') || 'tr-TR'
+  utterance.current.lang = 'tr-TR'
 
   const { gameDifficulty } = useSettingsCtx()
   const { gameData, NAME_LIST, changeTurn, pauseGame } = useGameManagerCtx()
