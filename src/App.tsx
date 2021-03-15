@@ -2,8 +2,9 @@ import { useState } from 'react'
 
 import Footer from 'components/Footer/Footer'
 import GameUI from 'components/GameUI/GameUI'
+import Header from 'components/Header/Header'
+import Logo from 'components/Header/Logo'
 import HomeUI from 'components/HomeUI/HomeUI'
-import Logo from 'components/Logo/Logo'
 import { GameLoopProvider } from 'context/GameManager/GameLoop'
 import { GameManagerProvider } from 'context/GameManager/GameManagerContext'
 import { SettingsProvider } from 'context/GameManager/SettingsContext'
@@ -27,7 +28,7 @@ function App() {
   return (
     <InternalizationProvider>
       <div className="app">
-        <Logo setIsGameStarted={setIsGameStarted} isGameStarted={isGameStarted} />
+        <Header setIsGameStarted={setIsGameStarted} isGameStarted={isGameStarted} />
 
         <SettingsProvider>
           {isGameStarted ? (

@@ -1,0 +1,29 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+
+  & > label {
+    background: var(--c-bg-secondary);
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+    display: block;
+    position: absolute;
+    top: -7px;
+    left: 2px;
+    z-index: 99;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+  }
+  & > input {
+    color: var(--c-text);
+    border: solid 2px var(--c-border);
+    border-radius: var(--radius-px);
+    border-top-left-radius: 0;
+    padding: 0.725rem;
+    width: 100%;
+    background: var(--c-bg-secondary);
+  }
+}

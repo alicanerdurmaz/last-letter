@@ -3,10 +3,14 @@ html {
   --c-bg-secondary: #fafafb;
 
   --c-text: #212121;
+  --c-text-invert: black;
   --c-text-light: #454545;
 
   --c-primary: #ea4c89;
   --c-secondary: #4299e1;
+
+  --c-border: #f3f3f4;
+  --radius-px: 4px;
 }
 
 html[data-theme='dark'] {
@@ -14,8 +18,12 @@ html[data-theme='dark'] {
   --c-bg-secondary: #161b22;
 
   --c-text: #c9d1d9;
+  --c-text-invert: white;
   --c-text-light: #8b949e;
 
   --c-primary: #ea4c89;
   --c-secondary: #4299e1;
+
+  --c-border: #30363d;
+  --radius-px: 4px;
 }

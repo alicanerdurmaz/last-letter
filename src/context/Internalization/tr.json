@@ -36,5 +36,15 @@
   "notAName": "Kelime, isim değil 👎",
   "timesUp": "Süre doldu ⌛",
 
-  "leaderboard": "Liderler"
+  "leaderboard": "Liderler",
+
+  "signin": "Giriş Yap",
+  "signup": "Üye ol",
+  "or": "yada",
+
+  "email": "E-Posta",
+  "username": "Kullanıcı Adı",
+  "password": "Parola",
+
+  "signinGoogle": "Google ile giriş yap"
 }

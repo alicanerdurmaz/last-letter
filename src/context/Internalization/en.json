@@ -36,5 +36,15 @@
   "notAName": "Word is not a name 👎",
   "timesUp": "Time's up! ⌛",
 
-  "leaderboard": "Leaderboard"
+  "leaderboard": "Leaderboard",
+
+  "signin": "Sign In",
+  "signup": "Sign Up",
+  "or": "or",
+
+  "email": "Email",
+  "username": "Username",
+  "password": "Password",
+
+  "signinGoogle": "Sign in with Google"
 }

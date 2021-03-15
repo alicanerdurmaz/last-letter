@@ -1,6 +1,7 @@
-import styles from 'components/Logo/Logo.module.scss'
 import LastLetter from 'components/Text/LastLetter'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
+
+import styles from './Logo.module.scss'
 
 interface IProps {
   isGameStarted: boolean
@@ -18,7 +19,7 @@ const Logo = ({ setIsGameStarted, isGameStarted }: IProps) => {
     }
   }
   return (
-    <div className={styles.title} onClick={() => onClickHandler()}>
+    <div className={styles.logo} onClick={() => onClickHandler()}>
       <h1>
         <LastLetter text={t('appName')} />
       </h1>
