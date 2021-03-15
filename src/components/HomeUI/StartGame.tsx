@@ -2,17 +2,16 @@ import Button from 'components/Button/Button'
 import styles from 'components/HomeUI/StartGame.module.scss'
 import { useSettingsCtx, GAME_DIFFICULTY } from 'context/GameManager/SettingsContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
+import { Routes, useRouterContext } from 'context/Router/RouterContext'
 
-interface IProps {
-  setIsGameStarted: React.Dispatch<React.SetStateAction<boolean>>
-}
-const StartGame = ({ setIsGameStarted }: IProps) => {
+const StartGame = () => {
+  const { setActiveRoute } = useRouterContext()
   const { t } = useInternalizationCtx()
   const { setGameDifficulty } = useSettingsCtx()
 
   const onClickHandler = (gameDifficulty: number) => {
     setGameDifficulty(gameDifficulty)
-    setIsGameStarted(true)
+    setActiveRoute(Routes.game)
   }
 
   return (

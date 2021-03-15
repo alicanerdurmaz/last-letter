@@ -121,6 +121,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
       pause.current = false
     }, 500)
   }
+
   const isGamePaused = () => {
     return pause.current
   }

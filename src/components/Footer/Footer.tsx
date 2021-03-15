@@ -4,14 +4,11 @@ import SelectLanguage from './SelectLanguage'
 import ShowLeaderboard from './ShowLeaderboard'
 import ToggleTheme from './ToggleTheme'
 
-interface IProps {
-  isGameStarted: boolean
-}
-const Footer = ({ isGameStarted }: IProps) => {
+const Footer = () => {
   return (
     <footer className={styles.container}>
       <ToggleTheme />
-      {!isGameStarted && <SelectLanguage />}
+      <SelectLanguage />
       <ShowLeaderboard />
     </footer>
   )

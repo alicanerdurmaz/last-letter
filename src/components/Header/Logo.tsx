@@ -1,21 +1,18 @@
 import LastLetter from 'components/Text/LastLetter'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
+import { Routes, useRouterContext } from 'context/Router/RouterContext'
 
 import styles from './Logo.module.scss'
 
-interface IProps {
-  isGameStarted: boolean
-  setIsGameStarted: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const Logo = ({ setIsGameStarted, isGameStarted }: IProps) => {
+const Logo = () => {
   const { t } = useInternalizationCtx()
+  const { activeRoute, setActiveRoute } = useRouterContext()
 
   const onClickHandler = () => {
-    if (!isGameStarted) return
+    if (activeRoute === Routes.home) return
 
     if (window.confirm(t('alertForExit'))) {
-      setIsGameStarted(false)
+      setActiveRoute(Routes.home)
     }
   }
   return (

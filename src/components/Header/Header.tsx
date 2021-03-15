@@ -1,25 +1,22 @@
 import ToggleAuthForm from 'components/Form/ToggleAuthForm'
 import { useAuthContext } from 'context/Auth/AuthContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
+import { Routes, useRouterContext } from 'context/Router/RouterContext'
 import { auth } from 'hooks/useFirebase'
 
 import styles from './Header.module.scss'
 import Logo from './Logo'
 
-interface IProps {
-  isGameStarted: boolean
-  setIsGameStarted: React.Dispatch<React.SetStateAction<boolean>>
-}
-
-const Header = ({ isGameStarted, setIsGameStarted }: IProps) => {
+const Header = () => {
   const { t } = useInternalizationCtx()
   const { currentUser } = useAuthContext()
 
+  const { activeRoute, setActiveRoute } = useRouterContext()
   const signOut = async () => {
-    if (isGameStarted) {
+    if (activeRoute === Routes.game) {
       if (window.confirm(t('alertForExit'))) {
-        setIsGameStarted(false)
         await auth.signOut()
+        setActiveRoute(Routes.home)
         return
       }
     }
@@ -28,7 +25,7 @@ const Header = ({ isGameStarted, setIsGameStarted }: IProps) => {
   }
   return (
     <header className={styles.container}>
-      <Logo isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} />
+      <Logo />
       {currentUser ? (
         <p className={styles.welcome}>
           {t('welcome')}, {currentUser?.user?.displayName} ｜ <span onClick={signOut}>{t('signout')}</span>
