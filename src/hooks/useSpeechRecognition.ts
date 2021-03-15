@@ -16,7 +16,7 @@ const useSpeechRecognition = ({ onResult }: IProps) => {
   const recognition = useRef(new SpeechRecognition())
 
   recognition.current.continuous = true
-  recognition.current.lang = localStorage.getItem('lang') || 'tr-TR'
+  recognition.current.lang = 'tr-TR'
   recognition.current.interimResults = false
   recognition.current.maxAlternatives = 1
 

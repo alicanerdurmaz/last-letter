@@ -3,13 +3,28 @@ import styles from 'components/HomeUI/StartGame.module.scss'
 import { useSettingsCtx, GAME_DIFFICULTY } from 'context/GameManager/SettingsContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
+import { askPermission, checkMicPermission } from 'utils/checkMicPermission'
 
 const StartGame = () => {
   const { changeRoute } = useRouterContext()
   const { t } = useInternalizationCtx()
   const { setGameDifficulty } = useSettingsCtx()
 
-  const onClickHandler = (gameDifficulty: number) => {
+  const onClickHandler = async (gameDifficulty: number) => {
+    if ((await checkMicPermission()) === 'granted') {
+      startGame(gameDifficulty)
+      return
+    }
+
+    if (await askPermission()) {
+      startGame(gameDifficulty)
+      return
+    }
+
+    changeRoute(Routes.MicPermissionDenied)
+  }
+
+  const startGame = (gameDifficulty: number) => {
     setGameDifficulty(gameDifficulty)
     changeRoute(Routes.game)
   }
