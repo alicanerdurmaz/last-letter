@@ -1,12 +1,19 @@
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
+import { auth, googleProvider } from 'hooks/useFirebase'
 
 import styles from './GoogleButton.module.scss'
 
 const GoogleButton = () => {
   const { t } = useInternalizationCtx()
+
+  const signInWithGoogle = async () => {
+    try {
+      await auth.signInWithPopup(googleProvider)
+    } catch (error) {}
+  }
   return (
     <div>
-      <button type="button" className={styles.googleButton}>
+      <button onClick={signInWithGoogle} type="button" className={styles.googleButton}>
         <span className={styles.googleButtonIcon}>
           <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
             <path

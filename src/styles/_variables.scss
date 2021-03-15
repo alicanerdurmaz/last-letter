@@ -10,6 +10,8 @@ html {
   --c-secondary: #4299e1;
 
   --c-border: #f3f3f4;
+
+  --c-error: #ff005c;
   --radius-px: 4px;
 }
 
@@ -25,5 +27,4 @@ html[data-theme='dark'] {
   --c-secondary: #4299e1;
 
   --c-border: #30363d;
-  --radius-px: 4px;
 }

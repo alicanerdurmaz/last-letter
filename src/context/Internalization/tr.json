@@ -2,6 +2,7 @@
   "start": "başla",
   "appName": "SonHarf",
   "hello": "Merhaba",
+  "welcome": "Hoşgeldiniz",
   "gameDesc-1": "Oyun, kelimenin son harfinden yeni bir kelime türeterek oynanıyor.",
   "gameDesc-2": "Kelime içeriğimizin Türkçe isimler olduğunu varsayarsak şöyle bir sequence oluşuyor;",
   "gameDesc-3": "Hemen Başla buttonuna tıklayarak mikrofonun ile bilgisayara karşı oynayabilirsin !",
@@ -39,12 +40,18 @@
   "leaderboard": "Liderler",
 
   "signin": "Giriş Yap",
-  "signup": "Üye ol",
+  "signup": "Üye Ol",
+  "signout": "Çıkış Yap",
+
   "or": "yada",
 
   "email": "E-Posta",
   "username": "Kullanıcı Adı",
   "password": "Parola",
 
-  "signinGoogle": "Google ile giriş yap"
+  "signinGoogle": "Google ile giriş yap",
+
+  "auth/email-already-in-use": "E-posta adresi başka bir hesap tarafından kullanılıyor",
+  "auth/invalid-email": "E-Posta doğru değil",
+  "auth/user-not-found": "Kullanıcı bulunamadı"
 }

@@ -1,9 +1,23 @@
 .container {
   position: relative;
-  margin-top: 8%;
+  margin-top: 4%;
   width: 100%;
 
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.welcome {
+  position: fixed;
+  right: 1rem;
+  top: 0.5rem;
+  font-size: 0.825rem;
+
+  span {
+    user-select: none;
+    cursor: pointer;
+    opacity: 0.9;
+    color: var(--c-error);
+  }
 }

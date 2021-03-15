@@ -3,6 +3,7 @@ import { useState } from 'react'
 import Button from 'components/Button/Button'
 import GoogleButton from 'components/Button/GoogleButton'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
+import { auth } from 'hooks/useFirebase'
 
 import styles from './AuthForm.module.scss'
 import ChangeForm from './ChangeForm'
@@ -15,6 +16,7 @@ interface IProps {
 }
 const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
   const { t } = useInternalizationCtx()
+  const [error, setError] = useState('')
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -22,8 +24,18 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
   })
   const { email, password, username } = formData
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+
+    try {
+      const user = await auth.createUserWithEmailAndPassword(formData.email, formData.password)
+
+      await user?.user?.updateProfile({
+        displayName: formData.username,
+      })
+    } catch (error) {
+      setError(t(error.code))
+    }
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -48,6 +60,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
           )}
           <TextInput type="email" name="email" label={t('email')} onChange={e => onChangeHandler(e)} value={email} />
           <TextInput
+            minLength={6}
             type="password"
             name="password"
             label={t('password')}
@@ -60,6 +73,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
       </form>
 
       <GoogleButton />
+      {error && <p className={styles.error}>{error}</p>}
     </div>
   )
 }

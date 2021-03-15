@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import useFirebase from './useFirebase'
+import { useFirestore } from './useFirebase'
 
 type User = { username: string; score: number }
 type CurrentUser = { username: string; score: number; rank: number } | null
@@ -17,7 +17,7 @@ const useLeaderboardData = () => {
   }, [])
 
   const loadData = async () => {
-    const { firestore } = await useFirebase()
+    const { firestore } = await useFirestore()
 
     try {
       let user: CurrentUser = null

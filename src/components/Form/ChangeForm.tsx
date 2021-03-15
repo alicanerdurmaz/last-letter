@@ -23,7 +23,7 @@ const ChangeForm = ({ formType, setIsAuthFormOpen }: IProps) => {
         onClick={() => setIsAuthFormOpen(FormType.signup)}
         className={cx(styles.rightButton, formType == FormType.signup && styles.active)}
       >
-        {t('signin')}
+        {t('signup')}
       </button>
     </div>
   )

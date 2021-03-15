@@ -3,8 +3,8 @@ import { useState } from 'react'
 import Footer from 'components/Footer/Footer'
 import GameUI from 'components/GameUI/GameUI'
 import Header from 'components/Header/Header'
-import Logo from 'components/Header/Logo'
 import HomeUI from 'components/HomeUI/HomeUI'
+import { AuthProvider } from 'context/Auth/AuthContext'
 import { GameLoopProvider } from 'context/GameManager/GameLoop'
 import { GameManagerProvider } from 'context/GameManager/GameManagerContext'
 import { SettingsProvider } from 'context/GameManager/SettingsContext'
@@ -27,23 +27,25 @@ function App() {
 
   return (
     <InternalizationProvider>
-      <div className="app">
-        <Header setIsGameStarted={setIsGameStarted} isGameStarted={isGameStarted} />
+      <AuthProvider>
+        <div className="app">
+          <Header setIsGameStarted={setIsGameStarted} isGameStarted={isGameStarted} />
 
-        <SettingsProvider>
-          {isGameStarted ? (
-            <GameManagerProvider>
-              <GameLoopProvider>
-                <GameUI />
-              </GameLoopProvider>
-            </GameManagerProvider>
-          ) : (
-            <HomeUI setIsGameStarted={setIsGameStarted} />
-          )}
-        </SettingsProvider>
+          <SettingsProvider>
+            {isGameStarted ? (
+              <GameManagerProvider>
+                <GameLoopProvider>
+                  <GameUI />
+                </GameLoopProvider>
+              </GameManagerProvider>
+            ) : (
+              <HomeUI setIsGameStarted={setIsGameStarted} />
+            )}
+          </SettingsProvider>
 
-        <Footer isGameStarted={isGameStarted} />
-      </div>
+          <Footer isGameStarted={isGameStarted} />
+        </div>
+      </AuthProvider>
     </InternalizationProvider>
   )
 }

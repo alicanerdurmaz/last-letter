@@ -1,5 +1,6 @@
 /* eslint-disable import/no-named-as-default-member */
 import firebase from 'firebase/app'
+import 'firebase/auth'
 
 const firebaseConfig = {
   apiKey: 'AIzaSyAI2D2uRI6GQNdItgCxcvzX6rlZTb3uj6g',
@@ -26,11 +27,14 @@ const getFirestoreInstance = async () => {
   return firebase.firestore()
 }
 
-const useFirebase = async () => {
+export const useFirestore = async () => {
   initializeFirebase()
   const firestore = await getFirestoreInstance()
 
   return { firestore }
 }
 
-export default useFirebase
+initializeFirebase()
+export const googleProvider = new firebase.auth.GoogleAuthProvider()
+export const auth = firebase.auth()
+export default firebase

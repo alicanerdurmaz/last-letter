@@ -29,7 +29,10 @@ export const InternalizationProvider: React.FC = ({ children }) => {
   })
 
   const t = (key: string) => {
-    if (lang[appLanguage][key] === undefined) throw Error(`InternalizationCtx not have value with "${key}"`)
+    if (lang[appLanguage][key] === undefined) {
+      console.error(`InternalizationCtx not have value with "${key}"`)
+      return ''
+    }
 
     return lang[appLanguage][key]
   }
