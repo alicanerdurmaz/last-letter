@@ -9,11 +9,10 @@ export const useComputerLogic = () => {
   const utterance = useRef(new SpeechSynthesisUtterance())
   utterance.current.lang = 'tr-TR'
 
-  const { gameDifficulty } = useSettingsCtx()
+  const { gameDifficulty, turnTime } = useSettingsCtx()
   const { gameData, NAME_LIST, changeTurn, pauseGame } = useGameManagerCtx()
 
-  const findWord = useRef(findRandomWordFromNameList(gameData.currentWord, NAME_LIST))
-  const computerThinkTime = useRef(getRandomInt(2, 6) * 1000)
+  const computerThinkTime = useRef(getRandomInt(2, turnTime - 1) * 1000)
   const [word, setWord] = useState('')
 
   const playForComputer = useCallback(
@@ -34,9 +33,11 @@ export const useComputerLogic = () => {
   )
 
   useEffect(() => {
-    if (!shouldComputerFindWord(gameDifficulty)) return
+    if (!gameData.currentWord || shouldComputerFindWord(gameDifficulty)) {
+      const wordFounded = findRandomWordFromNameList(gameData.currentWord, NAME_LIST)
 
-    if (findWord.current) playForComputer(findWord.current)
+      if (wordFounded) playForComputer(wordFounded)
+    }
   }, [playForComputer, gameDifficulty, gameData.currentWord])
 
   return { word }
