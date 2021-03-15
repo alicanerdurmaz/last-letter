@@ -17,7 +17,7 @@ export const useComputerLogic = () => {
 
   const playForComputer = useCallback(
     (word: string) => {
-      setTimeout(() => {
+      return setTimeout(() => {
         pauseGame()
         setWord(word)
 
@@ -33,10 +33,17 @@ export const useComputerLogic = () => {
   )
 
   useEffect(() => {
+    let timeOutId: any = undefined
     if (!gameData.currentWord || shouldComputerFindWord(gameDifficulty)) {
       const wordFounded = findRandomWordFromNameList(gameData.currentWord, NAME_LIST)
 
-      if (wordFounded) playForComputer(wordFounded)
+      if (wordFounded) {
+        timeOutId = playForComputer(wordFounded)
+      }
+    }
+    return () => {
+      clearTimeout(timeOutId)
+      window.speechSynthesis.cancel()
     }
   }, [playForComputer, gameDifficulty, gameData.currentWord])
 
@@ -45,5 +52,6 @@ export const useComputerLogic = () => {
 
 const shouldComputerFindWord = (computerChance: number) => {
   const randomInt = getRandomInt(0, 100)
+
   return computerChance >= randomInt
 }

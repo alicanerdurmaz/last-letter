@@ -14,6 +14,7 @@ const UserMicrophone = () => {
     currentRecognition.start()
     return () => {
       currentRecognition.stop()
+      currentRecognition.abort()
     }
   }, [recognition])
 
