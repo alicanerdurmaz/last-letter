@@ -20,15 +20,18 @@ const Header = ({ isGameStarted, setIsGameStarted }: IProps) => {
       if (window.confirm(t('alertForExit'))) {
         setIsGameStarted(false)
         await auth.signOut()
+        return
       }
     }
+
+    await auth.signOut()
   }
   return (
     <header className={styles.container}>
       <Logo isGameStarted={isGameStarted} setIsGameStarted={setIsGameStarted} />
       {currentUser ? (
         <p className={styles.welcome}>
-          {t('welcome')}, {currentUser.displayName} ｜ <span onClick={signOut}>{t('signout')}</span>
+          {t('welcome')}, {currentUser?.user?.displayName} ｜ <span onClick={signOut}>{t('signout')}</span>
         </p>
       ) : (
         <ToggleAuthForm />

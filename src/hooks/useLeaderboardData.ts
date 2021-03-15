@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react'
 
+import { useAuthContext } from 'context/Auth/AuthContext'
+
 import { useFirestore } from './useFirebase'
 
 type User = { username: string; score: number }
@@ -9,6 +11,7 @@ export interface ILeaderboardData {
   currentUser: CurrentUser
 }
 const useLeaderboardData = () => {
+  const { currentUser } = useAuthContext()
   const [loading, setLoading] = useState(true)
   const [data, setData] = useState<ILeaderboardData>({ leaderBoardList: [], currentUser: null })
 
@@ -28,13 +31,13 @@ const useLeaderboardData = () => {
       const data = querySnapshot.docs.map((doc, index) => {
         const docData = doc.data() as User
 
-        // if (docData.username === mockCurrentUser) {
-        //   user = {
-        //     username: docData.username,
-        //     rank: index + 1,
-        //     score: docData.score,
-        //   }
-        // }
+        if (docData.username === currentUser?.user?.displayName) {
+          user = {
+            username: docData.username,
+            rank: index + 1,
+            score: docData.score,
+          }
+        }
 
         return docData
       })

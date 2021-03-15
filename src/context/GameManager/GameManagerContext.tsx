@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useMemo, useRef } from 'react'
 
+import { useAuthContext } from 'context/Auth/AuthContext'
 import names from 'data/names.json'
+import { useFirestore } from 'hooks/useFirebase'
 import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
 
 export const USER = {
@@ -32,13 +34,14 @@ interface IGameData {
   whoIsPlaying: number
   currentWord: string
   usedWords: Set<string>
+  score: number
 }
 
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
 
 export const GameManagerProvider: React.FC = ({ children }) => {
+  const { currentUser } = useAuthContext()
   const NAME_LIST: NameList = useMemo(() => names, [])
-
   const pause = useRef(false)
 
   const [isGameOver, setIsGameOver] = useState<IsGameOver | null>(null)
@@ -47,6 +50,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
     whoIsPlaying: USER.computer,
     currentWord: '',
     usedWords: new Set<string>(),
+    score: 0,
   })
 
   const changeTurn = (word: string) => {
@@ -58,6 +62,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
       currentWord: gameData.currentWord,
       usedWords: gameData.usedWords,
     })
+
     if (result) {
       GameOver(result)
       return
@@ -71,6 +76,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
         currentWord: word,
         whoIsPlaying: prevState.whoIsPlaying === USER.computer ? USER.player : USER.computer,
         usedWords: newUsedWordList,
+        score: prevState.whoIsPlaying === USER.computer ? prevState.score : prevState.score + 10,
       }
     })
 
@@ -83,10 +89,28 @@ export const GameManagerProvider: React.FC = ({ children }) => {
 
   const GameOver = (desc: string) => {
     pauseGame()
+    saveScoreToFirestore()
     setIsGameOver({
       winner: gameData.whoIsPlaying === USER.computer ? USER.player : USER.computer,
       description: desc,
     })
+  }
+
+  const saveScoreToFirestore = async () => {
+    if (!currentUser) return
+
+    if (currentUser.score >= gameData.score) return
+
+    const { firestore } = await useFirestore()
+
+    const displayName = currentUser?.user?.displayName || undefined
+
+    try {
+      firestore.collection('users').doc(displayName).set({
+        username: displayName,
+        score: gameData.score,
+      })
+    } catch (error) {}
   }
 
   const pauseGame = () => {
