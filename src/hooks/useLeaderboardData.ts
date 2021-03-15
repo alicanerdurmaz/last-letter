@@ -1,19 +1,12 @@
 import { useState, useEffect } from 'react'
 
-import { useAuthContext } from 'context/Auth/AuthContext'
-
 import { useFirestore } from './useFirebase'
 
 type User = { username: string; score: number }
-type CurrentUser = { username: string; score: number; rank: number } | null
-export interface ILeaderboardData {
-  leaderBoardList: User[]
-  currentUser: CurrentUser
-}
+
 const useLeaderboardData = () => {
-  const { currentUser } = useAuthContext()
   const [loading, setLoading] = useState(true)
-  const [data, setData] = useState<ILeaderboardData>({ leaderBoardList: [], currentUser: null })
+  const [leaderBoardList, setLeaderBoardList] = useState<User[]>([])
 
   useEffect(() => {
     loadData().then(() => setLoading(false))
@@ -23,30 +16,20 @@ const useLeaderboardData = () => {
     const { firestore } = await useFirestore()
 
     try {
-      let user: CurrentUser = null
-
       const usersRef = firestore.collection('users').orderBy('score', 'desc')
       const querySnapshot = await usersRef.get()
 
       const data = querySnapshot.docs.map((doc, index) => {
         const docData = doc.data() as User
 
-        if (docData.username === currentUser?.user?.displayName) {
-          user = {
-            username: docData.username,
-            rank: index + 1,
-            score: docData.score,
-          }
-        }
-
         return docData
       })
 
-      setData({ leaderBoardList: data, currentUser: user })
+      setLeaderBoardList(data)
     } catch (error) {}
   }
 
-  return { loading, leaderBoardList: data.leaderBoardList, currentUser: data.currentUser }
+  return { loading, leaderBoardList }
 }
 
 export default useLeaderboardData

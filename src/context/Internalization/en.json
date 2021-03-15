@@ -52,5 +52,7 @@
 
   "auth/email-already-in-use": "The email address is already in use by another account.",
   "auth/invalid-email": "The email address is badly formatted.",
-  "auth/user-not-found": "No user corresponding to this email"
+  "auth/user-not-found": "No user corresponding to this email",
+
+  "needToSignup": "You must be a member to enter the rankings"
 }

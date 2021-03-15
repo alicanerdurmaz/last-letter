@@ -53,5 +53,7 @@
 
   "auth/email-already-in-use": "E-posta adresi başka bir hesap tarafından kullanılıyor",
   "auth/invalid-email": "E-Posta doğru değil",
-  "auth/user-not-found": "Kullanıcı bulunamadı"
+  "auth/user-not-found": "Kullanıcı bulunamadı",
+
+  "needToSignup": "Liderlik tablosuna girebilmek için üye olman gerekiyor"
 }

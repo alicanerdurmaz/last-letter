@@ -1,13 +1,23 @@
+import { useMemo } from 'react'
+
 import cx from 'classnames'
 
 import TrophyIcon from 'components/Icons/TrophyIcon'
 import Spinner from 'components/LoadingIndicator/Spinner'
+import { useAuthContext } from 'context/Auth/AuthContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import useLeaderboardData from 'hooks/useLeaderboardData'
 
 import styles from './Leaderboard.module.scss'
 
 const Leaderboard = () => {
-  const { leaderBoardList, loading, currentUser } = useLeaderboardData()
+  const { t } = useInternalizationCtx()
+  const { leaderBoardList, loading } = useLeaderboardData()
+  const { currentUser } = useAuthContext()
+
+  const currentUserRank = useMemo(() => {
+    return leaderBoardList.findIndex(user => user.username === currentUser?.user?.displayName) + 1
+  }, [leaderBoardList])
 
   return (
     <div className={styles.container}>
@@ -33,12 +43,16 @@ const Leaderboard = () => {
       </ul>
 
       <div className={cx(styles.listItem, styles.user)}>
-        {currentUser && (
+        {currentUser ? (
           <>
-            <small>{currentUser.rank}</small>
-            <p className={styles.username}>{currentUser.username}</p>
-            <h2 className={styles.score}>{currentUser.score}</h2>
+            <small>{currentUserRank || ''}</small>
+            <p className={styles.username}>{currentUser?.user?.displayName}</p>
+            <h2 className={styles.score}>{currentUser?.score}</h2>
           </>
+        ) : (
+          <div className={styles.signUpDescription}>
+            <p>{t('needToSignup')}</p>
+          </div>
         )}
       </div>
     </div>

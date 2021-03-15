@@ -94,7 +94,11 @@
   height: 48px !important;
   background: unset !important;
 }
-
+.signUpDescription {
+  color: var(--c-error);
+  font-size: 0.825rem;
+  text-align: center;
+}
 .list::-webkit-scrollbar {
   width: 4px;
 }
