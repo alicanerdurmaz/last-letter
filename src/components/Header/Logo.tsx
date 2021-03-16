@@ -14,8 +14,9 @@ const Logo = () => {
         changeRoute(Routes.home)
         return
       }
-      changeRoute(Routes.home)
     }
+
+    changeRoute(Routes.home)
   }
   return (
     <div className={styles.logo} onClick={() => onClickHandler()}>

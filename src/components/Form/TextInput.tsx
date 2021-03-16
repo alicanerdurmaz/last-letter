@@ -1,6 +1,7 @@
 import styles from './TextInput.module.scss'
 
 interface IProps {
+  autoFocus?: boolean
   minLength?: number
   value: string
   label: string
@@ -10,13 +11,23 @@ interface IProps {
   onChange: React.ChangeEventHandler<HTMLInputElement>
 }
 
-const TextInput = ({ type = 'text', placeholder, name, onChange, label = 'Username', value, minLength }: IProps) => {
+const TextInput = ({
+  autoFocus = false,
+  type = 'text',
+  placeholder,
+  name,
+  onChange,
+  label = 'Username',
+  value,
+  minLength,
+}: IProps) => {
   return (
     <div className={styles.container}>
       <label htmlFor={name}>
         <span>{label}</span>
       </label>
       <input
+        autoFocus={autoFocus}
         minLength={minLength}
         value={value}
         onChange={e => onChange && onChange(e)}

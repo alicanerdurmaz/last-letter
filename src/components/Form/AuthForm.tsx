@@ -51,6 +51,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
         <fieldset>
           {formType !== FormType.signin && (
             <TextInput
+              autoFocus={true}
               type="text"
               name="username"
               label={t('username')}
