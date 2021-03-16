@@ -1,7 +1,7 @@
 import HomeUI from 'components/HomeUI/HomeUI'
 
-const HomeScreen = () => {
+const Home = () => {
   return <HomeUI />
 }
 
-export default HomeScreen
+export default Home

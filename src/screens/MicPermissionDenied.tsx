@@ -11,7 +11,7 @@ const MicPermissionDenied = () => {
         <MicrophoneIcon enabled={false} />
       </div>
 
-      <h1 className={styles.title}>{t('mickBlocked')} 😞</h1>
+      <h1 className={styles.title}>{t('micBlocked')} 😞</h1>
 
       <div className={styles.desc}>
         <p>{t('micBlockedDesc')}</p>

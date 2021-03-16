@@ -1,6 +1,6 @@
-import ComputerScreen from 'components/GameUI/ComputerScreen'
+import Computer from 'components/GameUI/Computer'
 import styles from 'components/GameUI/GameUI.module.scss'
-import UserScreen from 'components/GameUI/UserScreen'
+import User from 'components/GameUI/User'
 import { useGameLoopCtx } from 'context/GameManager/GameLoop'
 import { useGameManagerCtx, USER } from 'context/GameManager/GameManagerContext'
 
@@ -13,7 +13,7 @@ const GameUI = () => {
       <div className={styles.time}>
         <h1>{remainingTime}</h1>
       </div>
-      {gameData.whoIsPlaying === USER.computer ? <ComputerScreen /> : <UserScreen />}
+      {gameData.whoIsPlaying === USER.computer ? <Computer /> : <User />}
     </div>
   )
 }

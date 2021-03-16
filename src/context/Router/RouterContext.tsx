@@ -1,8 +1,8 @@
 import { createContext, useContext, useState } from 'react'
 
-import GameOver, { IGameOver } from 'components/GameUI/GameOver'
-import GameScreen from 'screens/GameScreen'
-import HomeScreen from 'screens/HomeScreen'
+import Game from 'screens/Game'
+import GameOver, { IGameOver } from 'screens/GameOver'
+import Home from 'screens/Home'
 import MicPermissionDenied from 'screens/MicPermissionDenied'
 
 interface IRouterContext {
@@ -34,16 +34,16 @@ export const RouterContextProvider: React.FC = ({ children }) => {
   const BrowserRouter = () => {
     switch (activeRoute.name) {
       case Routes.home:
-        return <HomeScreen />
+        return <Home />
       case Routes.game:
-        return <GameScreen />
+        return <Game />
       case Routes.gameOver:
         const { description, usedWords, winner } = activeRoute.routeProps as IGameOver
         return <GameOver description={description} usedWords={usedWords} winner={winner} />
       case Routes.MicPermissionDenied:
         return <MicPermissionDenied />
       default:
-        return <HomeScreen />
+        return <Home />
     }
   }
 
