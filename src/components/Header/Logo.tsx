@@ -9,9 +9,11 @@ const Logo = () => {
   const { changeRoute, getActiveRoute } = useRouterContext()
 
   const onClickHandler = () => {
-    if (getActiveRoute() === Routes.home) return
-
-    if (window.confirm(t('alertForExit'))) {
+    if (getActiveRoute() === Routes.game) {
+      if (window.confirm(t('alertForExit'))) {
+        changeRoute(Routes.home)
+        return
+      }
       changeRoute(Routes.home)
     }
   }
