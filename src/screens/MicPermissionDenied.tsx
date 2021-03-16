@@ -4,7 +4,8 @@ import { useInternalizationCtx } from 'context/Internalization/InternalizationCo
 import styles from './MicPermissionDenied.module.scss'
 
 const MicPermissionDenied = () => {
-  const { t } = useInternalizationCtx()
+  const { t, appLanguage } = useInternalizationCtx()
+
   return (
     <div className={styles.container}>
       <div className={styles.icon}>
@@ -21,7 +22,7 @@ const MicPermissionDenied = () => {
       <a
         className={styles.link}
         target="_blank"
-        href="https://support.google.com/chrome/answer/2693767?co=GENIE.Platform%3DDesktop&hl=tr#zippy="
+        href={`https://support.google.com/chrome/answer/2693767?hl=${appLanguage}`}
       >
         {t('howToGiveMicPermissionLink')}
       </a>
