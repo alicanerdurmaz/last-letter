@@ -10,13 +10,10 @@ const Logo = () => {
 
   const onClickHandler = () => {
     if (getActiveRoute() === Routes.game) {
-      if (window.confirm(t('alertForExit'))) {
-        changeRoute(Routes.home)
-        return
-      }
+      if (window.confirm(t('alertForExit'))) changeRoute(Routes.home)
+    } else {
+      changeRoute(Routes.home)
     }
-
-    changeRoute(Routes.home)
   }
   return (
     <div className={styles.logo} onClick={() => onClickHandler()}>

@@ -27,8 +27,9 @@ const ToggleAuthForm = () => {
         setIsAuthFormOpen(type)
         return
       }
+    } else {
+      setIsAuthFormOpen(type)
     }
-    setIsAuthFormOpen(type)
   }
 
   return (
