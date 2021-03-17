@@ -57,6 +57,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
           value={username}
         />
         <Form.FormControl
+          autoFocus={true}
           type="email"
           name="email"
           label={t('email')}

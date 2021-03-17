@@ -16,3 +16,30 @@
     height: max-content;
   }
 }
+
+.childrenContainer {
+  position: relative;
+}
+.closeButton {
+  outline: none;
+  position: absolute;
+  right: -12px;
+  top: -12px;
+
+  width: 32px;
+  height: 32px;
+  background: transparent;
+  border: none;
+
+  color: var(--c-error);
+
+  transition: transform 1s cubic-bezier(0.075, 0.82, 0.165, 1);
+
+  &:hover {
+    transform: rotate(360deg);
+  }
+
+  &:focus {
+    border: 1px solid var(--c-text);
+  }
+}
