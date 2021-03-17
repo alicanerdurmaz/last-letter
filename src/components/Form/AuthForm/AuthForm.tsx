@@ -1,15 +1,20 @@
 import { useState } from 'react'
 
 import GoogleButton from 'components/Button/GoogleButton'
-import Spinner from 'components/LoadingIndicator/Spinner'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'services/firebase'
 
 import Form from '../Form'
 import styles from './AuthForm.module.scss'
 import AuthFormHeader from './AuthFormHeader'
-import { FormType } from './OpenAuthForm'
 
+export type FormType = typeof FormType.closed | typeof FormType.signin | typeof FormType.signup
+
+export const FormType = {
+  closed: false,
+  signin: 1,
+  signup: 2,
+}
 interface IProps {
   formType: FormType
   setIsAuthFormOpen: React.Dispatch<React.SetStateAction<FormType>>
@@ -38,6 +43,8 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
     if (error) {
       setError(error)
       setLoading(false)
+    } else {
+      setIsAuthFormOpen(false)
     }
   }
 

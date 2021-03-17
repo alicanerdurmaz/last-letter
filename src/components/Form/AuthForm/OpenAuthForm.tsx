@@ -4,16 +4,8 @@ import Modal from 'components/Modal/Modal'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
 
-import AuthForm from './AuthForm'
+import AuthForm, { FormType } from './AuthForm'
 import styles from './AuthForm.module.scss'
-
-export type FormType = typeof FormType.closed | typeof FormType.signin | typeof FormType.signup
-
-export const FormType = {
-  closed: false,
-  signin: 1,
-  signup: 2,
-}
 
 const ToggleAuthForm = () => {
   const { getActiveRoute, changeRoute } = useRouterContext()

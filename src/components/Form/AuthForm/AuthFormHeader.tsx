@@ -2,8 +2,8 @@ import cx from 'classnames'
 
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
+import { FormType } from './AuthForm'
 import styles from './AuthFormHeader.module.scss'
-import { FormType } from './OpenAuthForm'
 
 interface IProps {
   formType: FormType
