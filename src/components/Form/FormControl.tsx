@@ -13,7 +13,7 @@ interface IProps {
   required?: boolean
 }
 
-export const FormControl = ({
+const FormControl = ({
   autoFocus = false,
   type = 'text',
   placeholder,
@@ -46,3 +46,5 @@ export const FormControl = ({
     </div>
   )
 }
+
+export default FormControl

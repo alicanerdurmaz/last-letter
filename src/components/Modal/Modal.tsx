@@ -11,10 +11,11 @@ interface IProps {
   isOpen: boolean
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>
   children: React.ReactNode
+  closeOnClickOutside?: boolean
 }
-const Modal = ({ isOpen, setIsOpen, children }: IProps) => {
+const Modal = ({ isOpen, setIsOpen, children, closeOnClickOutside = true }: IProps) => {
   const childrenRef = useRef<HTMLDivElement | null>(null)
-  useOnClickOutside(childrenRef, () => setIsOpen(false))
+  useOnClickOutside(childrenRef, () => closeOnClickOutside && setIsOpen(false))
 
   if (!isOpen) return null
 

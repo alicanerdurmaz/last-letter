@@ -3,9 +3,9 @@ import { useState } from 'react'
 import Button from 'components/Button/Button'
 import GoogleButton from 'components/Button/GoogleButton'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
-import { auth } from 'hooks/useFirebase'
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'services/firebase'
 
-import { Form } from '../Form'
+import Form from '../Form'
 import styles from './AuthForm.module.scss'
 import AuthFormHeader from './AuthFormHeader'
 import { FormType } from './OpenAuthForm'
@@ -26,26 +26,14 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
+    if (formType === FormType.closed) return
 
-    if (formType === FormType.signup) {
-      try {
-        const user = await auth.createUserWithEmailAndPassword(formData.email, formData.password)
+    const error = await (formType === FormType.signin
+      ? createUserWithEmailAndPassword({ email, password, username })
+      : signInWithEmailAndPassword({ email, password }))
 
-        await user?.user?.updateProfile({
-          displayName: formData.username,
-        })
-      } catch (error) {
-        setError(t(error.code))
-      }
-    }
-
-    if (formType === FormType.signin) {
-      try {
-        await auth.signInWithEmailAndPassword(formData.email, formData.password)
-      } catch (error) {
-        setError(t(error.code))
-      }
-    }
+    if (error) setError(error)
+    else setIsAuthFormOpen(false)
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -57,6 +45,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
   return (
     <div className={styles.container}>
       <AuthFormHeader formType={formType} setIsAuthFormOpen={setIsAuthFormOpen} />
+
       <Form onSubmit={handleSubmit}>
         <Form.FormControl
           hidden={formType === FormType.signin}
@@ -83,8 +72,9 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
           value={password}
         />
 
-        <Button type="submit">{formType === FormType.signin ? t('signin') : t('signup')}</Button>
+        <Form.SubmitButton>{formType === FormType.signin ? t('signin') : t('signup')}</Form.SubmitButton>
       </Form>
+
       <GoogleButton />
       {error && <p className={styles.error}>{error}</p>}
     </div>

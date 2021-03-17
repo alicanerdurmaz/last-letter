@@ -8,7 +8,7 @@ interface IProps {
   type?: 'button' | 'submit' | 'reset'
   className?: string
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
-  children: string
+  children: React.ReactNode
   color?: 'outlined' | ''
 }
 const Button = ({ type = 'button', className, onClick, children, color = '' }: IProps) => {

@@ -38,7 +38,7 @@ const ToggleAuthForm = () => {
       <span>{t('or')}</span>
       <p onClick={() => onClickHandler(FormType.signup)}>{t('signup')}</p>
 
-      <Modal isOpen={!!isAuthFormOpen} setIsOpen={() => setIsAuthFormOpen(false)}>
+      <Modal isOpen={!!isAuthFormOpen} setIsOpen={() => setIsAuthFormOpen(false)} closeOnClickOutside={false}>
         <AuthForm formType={isAuthFormOpen} setIsAuthFormOpen={setIsAuthFormOpen} />
       </Modal>
     </div>

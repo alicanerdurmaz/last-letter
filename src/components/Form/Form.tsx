@@ -1,5 +1,6 @@
 import styles from './Form.module.scss'
-import { FormControl } from './FormControl'
+import FormControl from './FormControl'
+import FormSubmit from './FormSubmit'
 
 interface IProps {
   onSubmit?: React.FormEventHandler<HTMLFormElement>
@@ -7,13 +8,16 @@ interface IProps {
   children?: React.ReactNode
 }
 
-export const Form = ({ disabled, children, onSubmit }: IProps) => {
+const Form = ({ disabled = false, children, onSubmit }: IProps) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
-      <fieldset className={styles.fieldset} disabled></fieldset>
+      <fieldset className={styles.fieldset} disabled={disabled}></fieldset>
       {children}
     </form>
   )
 }
 
 Form.FormControl = FormControl
+Form.SubmitButton = FormSubmit
+
+export default Form
