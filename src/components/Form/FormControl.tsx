@@ -1,4 +1,4 @@
-import styles from './TextInput.module.scss'
+import styles from './Form.module.scss'
 
 interface IProps {
   autoFocus?: boolean
@@ -9,9 +9,11 @@ interface IProps {
   placeholder?: string
   name: string
   onChange: React.ChangeEventHandler<HTMLInputElement>
+  hidden?: boolean
+  required?: boolean
 }
 
-const TextInput = ({
+export const FormControl = ({
   autoFocus = false,
   type = 'text',
   placeholder,
@@ -20,13 +22,17 @@ const TextInput = ({
   label = 'Username',
   value,
   minLength,
+  hidden = false,
+  required = false,
 }: IProps) => {
+  if (hidden) return null
   return (
-    <div className={styles.container}>
+    <div className={styles.formControlContainer}>
       <label htmlFor={name}>
-        <span>{label}</span>
+        <small>{label}</small>
       </label>
       <input
+        required={required}
         autoFocus={autoFocus}
         minLength={minLength}
         value={value}
@@ -40,5 +46,3 @@ const TextInput = ({
     </div>
   )
 }
-
-export default TextInput
