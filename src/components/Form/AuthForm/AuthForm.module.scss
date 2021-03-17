@@ -1,7 +1,7 @@
 .container {
   background: var(--c-bg-secondary);
-  width: 300px;
-  padding: 2rem;
+  width: 320px;
+  padding: 2rem 1.25rem;
   border-radius: var(--radius-px);
   box-shadow: 0 19px 38px rgba(0, 0, 0, 0.3), 0 15px 12px rgba(0, 0, 0, 0.22);
 
@@ -9,19 +9,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-
-  fieldset {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-  }
-  fieldset > div {
-    margin-bottom: 2rem;
-  }
-  fieldset > div:last-of-type {
-    margin-bottom: 0;
-  }
 
   button {
     width: 100%;

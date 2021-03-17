@@ -2,14 +2,14 @@ import cx from 'classnames'
 
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
-import styles from './ChangeForm.module.scss'
-import { FormType } from './ToggleAuthForm'
+import styles from './AuthFormHeader.module.scss'
+import { FormType } from './OpenAuthForm'
 
 interface IProps {
   formType: FormType
   setIsAuthFormOpen: React.Dispatch<React.SetStateAction<FormType>>
 }
-const ChangeForm = ({ formType, setIsAuthFormOpen }: IProps) => {
+const AuthFormHeader = ({ formType, setIsAuthFormOpen }: IProps) => {
   const { t } = useInternalizationCtx()
   return (
     <div className={styles.container}>
@@ -29,4 +29,4 @@ const ChangeForm = ({ formType, setIsAuthFormOpen }: IProps) => {
   )
 }
 
-export default ChangeForm
+export default AuthFormHeader

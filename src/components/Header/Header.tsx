@@ -1,4 +1,4 @@
-import ToggleAuthForm from 'components/Form/ToggleAuthForm'
+import ToggleAuthForm from 'components/Form/AuthForm/OpenAuthForm'
 import { useAuthContext } from 'context/Auth/AuthContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
