@@ -15,8 +15,14 @@ $duration: 1.4s;
     transform: rotate(270deg);
   }
 }
-
-.path {
+.pathWhite {
+  stroke-dasharray: $offset;
+  stroke-dashoffset: 0;
+  transform-origin: center;
+  stroke: aliceblue;
+  animation: dash $duration ease-in-out infinite;
+}
+.pathColorfull {
   stroke-dasharray: $offset;
   stroke-dashoffset: 0;
   transform-origin: center;

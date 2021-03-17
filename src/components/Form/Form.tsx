@@ -11,8 +11,9 @@ interface IProps {
 const Form = ({ disabled = false, children, onSubmit }: IProps) => {
   return (
     <form className={styles.form} onSubmit={onSubmit}>
-      <fieldset className={styles.fieldset} disabled={disabled}></fieldset>
-      {children}
+      <fieldset className={styles.fieldset} disabled={disabled}>
+        {children}
+      </fieldset>
     </form>
   )
 }

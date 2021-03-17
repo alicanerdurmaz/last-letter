@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-import Button from 'components/Button/Button'
 import GoogleButton from 'components/Button/GoogleButton'
+import Spinner from 'components/LoadingIndicator/Spinner'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'services/firebase'
 
@@ -17,6 +17,7 @@ interface IProps {
 const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
   const { t } = useInternalizationCtx()
   const [error, setError] = useState('')
+  const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
     email: '',
     password: '',
@@ -26,14 +27,18 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (formType === FormType.closed) return
+    if (formType === FormType.closed || loading) return
+
+    setLoading(true)
 
     const error = await (formType === FormType.signin
-      ? createUserWithEmailAndPassword({ email, password, username })
-      : signInWithEmailAndPassword({ email, password }))
+      ? signInWithEmailAndPassword({ email, password, username })
+      : createUserWithEmailAndPassword({ email, password }))
 
-    if (error) setError(error)
-    else setIsAuthFormOpen(false)
+    if (error) {
+      setError(error)
+      setLoading(false)
+    }
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -46,7 +51,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
     <div className={styles.container}>
       <AuthFormHeader formType={formType} setIsAuthFormOpen={setIsAuthFormOpen} />
 
-      <Form onSubmit={handleSubmit}>
+      <Form onSubmit={handleSubmit} disabled={loading}>
         <Form.FormControl
           hidden={formType === FormType.signin}
           autoFocus={true}
@@ -73,10 +78,12 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
           value={password}
         />
 
-        <Form.SubmitButton>{formType === FormType.signin ? t('signin') : t('signup')}</Form.SubmitButton>
+        <Form.SubmitButton loading={loading}>
+          {formType === FormType.signin ? t('signin') : t('signup')}
+        </Form.SubmitButton>
       </Form>
 
-      <GoogleButton />
+      <GoogleButton disabled={loading} />
       {error && <p className={styles.error}>{error}</p>}
     </div>
   )

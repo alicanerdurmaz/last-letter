@@ -3,7 +3,11 @@ import { auth, googleProvider } from 'hooks/useFirebase'
 
 import styles from './GoogleButton.module.scss'
 
-const GoogleButton = () => {
+interface IProps {
+  disabled?: boolean
+}
+
+const GoogleButton = ({ disabled = false }: IProps) => {
   const { t } = useInternalizationCtx()
 
   const signInWithGoogle = async () => {
@@ -13,7 +17,7 @@ const GoogleButton = () => {
   }
   return (
     <div>
-      <button onClick={signInWithGoogle} type="button" className={styles.googleButton}>
+      <button disabled={disabled} onClick={signInWithGoogle} type="button" className={styles.googleButton}>
         <span className={styles.googleButtonIcon}>
           <svg viewBox="0 0 366 372" xmlns="http://www.w3.org/2000/svg">
             <path
