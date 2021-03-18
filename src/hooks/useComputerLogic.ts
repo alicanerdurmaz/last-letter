@@ -12,7 +12,7 @@ export const useComputerLogic = () => {
   const [word, setWord] = useState('')
 
   const utterance = useRef(new SpeechSynthesisUtterance())
-  const computerThinkTime = useRef(2 * 1000)
+  const computerThinkTime = useRef(getRandomInt(2, turnTime - 1) * 1000)
 
   utterance.current.lang = appLanguage
 
@@ -35,6 +35,9 @@ export const useComputerLogic = () => {
 
   useEffect(() => {
     let timeOutId: any = undefined
+
+    // If gameData.currentWord is null, it means this is the first round.
+    // first round, I am not running the odds calculation because we want the computer to find the word absolutely
     if (!gameData.currentWord || shouldComputerFindWord(gameDifficulty)) {
       const wordFounded = findRandomWordFromNameList(gameData.currentWord, NAME_LIST)
 
