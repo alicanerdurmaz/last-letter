@@ -1,6 +1,7 @@
 import Footer from 'components/Footer/Footer'
 import Header from 'components/Header/Header'
 import { AuthProvider } from 'context/Auth/AuthContext'
+import { SettingsProvider } from 'context/GameManager/SettingsContext'
 import { InternalizationProvider } from 'context/Internalization/InternalizationContext'
 import Router from 'context/Router/Router'
 import { RouterContextProvider } from 'context/Router/RouterContext'
@@ -19,17 +20,19 @@ function App() {
   }
 
   return (
-    <InternalizationProvider>
-      <RouterContextProvider>
-        <AuthProvider>
-          <div className="app">
-            <Header />
-            <Router />
-            <Footer />
-          </div>
-        </AuthProvider>
-      </RouterContextProvider>
-    </InternalizationProvider>
+    <SettingsProvider>
+      <InternalizationProvider>
+        <RouterContextProvider>
+          <AuthProvider>
+            <div className="app">
+              <Header />
+              <Router />
+              <Footer />
+            </div>
+          </AuthProvider>
+        </RouterContextProvider>
+      </InternalizationProvider>
+    </SettingsProvider>
   )
 }
 

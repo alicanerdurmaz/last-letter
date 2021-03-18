@@ -1,6 +1,7 @@
 import { useEffect } from 'react'
 
-import grammerList from 'data/grammerList.json'
+import englishGrammerList from 'data/english-grammerList.json'
+import turkishGrammerList from 'data/turkish-grammerList.json'
 
 const useLoadSpeechGrammar = () => {
   useEffect(() => {
@@ -12,7 +13,10 @@ const useLoadSpeechGrammar = () => {
 
     const speechRecognitionList = new SpeechGrammarList()
 
-    if (SpeechGrammarList.length < 1) speechRecognitionList.addFromString(grammerList.grammerList, 1)
+    if (SpeechGrammarList.length < 2) {
+      speechRecognitionList.addFromString(turkishGrammerList.grammerList, 1)
+      speechRecognitionList.addFromString(englishGrammerList.grammerList, 1)
+    }
   }, [])
 }
 

@@ -6,14 +6,15 @@ import { findRandomWordFromNameList } from 'utils/findRandomWordFromNameList'
 import { getRandomInt } from 'utils/getRandomInt'
 
 export const useComputerLogic = () => {
-  const utterance = useRef(new SpeechSynthesisUtterance())
-  utterance.current.lang = 'tr-TR'
-
-  const { gameDifficulty, turnTime } = useSettingsCtx()
+  const { gameDifficulty, turnTime, appLanguage } = useSettingsCtx()
   const { gameData, NAME_LIST, changeTurn, pauseGame } = useGameManagerCtx()
 
-  const computerThinkTime = useRef(getRandomInt(2, turnTime - 1) * 1000)
   const [word, setWord] = useState('')
+
+  const utterance = useRef(new SpeechSynthesisUtterance())
+  const computerThinkTime = useRef(2 * 1000)
+
+  utterance.current.lang = appLanguage
 
   const playForComputer = useCallback(
     (word: string) => {
@@ -24,7 +25,7 @@ export const useComputerLogic = () => {
         utterance.current.text = word
         window.speechSynthesis.speak(utterance.current)
 
-        utterance.current.onend = function (e) {
+        utterance.current.onend = function () {
           changeTurn(word)
         }
       }, computerThinkTime.current)

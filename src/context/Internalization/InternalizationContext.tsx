@@ -1,11 +1,8 @@
 import React, { createContext, useContext, useState } from 'react'
 
+import { useSettingsCtx } from 'context/GameManager/SettingsContext'
 import enLanguage from 'context/Internalization/en.json'
 import trLanguage from 'context/Internalization/tr.json'
-import { getLanguageFromLocalStorage } from 'utils/getLanguageFromLocalStorage'
-
-export type languages = 'tr-TR' | 'en-US'
-export const supportedLanguages = ['tr-TR', 'en-US']
 
 interface ILanguageObject {
   'en-US': { [key: string]: string }
@@ -14,14 +11,12 @@ interface ILanguageObject {
 
 interface IInternalizationCtx {
   t: (key: string) => string
-  changeAppLanguage: (lang: string) => void
-  appLanguage: languages
 }
 
 const InternalizationCtx = createContext<IInternalizationCtx | null>(null)
 
 export const InternalizationProvider: React.FC = ({ children }) => {
-  const [appLanguage, setAppLanguage] = useState<languages>(() => getLanguageFromLocalStorage())
+  const { appLanguage } = useSettingsCtx()
 
   const [lang] = useState<ILanguageObject>({
     'en-US': enLanguage,
@@ -37,16 +32,7 @@ export const InternalizationProvider: React.FC = ({ children }) => {
     return lang[appLanguage][key]
   }
 
-  const changeAppLanguage = (lang: string) => {
-    if (!supportedLanguages.includes(lang)) return
-
-    setAppLanguage(lang as languages)
-    localStorage.setItem('lang', lang)
-  }
-
-  return (
-    <InternalizationCtx.Provider value={{ t, changeAppLanguage, appLanguage }}>{children}</InternalizationCtx.Provider>
-  )
+  return <InternalizationCtx.Provider value={{ t }}>{children}</InternalizationCtx.Provider>
 }
 
 export const useInternalizationCtx = () => {

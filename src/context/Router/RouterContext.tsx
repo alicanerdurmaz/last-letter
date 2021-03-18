@@ -38,8 +38,8 @@ export const RouterContextProvider: React.FC = ({ children }) => {
       case Routes.game:
         return <Game />
       case Routes.gameOver:
-        const { description, usedWords, winner } = activeRoute.routeProps as IGameOver
-        return <GameOver description={description} usedWords={usedWords} winner={winner} />
+        const { description, usedWords, winner, lastUsedWord } = activeRoute.routeProps as IGameOver
+        return <GameOver lastUsedWord={lastUsedWord} description={description} usedWords={usedWords} winner={winner} />
       case Routes.MicPermissionDenied:
         return <MicPermissionDenied />
       default:

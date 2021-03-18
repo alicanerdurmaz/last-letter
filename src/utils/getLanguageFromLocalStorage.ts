@@ -1,10 +1,7 @@
-import { languages, supportedLanguages } from 'context/Internalization/InternalizationContext'
+import { AppLangugage } from 'context/GameManager/SettingsContext'
 
-export const getLanguageFromLocalStorage = () => {
+export const getLanguageFromLocalStorage = (): AppLangugage => {
   const langFromlocalStorage = localStorage.getItem('lang')
 
-  if (langFromlocalStorage && supportedLanguages.includes(langFromlocalStorage))
-    return langFromlocalStorage as languages
-
-  return 'tr-TR'
+  return langFromlocalStorage ? (langFromlocalStorage as AppLangugage) : ('tr-TR' as AppLangugage)
 }

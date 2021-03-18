@@ -1,4 +1,6 @@
-import React, { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState } from 'react'
+
+import { getLanguageFromLocalStorage } from 'utils/getLanguageFromLocalStorage'
 
 export const GAME_DIFFICULTY = {
   easy: 30,
@@ -6,20 +8,33 @@ export const GAME_DIFFICULTY = {
   hard: 70,
   impossible: 100,
 }
+
+export type AppLangugage = 'tr-TR' | 'en-US'
 interface ISettingsCtx {
+  appLanguage: AppLangugage
+  changeAppLanguage: (lang: string) => void
   turnTime: number
   setTurnTime: React.Dispatch<React.SetStateAction<number>>
   gameDifficulty: number
   setGameDifficulty: React.Dispatch<React.SetStateAction<number>>
 }
+
 const SettingsCtx = createContext<ISettingsCtx | null>(null)
 
 export const SettingsProvider: React.FC = ({ children }) => {
+  const [appLanguage, setAppLanguage] = useState<AppLangugage>(() => getLanguageFromLocalStorage())
   const [turnTime, setTurnTime] = useState(8)
   const [gameDifficulty, setGameDifficulty] = useState(GAME_DIFFICULTY.easy)
 
+  const changeAppLanguage = (lang: string) => {
+    setAppLanguage(lang as AppLangugage)
+    localStorage.setItem('lang', lang)
+  }
+
   return (
-    <SettingsCtx.Provider value={{ turnTime, setTurnTime, setGameDifficulty, gameDifficulty }}>
+    <SettingsCtx.Provider
+      value={{ appLanguage, changeAppLanguage, turnTime, setTurnTime, setGameDifficulty, gameDifficulty }}
+    >
       {children}
     </SettingsCtx.Provider>
   )

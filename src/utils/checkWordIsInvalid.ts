@@ -1,17 +1,19 @@
 import { NameList } from 'context/GameManager/GameManagerContext'
+import { AppLangugage, useSettingsCtx } from 'context/GameManager/SettingsContext'
 
 interface IProps {
   newWord: string
   currentWord: string
   NAME_LIST: NameList
   usedWords: Set<string>
+  appLanguage: AppLangugage
 }
 
-export const checkWordIsInvalid = ({ NAME_LIST, currentWord, newWord, usedWords }: IProps) => {
+export const checkWordIsInvalid = ({ NAME_LIST, currentWord, newWord, usedWords, appLanguage }: IProps) => {
   if (!currentWord) return false
 
-  const lowerNewWord = newWord.toLocaleLowerCase('tr')
-  const lowerCurrentWord = currentWord.toLocaleLowerCase('tr')
+  const lowerNewWord = newWord.toLocaleLowerCase(appLanguage)
+  const lowerCurrentWord = currentWord.toLocaleLowerCase(appLanguage)
 
   const newWordFirstChar = lowerNewWord[0]
   const currentWordLastChar = lowerCurrentWord[lowerCurrentWord.length - 1]

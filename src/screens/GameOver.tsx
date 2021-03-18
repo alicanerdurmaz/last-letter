@@ -7,9 +7,10 @@ export interface IGameOver {
   winner: number
   description: string
   usedWords: Set<string>
+  lastUsedWord?: string
 }
 
-const GameOver = ({ description, usedWords, winner }: IGameOver) => {
+const GameOver = ({ description, usedWords, winner, lastUsedWord }: IGameOver) => {
   const { t } = useInternalizationCtx()
 
   return (
@@ -27,6 +28,9 @@ const GameOver = ({ description, usedWords, winner }: IGameOver) => {
       </h1>
 
       <div className={styles.info}>
+        <p>
+          {t('lastUsedWord')} : <span>{lastUsedWord}</span>
+        </p>
         <p>{t(description)}</p>
       </div>
 

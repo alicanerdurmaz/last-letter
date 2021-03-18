@@ -2,9 +2,12 @@ import { createContext, useContext, useState, useMemo, useRef } from 'react'
 
 import { useAuthContext } from 'context/Auth/AuthContext'
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
-import names from 'data/names.json'
+import englishNames from 'data/english-names.json'
+import turkishNames from 'data/turkish-names.json'
 import { useFirestore } from 'hooks/useFirebase'
 import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
+
+import { useSettingsCtx } from './SettingsContext'
 
 export const USER = {
   computer: 1,
@@ -24,9 +27,8 @@ export interface IGameManagerCtx {
   pauseGame: () => void
   continueGame: () => void
   isGamePaused: () => boolean
-  gameOver: (desc: string) => void
+  gameOver: (desc: string, lastUsedWord?: string) => void
 
-  isGameOver: IsGameOver | null
   NAME_LIST: NameList
   gameData: IGameData
 }
@@ -41,12 +43,12 @@ interface IGameData {
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
 
 export const GameManagerProvider: React.FC = ({ children }) => {
+  const { appLanguage } = useSettingsCtx()
   const { changeRoute } = useRouterContext()
   const { currentUser } = useAuthContext()
-  const NAME_LIST: NameList = useMemo(() => names, [])
   const pause = useRef(false)
 
-  const [isGameOver, setIsGameOver] = useState<IsGameOver | null>(null)
+  const NAME_LIST: NameList = useMemo(() => (appLanguage === 'tr-TR' ? turkishNames : englishNames), [appLanguage])
 
   const [gameData, setGameData] = useState<IGameData>({
     whoIsPlaying: USER.computer,
@@ -63,10 +65,11 @@ export const GameManagerProvider: React.FC = ({ children }) => {
       NAME_LIST,
       currentWord: gameData.currentWord,
       usedWords: gameData.usedWords,
+      appLanguage: appLanguage,
     })
 
     if (result) {
-      gameOver(result)
+      gameOver(result, word)
       return
     }
 
@@ -89,7 +92,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
     changeTurn(word)
   }
 
-  const gameOver = (desc: string) => {
+  const gameOver = (desc: string, lastUsedWord?: string) => {
     pauseGame()
     saveScoreToFirestore()
 
@@ -97,6 +100,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
       winner: gameData.whoIsPlaying === USER.computer ? USER.player : USER.computer,
       description: desc,
       usedWords: gameData.usedWords,
+      lastUsedWord: lastUsedWord || undefined,
     }
     changeRoute(Routes.gameOver, gameOverScreenProps)
   }
@@ -140,7 +144,6 @@ export const GameManagerProvider: React.FC = ({ children }) => {
         speechRecognized,
         isGamePaused,
 
-        isGameOver,
         gameData,
         NAME_LIST,
       }}

@@ -1,14 +1,8 @@
-import { SettingsProvider } from 'context/GameManager/SettingsContext'
-
 import { useRouterContext } from './RouterContext'
 
 const Router = () => {
   const { BrowserRouter } = useRouterContext()
-  return (
-    <SettingsProvider>
-      <BrowserRouter />
-    </SettingsProvider>
-  )
+  return <BrowserRouter />
 }
 
 export default Router

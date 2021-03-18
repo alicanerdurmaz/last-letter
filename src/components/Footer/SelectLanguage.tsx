@@ -1,8 +1,10 @@
 import styles from 'components/Footer/SelectLanguage.module.scss'
+import { useSettingsCtx } from 'context/GameManager/SettingsContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 const SelectLanguage = () => {
-  const { t, changeAppLanguage, appLanguage } = useInternalizationCtx()
+  const { t } = useInternalizationCtx()
+  const { appLanguage, changeAppLanguage } = useSettingsCtx()
 
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
     changeAppLanguage(e.target.value)
