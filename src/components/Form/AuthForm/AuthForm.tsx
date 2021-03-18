@@ -16,11 +16,11 @@ export const FormType = {
   signup: 2,
 }
 interface IProps {
-  formType: FormType
-  setIsAuthFormOpen: React.Dispatch<React.SetStateAction<FormType>>
+  type: FormType
 }
-const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
+const AuthForm = ({ type }: IProps) => {
   const { t } = useInternalizationCtx()
+  const [formType, setFormType] = useState<FormType>(type)
   const [error, setError] = useState('')
   const [loading, setLoading] = useState(false)
   const [formData, setFormData] = useState({
@@ -43,12 +43,11 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
     if (error) {
       setError(error)
       setLoading(false)
-    } else {
-      setIsAuthFormOpen(false)
     }
   }
 
   const onChangeHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setError('')
     setFormData(prevState => {
       return { ...prevState, [e.target.name]: e.target.value }
     })
@@ -56,7 +55,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
 
   return (
     <div className={styles.container}>
-      <AuthFormHeader formType={formType} setIsAuthFormOpen={setIsAuthFormOpen} />
+      <AuthFormHeader formType={formType} setFormType={setFormType} />
 
       <Form onSubmit={handleSubmit} disabled={loading}>
         <Form.FormControl
@@ -91,7 +90,7 @@ const AuthForm = ({ formType, setIsAuthFormOpen }: IProps) => {
       </Form>
 
       <GoogleButton disabled={loading} />
-      {error && <p className={styles.error}>{error}</p>}
+      {error && <p className={styles.error}>{t(error)}</p>}
     </div>
   )
 }

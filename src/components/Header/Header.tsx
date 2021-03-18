@@ -1,4 +1,4 @@
-import ToggleAuthForm from 'components/Form/AuthForm/OpenAuthForm'
+import OpenAuthForm from 'components/Form/AuthForm/OpenAuthForm'
 import { useAuthContext } from 'context/Auth/AuthContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
@@ -31,7 +31,7 @@ const Header = () => {
           {t('welcome')}, {currentUser?.user?.displayName} ｜ <span onClick={signOut}>{t('signout')}</span>
         </p>
       ) : (
-        <ToggleAuthForm />
+        <OpenAuthForm />
       )}
     </header>
   )

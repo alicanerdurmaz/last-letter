@@ -7,20 +7,20 @@ import styles from './AuthFormHeader.module.scss'
 
 interface IProps {
   formType: FormType
-  setIsAuthFormOpen: React.Dispatch<React.SetStateAction<FormType>>
+  setFormType: React.Dispatch<React.SetStateAction<FormType>>
 }
-const AuthFormHeader = ({ formType, setIsAuthFormOpen }: IProps) => {
+const AuthFormHeader = ({ formType, setFormType }: IProps) => {
   const { t } = useInternalizationCtx()
   return (
     <div className={styles.container}>
       <button
-        onClick={() => setIsAuthFormOpen(FormType.signin)}
+        onClick={() => setFormType(FormType.signin)}
         className={cx(styles.leftButton, formType == FormType.signin && styles.active)}
       >
         {t('signin')}
       </button>
       <button
-        onClick={() => setIsAuthFormOpen(FormType.signup)}
+        onClick={() => setFormType(FormType.signup)}
         className={cx(styles.rightButton, formType == FormType.signup && styles.active)}
       >
         {t('signup')}

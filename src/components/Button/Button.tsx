@@ -10,10 +10,11 @@ interface IProps {
   onClick?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void
   children: React.ReactNode
   color?: 'outlined' | ''
+  props?: any
 }
-const Button = ({ type = 'button', className, onClick, children, color = '' }: IProps) => {
+const Button = ({ type = 'button', className, onClick, children, color = '', ...props }: IProps) => {
   return (
-    <button type={type} className={cx(styles.button, styles[color], className)} onClick={onClick}>
+    <button type={type} className={cx(styles.button, styles[color], className)} onClick={onClick} {...props}>
       {children}
     </button>
   )

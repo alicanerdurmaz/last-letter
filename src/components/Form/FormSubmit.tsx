@@ -10,7 +10,7 @@ interface IProps {
 
 const FormSubmit = ({ children, loading }: IProps) => {
   return (
-    <Button type="submit" className={styles.submitButton}>
+    <Button type="submit" className={styles.submitButton} data-testid="form-submit">
       {loading ? <Spinner color={false} /> : children}
     </Button>
   )

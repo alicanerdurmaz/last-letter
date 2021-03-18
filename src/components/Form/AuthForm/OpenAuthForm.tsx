@@ -7,7 +7,7 @@ import { Routes, useRouterContext } from 'context/Router/RouterContext'
 import AuthForm, { FormType } from './AuthForm'
 import styles from './AuthForm.module.scss'
 
-const ToggleAuthForm = () => {
+const OpenAuthForm = () => {
   const { getActiveRoute, changeRoute } = useRouterContext()
   const { t } = useInternalizationCtx()
   const [isAuthFormOpen, setIsAuthFormOpen] = useState<FormType>(FormType.closed)
@@ -31,10 +31,10 @@ const ToggleAuthForm = () => {
       <p onClick={() => onClickHandler(FormType.signup)}>{t('signup')}</p>
 
       <Modal isOpen={!!isAuthFormOpen} setIsOpen={() => setIsAuthFormOpen(false)} closeOnClickOutside={false}>
-        <AuthForm formType={isAuthFormOpen} setIsAuthFormOpen={setIsAuthFormOpen} />
+        <AuthForm type={isAuthFormOpen} />
       </Modal>
     </div>
   )
 }
 
-export default ToggleAuthForm
+export default OpenAuthForm
