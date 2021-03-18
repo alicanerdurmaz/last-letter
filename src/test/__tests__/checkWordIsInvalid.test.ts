@@ -1,4 +1,4 @@
-import NAME_LIST from 'data/names.json'
+import NAME_LIST from 'data/turkish-names.json'
 import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
 
 describe('find a word from list that begins with the last letter of the given word', () => {
@@ -8,7 +8,7 @@ describe('find a word from list that begins with the last letter of the given wo
     const newWord = 'melisa'
     const currentWord = 'alican'
 
-    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords })
+    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords, appLanguage: 'tr-TR' })
     expect(result).toBe('lastCharNotEqualToFirstChar')
   })
 
@@ -16,7 +16,7 @@ describe('find a word from list that begins with the last letter of the given wo
     const newWord = '***'
     const currentWord = 'a'
 
-    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords })
+    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords, appLanguage: 'tr-TR' })
     expect(result).toBe('badLanguage')
   })
 
@@ -25,7 +25,7 @@ describe('find a word from list that begins with the last letter of the given wo
     const newWord = 'esra'
     const currentWord = 'emre'
 
-    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords })
+    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords, appLanguage: 'tr-TR' })
     expect(result).toBe('usedBefore')
   })
 
@@ -33,7 +33,7 @@ describe('find a word from list that begins with the last letter of the given wo
     const newWord = 'a'
     const currentWord = 'a'
 
-    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords })
+    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords, appLanguage: 'tr-TR' })
     expect(result).toBe('notAName')
   })
 
@@ -41,7 +41,7 @@ describe('find a word from list that begins with the last letter of the given wo
     const newWord = 'alican'
     const currentWord = 'arda'
 
-    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords })
+    const result = checkWordIsInvalid({ NAME_LIST, newWord, currentWord, usedWords, appLanguage: 'tr-TR' })
     expect(result).toBeFalsy()
   })
 })

@@ -1,4 +1,4 @@
-import NAME_LIST from 'data/names.json'
+import NAME_LIST from 'data/turkish-names.json'
 import { findRandomWordFromNameList } from 'utils/findRandomWordFromNameList'
 
 describe('find a word from list that begins with the last letter of the given word', () => {

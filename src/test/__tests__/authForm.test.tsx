@@ -3,6 +3,7 @@ import '@testing-library/jest-dom/extend-expect'
 import userEvent from '@testing-library/user-event'
 
 import AuthForm, { FormType } from 'components/Form/AuthForm/AuthForm'
+import { SettingsProvider } from 'context/GameManager/SettingsContext'
 import { InternalizationProvider } from 'context/Internalization/InternalizationContext'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'services/firebase'
 import { getLanguageFromLocalStorage } from 'utils/getLanguageFromLocalStorage'
@@ -38,7 +39,7 @@ describe('auth form', () => {
   })
 
   test('type change works properly', () => {
-    const { getByTestId, getByRole, getAllByRole, debug } = render(<AuthFormComponent type={FormType.signin} />)
+    const { getByTestId, getByRole } = render(<AuthFormComponent type={FormType.signin} />)
 
     expect(getByTestId(/form-submit/i)).toHaveTextContent(/sign in/i)
 
@@ -55,8 +56,10 @@ interface IAuthFormComponent {
 }
 const AuthFormComponent = ({ type }: IAuthFormComponent) => {
   return (
-    <InternalizationProvider>
-      <AuthForm type={type} />
-    </InternalizationProvider>
+    <SettingsProvider>
+      <InternalizationProvider>
+        <AuthForm type={type} />
+      </InternalizationProvider>
+    </SettingsProvider>
   )
 }
