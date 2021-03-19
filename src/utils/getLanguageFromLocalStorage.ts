@@ -1,4 +1,4 @@
-import { AppLangugage } from 'context/GameManager/SettingsContext'
+import { AppLangugage } from 'context/Internalization/InternalizationContext'
 
 export const getLanguageFromLocalStorage = (): AppLangugage => {
   const langFromlocalStorage = localStorage.getItem('lang')

@@ -1,6 +1,6 @@
 import { useRef, useState } from 'react'
 
-import { useSettingsCtx } from 'context/GameManager/SettingsContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 // any vencdor-specific api are not adding to typescript.
 // i used this solution
@@ -13,7 +13,7 @@ interface IProps {
   onResult: (word: string) => void
 }
 const useSpeechRecognition = ({ onResult }: IProps) => {
-  const { appLanguage } = useSettingsCtx()
+  const { appLanguage } = useInternalizationCtx()
   const [listening, setListening] = useState(false)
 
   const recognition = useRef(new SpeechRecognition())

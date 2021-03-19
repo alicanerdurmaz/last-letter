@@ -1,13 +1,12 @@
 import { createContext, useContext, useState, useMemo, useRef } from 'react'
 
 import { useAuthContext } from 'context/Auth/AuthContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
 import englishNames from 'data/english-names.json'
 import turkishNames from 'data/turkish-names.json'
 import { useFirestore } from 'hooks/useFirebase'
 import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
-
-import { useSettingsCtx } from './SettingsContext'
 
 export const USER = {
   computer: 1,
@@ -43,7 +42,7 @@ interface IGameData {
 const GameManagerCtx = createContext<IGameManagerCtx | null>(null)
 
 export const GameManagerProvider: React.FC = ({ children }) => {
-  const { appLanguage } = useSettingsCtx()
+  const { appLanguage } = useInternalizationCtx()
   const { changeRoute } = useRouterContext()
   const { currentUser } = useAuthContext()
   const pause = useRef(false)

@@ -2,11 +2,13 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { useGameManagerCtx } from 'context/GameManager/GameManagerContext'
 import { useSettingsCtx } from 'context/GameManager/SettingsContext'
+import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 import { findRandomWordFromNameList } from 'utils/findRandomWordFromNameList'
 import { getRandomInt } from 'utils/getRandomInt'
 
 export const useComputerLogic = () => {
-  const { gameDifficulty, turnTime, appLanguage } = useSettingsCtx()
+  const { appLanguage } = useInternalizationCtx()
+  const { gameDifficulty, turnTime } = useSettingsCtx()
   const { gameData, NAME_LIST, changeTurn, pauseGame } = useGameManagerCtx()
 
   const [word, setWord] = useState('')

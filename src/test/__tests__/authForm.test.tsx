@@ -56,10 +56,8 @@ interface IAuthFormComponent {
 }
 const AuthFormComponent = ({ type }: IAuthFormComponent) => {
   return (
-    <SettingsProvider>
-      <InternalizationProvider>
-        <AuthForm type={type} />
-      </InternalizationProvider>
-    </SettingsProvider>
+    <InternalizationProvider>
+      <AuthForm type={type} />
+    </InternalizationProvider>
   )
 }

@@ -1,12 +1,10 @@
 import MicrophoneIcon from 'components/Icons/MicrophoneIcon'
-import { useSettingsCtx } from 'context/GameManager/SettingsContext'
 import { useInternalizationCtx } from 'context/Internalization/InternalizationContext'
 
 import styles from './MicPermissionDenied.module.scss'
 
 const MicPermissionDenied = () => {
-  const { t } = useInternalizationCtx()
-  const { appLanguage } = useSettingsCtx()
+  const { t, appLanguage } = useInternalizationCtx()
 
   return (
     <div className={styles.container}>

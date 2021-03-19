@@ -1,5 +1,5 @@
 import { NameList } from 'context/GameManager/GameManagerContext'
-import { AppLangugage, useSettingsCtx } from 'context/GameManager/SettingsContext'
+import { AppLangugage } from 'context/Internalization/InternalizationContext'
 
 interface IProps {
   newWord: string

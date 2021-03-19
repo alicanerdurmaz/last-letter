@@ -1,27 +1,32 @@
-import { createContext, useContext, useState, useCallback } from 'react'
+import { createContext, useContext, useState, useCallback, useMemo } from 'react'
 
-import { useSettingsCtx } from 'context/GameManager/SettingsContext'
 import enLanguage from 'context/Internalization/en.json'
 import trLanguage from 'context/Internalization/tr.json'
+import { getLanguageFromLocalStorage } from 'utils/getLanguageFromLocalStorage'
 
+export type AppLangugage = 'tr-TR' | 'en-US'
 interface ILanguageObject {
   'en-US': { [key: string]: string }
   'tr-TR': { [key: string]: string }
 }
 
 interface IInternalizationCtx {
+  appLanguage: AppLangugage
+  setAppLanguage: React.Dispatch<React.SetStateAction<AppLangugage>>
   t: (key: string) => string
 }
 
 const InternalizationCtx = createContext<IInternalizationCtx | null>(null)
 
 export const InternalizationProvider: React.FC = ({ children }) => {
-  const { appLanguage } = useSettingsCtx()
+  const [appLanguage, setAppLanguage] = useState<AppLangugage>(() => getLanguageFromLocalStorage())
 
-  const [lang] = useState<ILanguageObject>({
-    'en-US': enLanguage,
-    'tr-TR': trLanguage,
-  })
+  const lang = useMemo<ILanguageObject>(() => {
+    return {
+      'en-US': enLanguage,
+      'tr-TR': trLanguage,
+    }
+  }, [])
 
   const t = useCallback(
     (key: string) => {
@@ -32,10 +37,12 @@ export const InternalizationProvider: React.FC = ({ children }) => {
 
       return lang[appLanguage][key]
     },
-    [appLanguage, lang],
+    [appLanguage],
   )
 
-  return <InternalizationCtx.Provider value={{ t }}>{children}</InternalizationCtx.Provider>
+  return (
+    <InternalizationCtx.Provider value={{ appLanguage, setAppLanguage, t }}>{children}</InternalizationCtx.Provider>
+  )
 }
 
 export const useInternalizationCtx = () => {
