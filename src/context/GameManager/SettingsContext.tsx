@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from 'react'
+import { createContext, useContext, useState, useCallback } from 'react'
 
 import { getLanguageFromLocalStorage } from 'utils/getLanguageFromLocalStorage'
 
@@ -26,10 +26,10 @@ export const SettingsProvider: React.FC = ({ children }) => {
   const [turnTime, setTurnTime] = useState(8)
   const [gameDifficulty, setGameDifficulty] = useState(GAME_DIFFICULTY.easy)
 
-  const changeAppLanguage = (lang: string) => {
+  const changeAppLanguage = useCallback((lang: string) => {
     setAppLanguage(lang as AppLangugage)
     localStorage.setItem('lang', lang)
-  }
+  }, [])
 
   return (
     <SettingsCtx.Provider

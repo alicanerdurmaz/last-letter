@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 import styles from 'components/Footer/Footer.module.scss'
 import TrophyIcon from 'components/Icons/TrophyIcon'

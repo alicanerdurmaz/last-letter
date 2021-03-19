@@ -21,17 +21,17 @@ function App() {
 
   return (
     <SettingsProvider>
-      <InternalizationProvider>
+      <AuthProvider>
         <RouterContextProvider>
-          <AuthProvider>
-            <div className="app">
+          <div className="app">
+            <InternalizationProvider>
               <Header />
               <Router />
               <Footer />
-            </div>
-          </AuthProvider>
+            </InternalizationProvider>
+          </div>
         </RouterContextProvider>
-      </InternalizationProvider>
+      </AuthProvider>
     </SettingsProvider>
   )
 }
