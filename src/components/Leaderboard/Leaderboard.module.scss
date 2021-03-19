@@ -1,3 +1,13 @@
+$listItemColors: rgba(226, 60, 85, 1), rgba(226, 60, 85, 0.95), rgba(226, 62, 87, 0.9), rgba(226, 62, 87, 0.85),
+  rgba(226, 62, 87, 0.8);
+
+@for $i from 1 through length($listItemColors) {
+  .listItem:nth-child(#{$i}) {
+    background: nth($listItemColors, $i);
+    border: transparent;
+  }
+}
+
 .container {
   width: 340px;
 
@@ -31,7 +41,7 @@
 
 .list {
   width: 100%;
-  min-height: 318px;
+  min-height: 260px;
   max-height: 500px;
   overflow-y: auto;
 
@@ -39,6 +49,8 @@
   justify-content: flex-start;
   align-items: center;
   flex-direction: column;
+
+  background-color: #222831;
 }
 
 .listItem {
@@ -49,7 +61,7 @@
   align-items: center;
   padding: 1rem;
 
-  background-color: #c24448c2;
+  background-color: #222831;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
 
   small {
@@ -64,27 +76,6 @@
     height: 20px;
     line-height: 20px;
     border-radius: 20px;
-  }
-
-  &:nth-child(5) {
-    border-color: transparent;
-    background-color: #c24448f1;
-  }
-  &:nth-child(4) {
-    border-color: transparent;
-    background-color: #c24448;
-  }
-  &:nth-child(3) {
-    border-color: transparent;
-    background-color: #cd4b4b;
-  }
-  &:nth-child(2) {
-    border-color: transparent;
-    background-color: #d7514c;
-  }
-  &:nth-child(1) {
-    border-color: transparent;
-    background-color: #e0574f;
   }
 }
 
@@ -114,5 +105,5 @@
   border-radius: 2px;
   -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
   box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
-  background-color: rgba(255, 255, 255, 0.5);
+  background-color: #222831;
 }
