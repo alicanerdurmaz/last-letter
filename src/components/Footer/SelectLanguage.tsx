@@ -8,7 +8,9 @@ const SelectLanguage = () => {
   const { appLanguage, setAppLanguage } = useInternalizationCtx()
 
   const selectHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setAppLanguage(e.target.value as AppLangugage)
+    const selectedLanguage = e.target.value
+    setAppLanguage(selectedLanguage as AppLangugage)
+    localStorage.setItem('lang', selectedLanguage)
   }
 
   if (getActiveRoute() === Routes.game) return null

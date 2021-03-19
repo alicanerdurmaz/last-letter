@@ -13,7 +13,7 @@ const ComputerScreen = () => {
 
   const { word } = useComputerLogic()
 
-  if (!!word) {
+  if (word) {
     return (
       <>
         <h1 className={styles.computer}>
