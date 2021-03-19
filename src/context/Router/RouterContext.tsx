@@ -1,12 +1,9 @@
 import { createContext, useContext, useState } from 'react'
 
-import Game from 'screens/Game'
-import GameOver, { IGameOver } from 'screens/GameOver'
-import Home from 'screens/Home'
-import MicPermissionDenied from 'screens/MicPermissionDenied'
+import { IGameOver } from 'screens/GameOver'
 
 interface IRouterContext {
-  BrowserRouter: () => JSX.Element
+  activeRoute: IActiveRoute
   changeRoute: (routeName: number, props?: IActiveRoute['routeProps']) => void
   getActiveRoute: () => number
 }
@@ -31,22 +28,6 @@ export const RouterContextProvider: React.FC = ({ children }) => {
     routeProps: undefined,
   })
 
-  const BrowserRouter = () => {
-    switch (activeRoute.name) {
-      case Routes.home:
-        return <Home />
-      case Routes.game:
-        return <Game />
-      case Routes.gameOver:
-        const { description, usedWords, winner, lastUsedWord } = activeRoute.routeProps as IGameOver
-        return <GameOver lastUsedWord={lastUsedWord} description={description} usedWords={usedWords} winner={winner} />
-      case Routes.MicPermissionDenied:
-        return <MicPermissionDenied />
-      default:
-        return <Home />
-    }
-  }
-
   const changeRoute = (routeName: number, props?: IActiveRoute['routeProps']): void => {
     setActiveRoute({
       name: routeName,
@@ -59,7 +40,7 @@ export const RouterContextProvider: React.FC = ({ children }) => {
   }
 
   return (
-    <RouterContext.Provider value={{ getActiveRoute, changeRoute, BrowserRouter }}>{children}</RouterContext.Provider>
+    <RouterContext.Provider value={{ activeRoute, getActiveRoute, changeRoute }}>{children}</RouterContext.Provider>
   )
 }
 
