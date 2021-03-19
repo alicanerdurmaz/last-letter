@@ -1,4 +1,5 @@
 .container {
+  transition: var(--theme-transition);
   width: 100%;
   height: 36px;
   background: var(--c-bg-secondary);
