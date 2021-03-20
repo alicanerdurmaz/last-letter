@@ -8,6 +8,7 @@
 .desc {
   margin: 2rem 0;
   p {
+    transition: var(--theme-transition);
     color: var(--c-text-light);
     margin-bottom: 0.5rem;
     font-size: 1.125rem;

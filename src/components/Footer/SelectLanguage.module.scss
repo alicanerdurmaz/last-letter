@@ -1,5 +1,6 @@
 .container {
   select {
+    transition: var(--theme-transition);
     background-color: var(--c-bg);
     color: var(--c-text);
 
