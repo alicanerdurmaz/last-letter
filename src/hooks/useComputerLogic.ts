@@ -10,11 +10,12 @@ export const useComputerLogic = () => {
   const { appLanguage } = useInternalizationCtx()
   const { gameDifficulty, turnTime } = useSettingsCtx()
   const { gameData, NAME_LIST, changeTurn, pauseGame } = useGameManagerCtx()
+  const { currentWord } = gameData
 
   const [word, setWord] = useState('')
 
   const utterance = useRef(new SpeechSynthesisUtterance())
-  const computerThinkTime = useRef(getRandomInt(2, turnTime - 1) * 1000)
+  const computerThinkTime = useRef(getRandomInt(2, turnTime - 2) * 1000)
 
   utterance.current.lang = appLanguage
 
@@ -38,11 +39,11 @@ export const useComputerLogic = () => {
   useEffect(() => {
     let timeOutId: any = undefined
 
-    // If gameData.currentWord is null, it means this is the first round.
+    // If currentWord is null, it means this is the first round.
     // first round, I am not running the odds calculation because we want the computer to find the word absolutely
-    if (!gameData.currentWord || shouldComputerFindWord(gameDifficulty)) {
-      const wordFounded = findRandomWordFromNameList(gameData.currentWord, NAME_LIST)
-
+    if (!currentWord || shouldComputerFindWord(gameDifficulty)) {
+      const wordFounded = findRandomWordFromNameList({ currentWord, NAME_LIST, appLanguage })
+      console.log(findRandomWordFromNameList({ currentWord: wordFounded as string, NAME_LIST, appLanguage }))
       if (wordFounded) {
         timeOutId = playForComputer(wordFounded)
       }
@@ -51,13 +52,13 @@ export const useComputerLogic = () => {
       clearTimeout(timeOutId)
       window.speechSynthesis.cancel()
     }
-  }, [playForComputer, gameDifficulty, gameData.currentWord])
+  }, [playForComputer, gameDifficulty, currentWord])
 
   return { word }
 }
 
 const shouldComputerFindWord = (computerChance: number) => {
   const randomInt = getRandomInt(0, 100)
-
+  console.log(computerChance >= randomInt, { randomInt, computerChance })
   return computerChance >= randomInt
 }
