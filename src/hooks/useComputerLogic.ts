@@ -44,9 +44,9 @@ export const useComputerLogic = () => {
     // If currentWord is null, it means this is the first round.
     // first round, I am not running the odds calculation because we want the computer to find the word absolutely
     if (!currentWord || shouldComputerFindWord(gameDifficulty)) {
-      const wordFounded = findRandomWordFromNameList({ currentWord, NAME_LIST, appLanguage })
-      if (wordFounded) {
-        timeOutId = playForComputer(wordFounded)
+      const wordFound = findRandomWordFromNameList({ currentWord, NAME_LIST, appLanguage })
+      if (wordFound) {
+        timeOutId = playForComputer(wordFound)
       }
     }
     return () => {
