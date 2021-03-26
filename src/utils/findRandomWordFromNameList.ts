@@ -16,7 +16,8 @@ interface IFindRandomWordFromNameList {
 }
 
 export const findRandomWordFromNameList = ({ currentWord, NAME_LIST, appLanguage }: IFindRandomWordFromNameList) => {
-  let lastLetter = !currentWord ? findRandomLetter(appLanguage) : currentWord[currentWord.length - 1]
+  // in first round currentWord will be empty = ""
+  const lastLetter = currentWord[currentWord.length - 1] || findRandomLetter(appLanguage)
 
   const listStartingWithTheLastLetter = NAME_LIST[lastLetter]
 
