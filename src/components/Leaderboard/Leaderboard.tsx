@@ -17,7 +17,7 @@ const Leaderboard = () => {
 
   const currentUserRank = useMemo(() => {
     return leaderBoardList.findIndex(user => user.username === currentUser?.user?.displayName) + 1
-  }, [leaderBoardList])
+  }, [currentUser?.user?.displayName, leaderBoardList])
 
   return (
     <div className={styles.container}>

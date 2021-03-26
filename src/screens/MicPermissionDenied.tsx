@@ -22,6 +22,7 @@ const MicPermissionDenied = () => {
       <a
         className={styles.link}
         target="_blank"
+        rel="noreferrer"
         href={`https://support.google.com/chrome/answer/2693767?hl=${appLanguage}`}
       >
         {t('howToGiveMicPermissionLink')}

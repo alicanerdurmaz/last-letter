@@ -1,6 +1,6 @@
 import { useState, createContext, useContext, useEffect } from 'react'
 
-import firebase, { auth, useFirestore } from 'hooks/useFirebase'
+import firebase, { auth, getFireStore } from 'hooks/useFirebase'
 
 interface ICurrentUser {
   user: firebase.User | null
@@ -18,7 +18,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   const getUserScore = async (displayName: string | null) => {
     if (!displayName) return 0
 
-    const { firestore } = await useFirestore()
+    const { firestore } = await getFireStore()
     const docRef = firestore.collection('users').doc(displayName)
     const doc = await docRef.get()
 

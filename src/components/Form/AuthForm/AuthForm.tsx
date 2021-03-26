@@ -8,9 +8,9 @@ import Form from '../Form'
 import styles from './AuthForm.module.scss'
 import AuthFormHeader from './AuthFormHeader'
 
-export type FormType = typeof FormType.closed | typeof FormType.signin | typeof FormType.signup
+export type FormType = typeof FormTypeEnum.closed | typeof FormTypeEnum.signin | typeof FormTypeEnum.signup
 
-export const FormType = {
+export const FormTypeEnum = {
   closed: false,
   signin: 1,
   signup: 2,
@@ -32,11 +32,11 @@ const AuthForm = ({ type }: IProps) => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    if (formType === FormType.closed || loading) return
+    if (formType === FormTypeEnum.closed || loading) return
 
     setLoading(true)
 
-    const error = await (formType === FormType.signin
+    const error = await (formType === FormTypeEnum.signin
       ? signInWithEmailAndPassword({ email, password, username })
       : createUserWithEmailAndPassword({ email, password }))
 
@@ -59,7 +59,7 @@ const AuthForm = ({ type }: IProps) => {
 
       <Form onSubmit={handleSubmit} disabled={loading}>
         <Form.FormControl
-          hidden={formType === FormType.signin}
+          hidden={formType === FormTypeEnum.signin}
           autoFocus={true}
           type="text"
           name="username"
@@ -85,7 +85,7 @@ const AuthForm = ({ type }: IProps) => {
         />
 
         <Form.SubmitButton loading={loading}>
-          {formType === FormType.signin ? t('signin') : t('signup')}
+          {formType === FormTypeEnum.signin ? t('signin') : t('signup')}
         </Form.SubmitButton>
       </Form>
 

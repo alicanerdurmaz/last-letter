@@ -24,7 +24,7 @@ const Modal = ({ isOpen, setIsOpen, children, closeOnClickOutside = true }: IPro
     }
     window.addEventListener('keydown', close)
     return () => window.removeEventListener('keydown', close)
-  }, [])
+  }, [setIsOpen])
 
   if (!isOpen) return null
 

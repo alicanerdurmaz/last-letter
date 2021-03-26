@@ -53,7 +53,7 @@ export const useComputerLogic = () => {
       clearTimeout(timeOutId)
       window.speechSynthesis.cancel()
     }
-  }, [playForComputer, gameDifficulty, currentWord])
+  }, [playForComputer, gameDifficulty, currentWord, NAME_LIST, appLanguage])
 
   return { word }
 }

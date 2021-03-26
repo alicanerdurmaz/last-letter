@@ -8,14 +8,14 @@ import { useInternalizationCtx } from 'context/Internalization/InternalizationCo
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
 import { auth } from 'hooks/useFirebase'
 
-import AuthForm, { FormType } from './AuthForm'
+import AuthForm, { FormTypeEnum, FormType } from './AuthForm'
 import styles from './OpenAuthForm.module.scss'
 
 const OpenAuthForm = () => {
   const { currentUser } = useAuthContext()
   const { getActiveRoute, changeRoute } = useRouterContext()
   const { t } = useInternalizationCtx()
-  const [isAuthFormOpen, setIsAuthFormOpen] = useState<FormType>(FormType.closed)
+  const [isAuthFormOpen, setIsAuthFormOpen] = useState<FormType>(FormTypeEnum.closed)
 
   const openAuthForm = (type: FormType) => {
     if (getActiveRoute() === Routes.game) {
@@ -30,7 +30,7 @@ const OpenAuthForm = () => {
   }
 
   const signOut = async () => {
-    setIsAuthFormOpen(FormType.closed)
+    setIsAuthFormOpen(FormTypeEnum.closed)
 
     if (getActiveRoute() === Routes.game) {
       if (window.confirm(t('alertForExit'))) {
@@ -55,9 +55,9 @@ const OpenAuthForm = () => {
 
   return (
     <div className={cx(styles.toggleForm, styles.container)}>
-      <p onClick={() => openAuthForm(FormType.signin)}>{t('signin')}</p>
+      <p onClick={() => openAuthForm(FormTypeEnum.signin)}>{t('signin')}</p>
       <span>{t('or')}</span>
-      <p onClick={() => openAuthForm(FormType.signup)}>{t('signup')}</p>
+      <p onClick={() => openAuthForm(FormTypeEnum.signup)}>{t('signup')}</p>
 
       <Modal isOpen={!!isAuthFormOpen} setIsOpen={() => setIsAuthFormOpen(false)} closeOnClickOutside={false}>
         <AuthForm type={isAuthFormOpen} />

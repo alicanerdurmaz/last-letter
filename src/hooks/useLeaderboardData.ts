@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-import { useFirestore } from './useFirebase'
+import { getFireStore } from './useFirebase'
 
 type User = { username: string; score: number }
 
@@ -13,7 +13,7 @@ const useLeaderboardData = () => {
   }, [])
 
   const loadData = async () => {
-    const { firestore } = await useFirestore()
+    const { firestore } = await getFireStore()
 
     try {
       const usersRef = firestore.collection('users').orderBy('score', 'desc')

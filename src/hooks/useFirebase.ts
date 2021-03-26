@@ -28,7 +28,7 @@ const getFirestoreInstance = async () => {
   return firebase.firestore()
 }
 
-export const useFirestore = async () => {
+export const getFireStore = async () => {
   initializeFirebase()
   const firestore = await getFirestoreInstance()
 

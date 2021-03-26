@@ -37,7 +37,7 @@ export const InternalizationProvider: React.FC = ({ children }) => {
 
       return lang[appLanguage][key]
     },
-    [appLanguage],
+    [appLanguage, lang],
   )
 
   return (

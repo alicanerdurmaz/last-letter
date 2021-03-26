@@ -2,8 +2,7 @@ import { render } from '@testing-library/react'
 import '@testing-library/jest-dom/extend-expect'
 import userEvent from '@testing-library/user-event'
 
-import AuthForm, { FormType } from 'components/Form/AuthForm/AuthForm'
-import { SettingsProvider } from 'context/GameManager/SettingsContext'
+import AuthForm, { FormTypeEnum, FormType } from 'components/Form/AuthForm/AuthForm'
 import { InternalizationProvider } from 'context/Internalization/InternalizationContext'
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'services/firebase'
 import { getLanguageFromLocalStorage } from 'utils/getLanguageFromLocalStorage'
@@ -17,7 +16,7 @@ beforeEach(() => {
 
 describe('auth form', () => {
   test('type sign in', () => {
-    const { getByTestId } = render(<AuthFormComponent type={FormType.signin} />)
+    const { getByTestId } = render(<AuthFormComponent type={FormTypeEnum.signin} />)
 
     const submitButton = getByTestId(/form-submit/i)
     expect(submitButton).toHaveTextContent(/sign in/i)
@@ -28,7 +27,7 @@ describe('auth form', () => {
   })
 
   test('type sign up', () => {
-    const { getByTestId, debug } = render(<AuthFormComponent type={FormType.signup} />)
+    const { getByTestId } = render(<AuthFormComponent type={FormTypeEnum.signup} />)
 
     const submitButton = getByTestId(/form-submit/i)
     expect(submitButton).toHaveTextContent(/sign up/i)
@@ -39,7 +38,7 @@ describe('auth form', () => {
   })
 
   test('type change works properly', () => {
-    const { getByTestId, getByRole } = render(<AuthFormComponent type={FormType.signin} />)
+    const { getByTestId, getByRole } = render(<AuthFormComponent type={FormTypeEnum.signin} />)
 
     expect(getByTestId(/form-submit/i)).toHaveTextContent(/sign in/i)
 

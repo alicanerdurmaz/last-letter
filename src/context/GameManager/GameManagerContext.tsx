@@ -5,7 +5,7 @@ import { useInternalizationCtx } from 'context/Internalization/InternalizationCo
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
 import englishNames from 'data/english-names.json'
 import turkishNames from 'data/turkish-names.json'
-import { useFirestore } from 'hooks/useFirebase'
+import { getFireStore } from 'hooks/useFirebase'
 import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
 
 export const USER = {
@@ -109,7 +109,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
 
     if (currentUser.score >= gameData.score) return
 
-    const { firestore } = await useFirestore()
+    const { firestore } = await getFireStore()
 
     const displayName = currentUser?.user?.displayName || undefined
 
