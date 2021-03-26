@@ -21,6 +21,8 @@ export const useComputerLogic = () => {
 
   const playForComputer = useCallback(
     (word: string) => {
+      // It's not fun that the computer can find words right away.
+      // I wanted to simulate this. also allows the player to breathe
       return setTimeout(() => {
         pauseGame()
         setWord(word)
@@ -43,7 +45,6 @@ export const useComputerLogic = () => {
     // first round, I am not running the odds calculation because we want the computer to find the word absolutely
     if (!currentWord || shouldComputerFindWord(gameDifficulty)) {
       const wordFounded = findRandomWordFromNameList({ currentWord, NAME_LIST, appLanguage })
-      console.log(findRandomWordFromNameList({ currentWord: wordFounded as string, NAME_LIST, appLanguage }))
       if (wordFounded) {
         timeOutId = playForComputer(wordFounded)
       }
@@ -59,6 +60,5 @@ export const useComputerLogic = () => {
 
 const shouldComputerFindWord = (computerChance: number) => {
   const randomInt = getRandomInt(0, 100)
-  console.log(computerChance >= randomInt, { randomInt, computerChance })
   return computerChance >= randomInt
 }

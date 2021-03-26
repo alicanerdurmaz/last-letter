@@ -20,6 +20,7 @@ const initializeFirebase = () => {
   }
 }
 
+//f irebase library is huge. should be imported when needed.
 const getFirestoreInstance = async () => {
   if (!firebase.firestore) {
     await import('firebase/firestore')
