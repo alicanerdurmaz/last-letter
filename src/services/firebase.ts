@@ -1,4 +1,4 @@
-import { auth } from 'hooks/useFirebase'
+import { auth, getFireStore } from 'hooks/useFirebase'
 
 interface IUserCredentials {
   email: string
@@ -24,4 +24,14 @@ export const signInWithEmailAndPassword = async ({ email, password }: IUserCrede
   } catch (error) {
     return error.code as string
   }
+}
+
+export const saveScoreToFirestore = async (displayName: string, score: number) => {
+  const { firestore } = await getFireStore()
+  try {
+    await firestore.collection('users').doc(displayName).set({
+      username: displayName,
+      score: score,
+    })
+  } catch (error) {}
 }

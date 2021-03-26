@@ -5,7 +5,7 @@ import { useInternalizationCtx } from 'context/Internalization/InternalizationCo
 import { Routes, useRouterContext } from 'context/Router/RouterContext'
 import englishNames from 'data/english-names.json'
 import turkishNames from 'data/turkish-names.json'
-import { getFireStore } from 'hooks/useFirebase'
+import { saveScoreToFirestore } from 'services/firebase'
 import { checkWordIsInvalid } from 'utils/checkWordIsInvalid'
 
 export const USER = {
@@ -93,7 +93,7 @@ export const GameManagerProvider: React.FC = ({ children }) => {
 
   const gameOver = (desc: string, lastUsedWord?: string) => {
     pauseGame()
-    saveScoreToFirestore()
+    saveHighScoreToFirestore()
 
     const gameOverScreenProps = {
       winner: gameData.whoIsPlaying === USER.computer ? USER.player : USER.computer,
@@ -104,21 +104,12 @@ export const GameManagerProvider: React.FC = ({ children }) => {
     changeRoute(Routes.gameOver, gameOverScreenProps)
   }
 
-  const saveScoreToFirestore = async () => {
-    if (!currentUser) return
+  const saveHighScoreToFirestore = async () => {
+    if (!currentUser || !currentUser.user?.displayName) return
 
     if (currentUser.score >= gameData.score) return
 
-    const { firestore } = await getFireStore()
-
-    const displayName = currentUser?.user?.displayName || undefined
-
-    try {
-      firestore.collection('users').doc(displayName).set({
-        username: displayName,
-        score: gameData.score,
-      })
-    } catch (error) {}
+    await saveScoreToFirestore(currentUser.user.displayName, gameData.score)
   }
 
   const pauseGame = () => {
