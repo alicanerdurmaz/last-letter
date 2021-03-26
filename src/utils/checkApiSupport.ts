@@ -4,21 +4,12 @@ export function checkApiSupport() {
     ['SpeechGrammarList', 'webkitSpeechGrammarList'],
     ['SpeechSynthesisUtterance'],
   ]
-  const undefinedApiList: string[][] = []
 
-  apiList.forEach(e => {
-    let supported = false
-    e.forEach((v: any) => {
-      if (window[v] !== undefined) {
-        supported = true
-      }
-    })
-    if (!supported) {
-      undefinedApiList.push(e)
-    }
+  const apiIsSupported = apiList.every(e => {
+    const supported = e.some((v: any) => window[v] !== undefined)
+
+    return supported
   })
-  if (undefinedApiList.length >= 1) {
-    return false
-  }
-  return true
+
+  return apiIsSupported
 }
