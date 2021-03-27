@@ -1,14 +1,17 @@
-import GameUI from 'components/GameUI/GameUI'
-import { GameLoopProvider } from 'context/GameManager/GameLoop'
-import { GameManagerProvider } from 'context/GameManager/GameManagerContext'
+import Computer from 'components/GameUI/Computer'
+import GameLoop from 'components/GameUI/GameLoop'
+import User from 'components/GameUI/User'
+import { useGameManagerCtx, USER } from 'context/GameManager/GameManagerContext'
+
+import styles from './Game.module.scss'
 
 const Game = () => {
+  const { gameData } = useGameManagerCtx()
   return (
-    <GameManagerProvider>
-      <GameLoopProvider>
-        <GameUI />
-      </GameLoopProvider>
-    </GameManagerProvider>
+    <div className={styles.container}>
+      <GameLoop />
+      <div className={styles.playerContainer}>{gameData.whoIsPlaying === USER.computer ? <Computer /> : <User />}</div>
+    </div>
   )
 }
 

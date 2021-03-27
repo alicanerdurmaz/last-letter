@@ -1,3 +1,4 @@
+import { GameManagerProvider } from 'context/GameManager/GameManagerContext'
 import Game from 'screens/Game'
 import GameOver, { IGameOver } from 'screens/GameOver'
 import Home from 'screens/Home'
@@ -12,13 +13,21 @@ const Router = () => {
     switch (activeRoute.name) {
       case Routes.home:
         return <Home />
+
       case Routes.game:
-        return <Game />
+        return (
+          <GameManagerProvider>
+            <Game />
+          </GameManagerProvider>
+        )
+
       case Routes.gameOver:
         const { description, usedWords, winner, lastUsedWord } = activeRoute.routeProps as IGameOver
         return <GameOver lastUsedWord={lastUsedWord} description={description} usedWords={usedWords} winner={winner} />
+
       case Routes.MicPermissionDenied:
         return <MicPermissionDenied />
+
       default:
         return <Home />
     }

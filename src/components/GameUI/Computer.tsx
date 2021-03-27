@@ -1,5 +1,3 @@
-import { memo } from 'react'
-
 import styles from 'components/GameUI/GameUI.module.scss'
 import LastLetter from 'components/Text/LastLetter'
 import { useGameManagerCtx } from 'context/GameManager/GameManagerContext'
@@ -37,4 +35,4 @@ const ComputerScreen = () => {
   )
 }
 
-export default memo(ComputerScreen)
+export default ComputerScreen
