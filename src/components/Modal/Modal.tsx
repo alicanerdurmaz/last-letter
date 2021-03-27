@@ -30,9 +30,14 @@ const Modal = ({ isOpen, setIsOpen, children, closeOnClickOutside = true }: IPro
 
   return createPortal(
     <FocusLock>
-      <div className={styles.container}>
+      <div role="dialog" aria-modal="true" className={styles.container}>
         <div className={styles.childrenContainer} ref={childrenRef}>
-          <button className={styles.closeButton} onClick={() => setIsOpen(false)}>
+          <button
+            aria-labelledby="dialog"
+            aria-label="close"
+            className={styles.closeButton}
+            onClick={() => setIsOpen(false)}
+          >
             <TimesIcon />
           </button>
           {children}
